@@ -4,7 +4,12 @@ var http = require('http').createServer(app);
 var io = require('socket.io')(http);
 
 
-http.listen(3000, function(){
+let port = process.env.PORT; //To run on Heroku
+if (port == null || port == "") { //To run on local host
+    port = 3000;
+}
+
+http.listen(port, function(){
     console.log('listening on *:3000');
 });
 
