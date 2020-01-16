@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The Internal & the Internet</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!-- Assuring Bootstrap is responsive on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+
+
+</head>
+<body>
+
+
+<div class="container">
+    <h1>Touch the buttons</h1>
+    <br>
+    <button onclick="colorOut('blue')" type="button" class="btn btn-primary btn-block">Emit Light</button>
+    <br>
+    <button onclick="colorOut('green')" type="button" class="btn btn-success btn-block">Emit Light</button>
+    <br>
+    <button onclick="colorOut('red')" type="button" class="btn btn-danger btn-block">Emit Light</button>
+</div>
+
+<!-- Socket.io -->
+<script src="/socket.io/socket.io.js"></script>
+<script>
+
+    var socket = io();
+
+    function colorOut(color){
+        socket.emit('colorOut', color);
+        console.log("Sending color out of type " + color)
+    }
+
+    socket.on('updateColorInUI', function(msg){
+        console.log(msg);
+    });
+
+</script>
+
+
+</body>
+</html>
