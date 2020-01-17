@@ -15,10 +15,6 @@
     <!-- Assuring Bootstrap is responsive on mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
-
-
-
 </head>
 <body>
 
@@ -26,16 +22,36 @@
 <div class="container">
     <h1>Touch the buttons</h1>
     <br>
-    <button onclick="colorOut('blue')" type="button" class="btn btn-primary btn-block">Emit Light</button>
+    <button onclick="colorOut(blue)" type="button" class="btn btn-primary btn-block">Emit Light</button>
     <br>
-    <button onclick="colorOut('green')" type="button" class="btn btn-success btn-block">Emit Light</button>
+    <button onclick="colorOut(green)" type="button" class="btn btn-success btn-block">Emit Light</button>
     <br>
-    <button onclick="colorOut('red')" type="button" class="btn btn-danger btn-block">Emit Light</button>
+    <button onclick="colorOut(red)" type="button" class="btn btn-danger btn-block">Emit Light</button>
 </div>
 
 <!-- Socket.io -->
 <script src="/socket.io/socket.io.js"></script>
 <script>
+
+    var red = JSON.stringify({
+        "R" : 255,
+        "G" : 0,
+        "B" : 0
+    });
+
+    var green = JSON.stringify({
+        "R" : 0,
+        "G" : 255,
+        "B" : 0
+    });
+
+    var blue = JSON.stringify({
+        "R" : 0,
+        "G" : 0,
+        "B" : 255
+    });
+
+
 
     var socket = io();
 
