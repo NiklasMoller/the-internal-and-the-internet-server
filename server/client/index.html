@@ -34,18 +34,25 @@
 <script>
 
     var red = JSON.stringify({
-        "color" : "0xFF0000"
+        "R" : 255,
+        "G" : 0,
+        "B" : 0
     });
 
     var green = JSON.stringify({
-        "color" : "0x008000"
+        "R" : 0,
+        "G" : 255,
+        "B" : 0
     });
 
     var blue = JSON.stringify({
-        "color" : "0x4169E1"
+        "R" : 0,
+        "G" : 0,
+        "B" : 255
     });
 
-    
+
+
     var socket = io();
 
     function colorOut(color){
