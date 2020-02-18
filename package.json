@@ -5,14 +5,15 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start" : "webpack"
+    "start": "webpack"
   },
   "author": "Niklas Möller",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
     "mqtt": "^3.0.0",
-    "socket.io": "^2.3.0"
+    "socket.io": "^2.3.0",
+    "three": "^0.113.2"
   },
   "engines": {
     "node": "10.x"

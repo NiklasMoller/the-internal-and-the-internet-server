@@ -20,16 +20,14 @@ http.listen(port, function(){
 
 
 //Enabling express to access files in the client folder
-app.use(express.static(__dirname + '/client'));
+app.use(express.static(path.join(__dirname, '/../src/client')));
 
 //Enabling express to acces files in the dist folder
-//app.use(express.static(__dirname + '/../dist'));
 app.use(express.static(path.join(__dirname, '/../dist')));
 
 
-
 app.get('/', function(req, res){
-    res.sendFile(__dirname + '/client/index.html');
+    res.sendFile(__dirname + '/../src/client/index.html');
 });
 
 

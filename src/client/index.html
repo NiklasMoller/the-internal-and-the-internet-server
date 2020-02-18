@@ -19,19 +19,22 @@
 <body>
 
 
-<div class="container">
-    <h1>Touch the buttons</h1>
-    <br>
-    <button onclick="colorOut(blue)" type="button" class="btn btn-primary btn-block">Emit Light</button>
-    <br>
-    <button onclick="colorOut(green)" type="button" class="btn btn-success btn-block">Emit Light</button>
-    <br>
-    <button onclick="colorOut(red)" type="button" class="btn btn-danger btn-block">Emit Light</button>
-</div>
+  <div id="overlay">
+
+  			<div>
+
+  				<button id="startButton">Start Demo</button>
+
+  				<p>Using device orientation might require a user interaction.</p>
+
+  			</div>
+
+  		</div>
 
 <!-- Socket.io -->
 <script src="/socket.io/socket.io.js"></script>
-<script src="app.js"></script>
+
+<!-- main.js in dist folder -built by webpack -->
 <script src="main.js"></script>
 
 
