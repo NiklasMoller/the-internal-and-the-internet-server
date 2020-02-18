@@ -1,5 +1,7 @@
-var app = require('express')();
+var express = require('express');
+var app = express();
 var http = require('http').createServer(app);
+const path = require('path');
 
 var io = require('socket.io')(http);
 
@@ -14,6 +16,17 @@ if (port == null || port == "") { //To run on local host
 http.listen(port, function(){
     console.log('listening on *:3000');
 });
+
+
+
+//Enabling express to access files in the client folder
+app.use(express.static(__dirname + '/client'));
+
+//Enabling express to acces files in the dist folder
+//app.use(express.static(__dirname + '/../dist'));
+app.use(express.static(path.join(__dirname, '/../dist')));
+
+
 
 app.get('/', function(req, res){
     res.sendFile(__dirname + '/client/index.html');
@@ -82,7 +95,3 @@ io.on('connection', function(socket){
     });
 
 });
-
-
-
-
