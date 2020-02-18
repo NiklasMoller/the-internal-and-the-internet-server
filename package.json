@@ -4,7 +4,8 @@
   "description": "Server to be used in digital installation",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start" : "webpack"
   },
   "author": "Niklas Möller",
   "license": "ISC",
@@ -15,5 +16,9 @@
   },
   "engines": {
     "node": "10.x"
+  },
+  "devDependencies": {
+    "webpack": "^4.41.6",
+    "webpack-cli": "^3.3.11"
   }
 }
