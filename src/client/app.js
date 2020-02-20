@@ -26,6 +26,12 @@ export const run = ()=>{
 				var overlay = document.getElementById( 'overlay' );
 				overlay.remove();
 
+        var elem = document.getElementById("3D_screen");
+        openFullscreen(elem);
+
+
+
+
 				camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 1100 );
 
 				controls = new DeviceOrientationControls( camera );
@@ -79,3 +85,16 @@ export const run = ()=>{
 				renderer.setSize( window.innerWidth, window.innerHeight );
 
 			}
+
+
+      function openFullscreen(elem) {
+        if (elem.requestFullscreen) {
+          elem.requestFullscreen();
+        } else if (elem.mozRequestFullScreen) { /* Firefox */
+          elem.mozRequestFullScreen();
+        } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+          elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) { /* IE/Edge */
+          elem.msRequestFullscreen();
+        }
+      }
