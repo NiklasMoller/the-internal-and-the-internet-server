@@ -1,5 +1,7 @@
-var app = require('express')();
+var express = require('express');
+var app = express();
 var http = require('http').createServer(app);
+const path = require('path');
 
 var io = require('socket.io')(http);
 
@@ -15,8 +17,17 @@ http.listen(port, function(){
     console.log('listening on *:3000');
 });
 
+
+
+//Enabling express to access files in the client folder
+app.use(express.static(path.join(__dirname, '/../src/client')));
+
+//Enabling express to acces files in the dist folder
+app.use(express.static(path.join(__dirname, '/../dist')));
+
+
 app.get('/', function(req, res){
-    res.sendFile(__dirname + '/client/index.html');
+    res.sendFile(__dirname + '/../src/client/index.html');
 });
 
 
@@ -82,7 +93,3 @@ io.on('connection', function(socket){
     });
 
 });
-
-
-
-
