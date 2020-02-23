@@ -57,12 +57,14 @@ console.log("Hello from THREE.js");
 				var mesh = new THREE.Mesh( geometry, material );
 				scene.add( mesh );
 
+        */
+
 				var helperGeometry = new THREE.BoxBufferGeometry( 100, 100, 100, 4, 4, 4 );
 				var helperMaterial = new THREE.MeshBasicMaterial( { color: 0xff00ff, wireframe: true } );
 				var helper = new THREE.Mesh( helperGeometry, helperMaterial );
 				scene.add( helper );
 
-        */
+
 
 				//
 
