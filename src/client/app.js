@@ -1,13 +1,13 @@
-//Exporting run function
-
-import * as THREE from 'three';
 
 export const run = ()=>{
+
   console.log("Executed function in index.js but function running in app.js");
+
 };
 
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
-//import * as THREE from '../build/three.module.js';
 
 			import { DeviceOrientationControls } from 'three/examples/jsm/controls/DeviceOrientationControls.js';
 
@@ -26,18 +26,26 @@ export const run = ()=>{
 				var overlay = document.getElementById( 'overlay' );
 				overlay.remove();
 
-        var elem = document.getElementById("3D_screen");
-        openFullscreen(elem);
-
-
 
 
 				camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 1100 );
-
 				controls = new DeviceOrientationControls( camera );
-
 				scene = new THREE.Scene();
 
+
+        var loader = new GLTFLoader();
+
+        loader.load( 'resources/scene.gltf', function ( gltf ) {
+        	scene.add( gltf.scene );
+        }, undefined, function ( error ) {
+        	console.error( error );
+          console.log("Could not load the 3D object");
+        } );
+
+
+console.log("Hello from THREE.js");
+
+/*
 				var geometry = new THREE.SphereBufferGeometry( 500, 60, 40 );
 				// invert the geometry on the x-axis so that all of the faces point inward
 				geometry.scale( - 1, 1, 1 );
@@ -54,11 +62,14 @@ export const run = ()=>{
 				var helper = new THREE.Mesh( helperGeometry, helperMaterial );
 				scene.add( helper );
 
+        */
+
 				//
 
 				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
+        renderer.outputEncoding = THREE.sRGBEncoding; //Configure the encoding to load GLTF data
 				document.body.appendChild( renderer.domElement );
 
 				//
