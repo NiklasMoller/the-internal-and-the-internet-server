@@ -41,10 +41,11 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
             [
                 'a.jpg',
                 'b.jpg',
-                'c.jpg',
-                'd.jpg',
                 'e.jpg',
-                'f.jpg'
+                'f.jpg',
+                'c.jpg',
+                'd.jpg'
+
             ],
 
             // what to do when loading is over
