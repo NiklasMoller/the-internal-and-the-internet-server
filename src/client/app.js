@@ -26,21 +26,56 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 				var overlay = document.getElementById( 'overlay' );
 				overlay.remove();
 
-
-
 				camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 1100 );
 				controls = new DeviceOrientationControls( camera );
 				scene = new THREE.Scene();
 
 
-        var loader = new GLTFLoader();
 
-        loader.load( 'resources/scene.gltf', function ( gltf ) {
-        	scene.add( gltf.scene );
-        }, undefined, function ( error ) {
-        	console.error( error );
-          console.log("Could not load the 3D object");
-        } );
+        // LOAD CUBE TEXTURE
+        new THREE.CubeTextureLoader()
+        .setPath('/resources/')
+        .load(
+
+            // urls of images used in the cube texture
+            [
+                'a.jpg',
+                'b.jpg',
+                'c.jpg',
+                'd.jpg',
+                'e.jpg',
+                'f.jpg'
+            ],
+
+            // what to do when loading is over
+            function (cubeTexture) {
+
+
+              // Geometry
+              var geometry = new THREE.SphereGeometry(1, 20, 20);
+
+              // Material
+              var material = new THREE.MeshBasicMaterial({
+
+              // CUBE TEXTURE can be used with
+              // the environment map property of
+              // a material.
+              envMap: cubeTexture
+
+});
+
+// Mesh
+var mesh = new THREE.Mesh(geometry, material);
+scene.add(mesh);
+
+                // CUBE TEXTURE is also an option for a background
+                scene.background = cubeTexture;
+                renderer.render(scene, camera);
+
+            }
+
+        );
+
 
 
 console.log("Hello from THREE.js");
@@ -59,10 +94,10 @@ console.log("Hello from THREE.js");
 
         */
 
-				var helperGeometry = new THREE.BoxBufferGeometry( 100, 100, 100, 4, 4, 4 );
-				var helperMaterial = new THREE.MeshBasicMaterial( { color: 0xff00ff, wireframe: true } );
-				var helper = new THREE.Mesh( helperGeometry, helperMaterial );
-				scene.add( helper );
+				//var helperGeometry = new THREE.BoxBufferGeometry( 100, 100, 100, 4, 4, 4 );
+				//var helperMaterial = new THREE.MeshBasicMaterial( { color: 0xff00ff, wireframe: true } );
+				//var helper = new THREE.Mesh( helperGeometry, helperMaterial );
+				//scene.add( helper );
 
 
 
