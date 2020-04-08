@@ -75,7 +75,7 @@ function init() {
 		var material = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
 		var cube = new THREE.Mesh( geometry, material );
 		scene.add( cube );
-		cube.position.set(1,1,5);
+		cube.position.set(1,-9,5);
 
 
 
