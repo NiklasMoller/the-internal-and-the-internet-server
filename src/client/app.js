@@ -41,10 +41,10 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
             [
                 'wall1.png',
                 'wall2.png',
-                'wall3.png',
-                'wall4.png',
                 'sky.png',
-                'ground.png'
+                'ground.png',
+                'wall3.png',
+                'wall4.png'
 
             ],
 
