@@ -39,12 +39,12 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
             // urls of images used in the cube texture
             [
-                'a.jpg',
-                'b.jpg',
-                'e.jpg',
-                'f.jpg',
-                'c.jpg',
-                'd.jpg'
+                'wall1.png',
+                'wall2.png',
+                'wall3.png',
+                'wall4.png',
+                'sky.png',
+                'ground.png'
 
             ],
 
