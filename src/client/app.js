@@ -72,10 +72,10 @@ function init() {
 		);
 
 		var geometry = new THREE.BoxGeometry( 1, 1, 1 );
-		var material = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
+		var material = new THREE.MeshBasicMaterial( {color: 0xfc7c7c} );
 		var cube = new THREE.Mesh( geometry, material );
 		scene.add( cube );
-		cube.position.set(1,-9,5);
+		cube.position.set(1,-9,9);
 
 
 
