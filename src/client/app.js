@@ -34,12 +34,12 @@ function init() {
 
 			// urls of images used in the cube texture
 			[
-				'wall1-text.png',
-				'wall2-text.png',
+				'wall1.png',
+				'wall2.png',
 				'sky.png',
 				'ground.png',
-				'wall3-text.png',
-				'wall4-text.png'
+				'wall3.png',
+				'wall4.png'
 
 			],
 
