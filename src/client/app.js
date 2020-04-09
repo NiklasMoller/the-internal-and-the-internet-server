@@ -38,8 +38,8 @@ function init() {
 				'wall2.png',
 				'sky.png',
 				'ground.png',
-				'wall3.png',
-				'wall4.png'
+				'wall3-text.png',
+				'wall4-text.png'
 
 			],
 
@@ -62,6 +62,7 @@ function init() {
 				// Mesh
 				var mesh = new THREE.Mesh(geometry, material);
 				scene.add(mesh);
+				mesh.position.set(0,7,0);
 
 				// CUBE TEXTURE is also an option for a background
 				scene.background = cubeTexture;
@@ -71,26 +72,27 @@ function init() {
 
 		);
 
+/*
 		var geometry = new THREE.BoxGeometry( 1, 1, 1 );
 		var material = new THREE.MeshBasicMaterial( {color: 0xfc7c7c} );
 		var cube = new THREE.Mesh( geometry, material );
 		scene.add( cube );
 		cube.position.set(1,-9,9);
-
+*/
 
 
 	/*
 					var geometry = new THREE.SphereBufferGeometry( 500, 60, 40 );
 					// invert the geometry on the x-axis so that all of the faces point inward
 					geometry.scale( - 1, 1, 1 );
-	
+
 					var material = new THREE.MeshBasicMaterial( {
 						map: new THREE.TextureLoader().load( 'resources/interior.jpg' )
 					} );
-	
+
 					var mesh = new THREE.Mesh( geometry, material );
 					scene.add( mesh );
-	
+
 			*/
 
 	//var helperGeometry = new THREE.BoxBufferGeometry( 100, 100, 100, 4, 4, 4 );
