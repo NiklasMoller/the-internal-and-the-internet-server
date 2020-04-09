@@ -38,8 +38,8 @@ function init() {
 				'wall2.png',
 				'sky.png',
 				'ground.png',
-				'wall3.png',
-				'wall4.png'
+				'wall3-text.png',
+				'wall4-text.png'
 
 			],
 
