@@ -1,0 +1,26 @@
+/*
+#071e3d
+#1f4287
+#278ea5
+#21e6c1
+https://colorhunt.co/palette/132247
+
+
+#283149
+#404b69
+#00818a
+#dbedf3
+https://colorhunt.co/palette/118962
+
+*/
+
+body {
+  background-color: #283149;
+}
+
+.text-centre {
+  font-family: 'Titillium Web', sans-serif;
+  color: #00818a;
+  margin-left: 20px;
+  text-align: center;
+}
