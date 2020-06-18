@@ -36,7 +36,10 @@ body {
 }
 */
 
-p {font-size: 16px;}
+p {
+  font-size: 16px;
+  font-family: 'Lato', sans-serif;
+}
 
 h1 {
     text-align: center;
@@ -45,11 +48,15 @@ h1 {
 }
 
 .margin {
-  margin-bottom: 45px;
+  margin-bottom: 40px;
 }
 
 .MuseoModerno {
   font-family: 'MuseoModerno', cursive;
+}
+
+.Lato {
+  font-family: 'Lato', sans-serif;
 }
 
 
@@ -70,6 +77,6 @@ h1 {
   color: #fff;
 }
 .container-fluid {
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
