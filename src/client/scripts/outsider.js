@@ -3,5 +3,7 @@ var animation = bodymovin.loadAnimation({
   renderer: 'svg',
   loop: false,
   autoplay: true,
-  path: 'outsider.json'
+  path: './resources/animations/outsider.json'
 })
+
+console.log('Playing outsider animation');
