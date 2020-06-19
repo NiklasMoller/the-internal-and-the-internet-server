@@ -65,3 +65,23 @@ h1 {
   padding-top: 40px;
   padding-bottom: 40px;
 }
+
+.animation {
+  padding-top: 70px;
+  padding-bottom: 40px;
+}
+
+.btn {
+font-family: 'MuseoModerno', cursive;
+background-color: #000000;
+color: #feb333;
+}
+
+form {
+  margin-left: 15%;
+  margin-right:15%;
+  width: 70%;
+  text-align: center;
+  padding-bottom: 40px;
+  padding-top: 100px;
+}

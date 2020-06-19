@@ -50,14 +50,11 @@ io.on('connection', function(socket){
         console.log('user disconnected');
     });
 
-    socket.on('colorOut', function(msg){
-
-        socket.broadcast.emit('updateColorInUI', msg);
-
-        client.publish('kreativData/colorOut', msg);
-        //console.log("Sucessfully published: " + msg)
-
-
+    socket.on('e-mailAddress', function(msg){
+      console.log('Email Adress from client is ' + msg);
+    });
+    socket.on('association', function(msg){
+      console.log('Association from client is ' + msg);
     });
 
 });

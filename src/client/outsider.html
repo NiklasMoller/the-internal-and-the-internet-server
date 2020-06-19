@@ -6,26 +6,52 @@
   <meta charset="UTF-8" />
   <title>Turning the Outside In</title>
 
+  <!-- Bootstrap Stylesheet -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <!-- Importing Google Font-->
+  <link href="https://fonts.googleapis.com/css2?family=MuseoModerno&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+
   <!-- Importing customized stylesheet-->
   <link rel="stylesheet" type="text/css" href="./styles/style.css">
+  <style>
+  body {background-color: #feb333;}
+  </style>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 
 </head>
 <body>
 
-<div class="container-fluid bg-1 text-center">
+<div class="animation text-center">
 
   <div id="bm"> </div>
 
   </div>
+
+  <!-- Socket.io -->
+  <script src="/socket.io/socket.io.js"></script>
 
   <!-- Scripts -->
   <script src="./scripts/bodymovin.js"></script>
   <script src="./scripts/outsider.js"></script>
 
 
+
+<!--
   <input type="text" id="myInput" class="input-field" value="">
   <button class="click-button" onclick="buttonPressed()">Submit</button>
+-->
 
+  <form>
+    <div class="form-group">
+      <input type="text" class="form-control" id="myInput">
+    </div>
+    <button type="button" class="btn btn-secondary" onclick="buttonPressed();">Submit</button>
+  </form>
 
 </body>
 </html>
