@@ -33,7 +33,10 @@ app.get('/gallery', function(req, res){
     res.sendFile(path.resolve(__dirname + '/../src/client/gallery.html'));
 });
 
-
+//Using path.resolve
+app.get('/question1', function(req, res){
+    res.sendFile(path.resolve(__dirname + '/../src/client/outsider.html'));
+});
 
 
 

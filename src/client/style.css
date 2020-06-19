@@ -1,18 +1,4 @@
 /*
-#071e3d
-#1f4287
-#278ea5
-#21e6c1
-https://colorhunt.co/palette/132247
-
-
-#283149
-#404b69
-#00818a
-#dbedf3
-https://colorhunt.co/palette/118962
-
-*/
 
 body {
   background-color: #283149;
@@ -23,4 +9,59 @@ body {
   color: #00818a;
   margin-left: 20px;
   text-align: center;
+}
+
+*/
+
+/*
+body {
+  font: 20px Montserrat, sans-serif;
+  line-height: 1.8;
+  color: #f5f6f7;
+}
+*/
+
+p {
+  font-size: 16px;
+  font-family: 'Lato', sans-serif;
+}
+
+h1 {
+    text-align: center;
+    color: blue;
+    font: 'MuseoModerno', cursive;
+}
+
+.margin {
+  margin-bottom: 40px;
+}
+
+.MuseoModerno {
+  font-family: 'MuseoModerno', cursive;
+}
+
+.Lato {
+  font-family: 'Lato', sans-serif;
+}
+
+
+.bg-1 {
+  background-color: #feb333; /* Light Orange */
+  color: #ffffff; /*Text default color */
+}
+.bg-2 {
+  background-color: #FF9F00; /* Dark Orange */
+  color: #ffffff;
+}
+.bg-3 {
+  background-color: #ffffff; /* White */
+  color: #000000;
+}
+.bg-4 {
+  background-color: #2f2f2f; /* Black Gray */
+  color: #fff;
+}
+.container-fluid {
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
