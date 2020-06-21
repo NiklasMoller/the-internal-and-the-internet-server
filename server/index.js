@@ -2,8 +2,16 @@ var express = require('express');
 var app = express();
 var http = require('http').createServer(app);
 const path = require('path');
-
+const mongoose = require('mongoose')
+var bodyParser = require('body-parser');
 var io = require('socket.io')(http);
+const axios = require('axios')
+
+var Schema = mongoose.Schema;
+var emailsController = require('./emailsController.js');
+var outsiderAssociationsController = require('./outsiderController.js');
+var peripheryAssociationsController = require('./peripheryController.js');
+var db = require('./databaseHandler.js');
 
 //-------- Starting Server with Express
 let port = process.env.PORT; //To run on Heroku
@@ -38,8 +46,28 @@ app.get('/question1', function(req, res){
     res.sendFile(path.resolve(__dirname + '/../src/client/outsider.html'));
 });
 
+//Using path.resolve
+app.get('/question2', function(req, res){
+    res.sendFile(path.resolve(__dirname + '/../src/client/periphery.html'));
+});
 
+// Parse requests of content-type 'application/json'
+app.use(bodyParser.json());
 
+app.use('/api/emails', emailsController);
+// Catch all non-error handler for api (i.e., 404 Not Found)
+
+app.use('/api/outsiderAssociations', outsiderAssociationsController);
+// Catch all non-error handler for api (i.e., 404 Not Found)
+
+app.use('/api/peripheryAssociations', peripheryAssociationsController);
+// Catch all non-error handler for api (i.e., 404 Not Found)
+
+app.use('/api/*', function (req, res) {
+
+    res.status(404).json({ 'message': 'Not Found' });
+
+});
 
 
 //-------- Socket.io Events
@@ -50,14 +78,57 @@ io.on('connection', function(socket){
         console.log('user disconnected');
     });
 
-    socket.on('colorOut', function(msg){
+    socket.on('e-mailAddress', function(msg){
+      //console.log('Email Adress from client is ' + msg);
 
-        socket.broadcast.emit('updateColorInUI', msg);
+      axios.post('http://localhost:3000/api/emails', {
+        email: msg
+      })
+      .then((res) => {
+        console.log(`statusCode: ${res.statusCode}`)
+        //console.log(res)
+      })
+      .catch((error) => {
+        console.error(error)
+      })
 
-        client.publish('kreativData/colorOut', msg);
-        //console.log("Sucessfully published: " + msg)
+    });
+
+    socket.on('outsiderAssociation', function(msg){
+      //console.log('Association from client is ' + msg);
+
+      axios.post('http://localhost:3000/api/outsiderAssociations', {
+        association: msg
+      })
+      .then((res) => {
+        console.log(`statusCode: ${res.statusCode}`)
+        //console.log(res)
+      })
+      .catch((error) => {
+        console.error(error)
+      })
 
 
     });
 
+    socket.on('peripheryAssociation', function(msg){
+      //console.log('Association from client is ' + msg);
+
+      axios.post('http://localhost:3000/api/peripheryAssociations', {
+        association: msg
+      })
+      .then((res) => {
+        console.log(`statusCode: ${res.statusCode}`)
+        //console.log(res)
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+
+    });
+
 });
+
+
+//---------- Database ---------
+db.main().catch(console.error);
