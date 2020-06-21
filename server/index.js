@@ -81,7 +81,7 @@ io.on('connection', function(socket){
     socket.on('e-mailAddress', function(msg){
       //console.log('Email Adress from client is ' + msg);
 
-      axios.post('http://turning-the-outside-in.art/api/emails', {
+      axios.post('https://radiant-ridge-37495.herokuapp.com/api/emails', {
         email: msg
       })
       .then((res) => {
@@ -97,7 +97,7 @@ io.on('connection', function(socket){
     socket.on('outsiderAssociation', function(msg){
       //console.log('Association from client is ' + msg);
 
-      axios.post('http://turning-the-outside-in.art/api/outsiderAssociations', {
+      axios.post('https://radiant-ridge-37495.herokuapp.com/api/outsiderAssociations', {
         association: msg
       })
       .then((res) => {
@@ -114,7 +114,7 @@ io.on('connection', function(socket){
     socket.on('peripheryAssociation', function(msg){
       //console.log('Association from client is ' + msg);
 
-      axios.post('http://turning-the-outside-in.art/api/peripheryAssociations', {
+      axios.post('https://radiant-ridge-37495.herokuapp.com/api/peripheryAssociations', {
         association: msg
       })
       .then((res) => {
