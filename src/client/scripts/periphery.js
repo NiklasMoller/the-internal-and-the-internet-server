@@ -7,7 +7,7 @@ var animation = bodymovin.loadAnimation({
   renderer: 'svg',
   loop: false,
   autoplay: true,
-  path: './resources/animations/outsider.json',
+  path: './resources/animations/periphery.json',
   initialSegment: [1,700]
 })
 
@@ -20,10 +20,10 @@ function buttonPressed(){
     animation.playSegments([1080, 1500], false);
     document.getElementById('myInput').type="email";
 
-    socket.emit('outsiderAssociation', message);
+    socket.emit('peripheryAssociation', message);
   }
   else if (n === 1){
-    console.log('Pressed another time');
+
     animation.playSegments([1575, 1900], false);
 
     socket.emit('e-mailAddress', message);
