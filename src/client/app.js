@@ -8,6 +8,8 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 import { DeviceOrientationControls } from 'three/examples/jsm/controls/DeviceOrientationControls.js';
 
+
+
 var camera, scene, renderer, controls;
 
 var startButton = document.getElementById('startButton');
@@ -114,6 +116,32 @@ function init() {
 
 	window.addEventListener('resize', onWindowResize, false);
 
+
+
+	//---------- LOAD JSON ---------
+	var loader = new THREE.FileLoader();
+
+	//load a text file and output the result to the console
+	loader.load(
+		// resource URL
+		'/api/outsiderAssociations',
+
+		// onLoad callback
+		function ( data ) {
+			// output the text to the console
+			console.log( data )
+		},
+
+		// onProgress callback
+		function ( xhr ) {
+			console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
+		},
+
+		// onError callback
+		function ( err ) {
+			console.error( 'An error happened' );
+		}
+	);
 
 }
 
