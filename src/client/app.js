@@ -166,7 +166,11 @@ loader.load( 'https://threejs.org/examples/fonts/helvetiker_regular.typeface.jso
 } );
 */
 
-scene.add(outsiderTextMeshArray[1]);
+			var material = new THREE.MeshNormalMaterial();
+			wordMesh = new THREE.Mesh( outsiderTextMeshArray[1], material );
+			wordMesh.position.y = -10;
+			wordMesh.rotation.x = -90;
+scene.add(wordMesh);
 
 }
 
@@ -263,11 +267,12 @@ function createMeshArrayWithAssociations(){
 			  bevelSegments: 3
 			} );
 			geometry.center();
-			var material = new THREE.MeshNormalMaterial();
-			wordMesh = new THREE.Mesh( geometry, material );
-			wordMesh.position.y = -10;
-			wordMesh.rotation.x = -90;
-			outsiderTextMeshArray.push(wordMesh);
+
+			//var material = new THREE.MeshNormalMaterial();
+			//wordMesh = new THREE.Mesh( geometry, material );
+			//wordMesh.position.y = -10;
+			//wordMesh.rotation.x = -90;
+			outsiderTextMeshArray.push(geometry);
 		  } );
 
 
