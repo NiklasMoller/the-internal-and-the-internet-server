@@ -1,12 +1,14 @@
 import * as THREE from 'three';
 import { DeviceOrientationControls } from 'three/examples/jsm/controls/DeviceOrientationControls.js';
 
-var material;
+var wallmaterial;
+
+var wordMesh;
 
 export const run = () => {
 	console.log("Loading material into scene ");
 
-	material = new THREE.MeshBasicMaterial({
+	wallmaterial = new THREE.MeshBasicMaterial({
 		map: new THREE.TextureLoader().load('resources/backdrop.jpg')
 	});
 };
@@ -32,13 +34,13 @@ function init() {
 
 	scene = new THREE.Scene();
 
-	var geometry = new THREE.SphereBufferGeometry(500, 60, 40);
+	var buildingGeometry = new THREE.SphereBufferGeometry(500, 60, 40);
 	// invert the geometry on the x-axis so that all of the faces point inward
-	geometry.scale(- 1, 1, 1);
+	buildingGeometry.scale(- 1, 1, 1);
 
 
-	var mesh = new THREE.Mesh(geometry, material);
-	scene.add(mesh);
+	var buildingMesh = new THREE.Mesh(buildingGeometry, wallmaterial);
+	scene.add(buildingMesh);
 
 	renderer = new THREE.WebGLRenderer({ antialias: true });
 	renderer.setPixelRatio(window.devicePixelRatio);
@@ -48,6 +50,7 @@ function init() {
 	window.addEventListener('resize', onWindowResize, false);
 
 
+	/*
 
 	//Loading the font
 	var textgeometry;
@@ -76,15 +79,122 @@ function init() {
 	var boxgeometry = new THREE.BoxGeometry();
 	var boxmaterial = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
 	var cube = new THREE.Mesh( boxgeometry, boxmaterial );
-	cube.position.x = 20;
+	cube.position.y = -20;
 	scene.add( cube );
+
+*/
+
+/*
+var loader = new THREE.FontLoader();
+var textgeometry;
+
+loader.load( 'resources/helvetiker_regular.typeface.json', function ( font ) {
+
+	textgeometry = new THREE.TextGeometry( 'Hello three.js!', {
+		font: font,
+		size: 80,
+		height: 5,
+		curveSegments: 12,
+		bevelEnabled: true,
+		bevelThickness: 10,
+		bevelSize: 8,
+		bevelOffset: 0,
+		bevelSegments: 5
+	} );
+} );
+
+
+var textmaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+var textMesh1 = new THREE.Mesh( textgeometry, textmaterial );
+textMesh1.position.y = -20;
+scene.add(textMesh1);
+*/
+/*
+var boxgeometry = new THREE.BoxGeometry();
+var boxmaterial = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+var cube = new THREE.Mesh( boxgeometry, boxmaterial );
+cube.position.y = -22;
+scene.add( cube );
+*/
+var planegeometry = new THREE.PlaneBufferGeometry( 50, 200);
+var planematerial = new THREE.MeshBasicMaterial( {color: 0xffff00} );
+var plane = new THREE.Mesh( planegeometry, planematerial );
+plane.position.y = -20;
+plane.rotation.x = -90;
+scene.add( plane );
+
+
+/*
+1. JSON OBJEKTET laddas in
+2. Varje association i JSONobjektet laddas in till en array av TextGeometri Mesher
+3. Animationen trackar om positionen går frammåt eller bakåt
+4. Om den går bakom en viss gräns, byt i arrayen
+5. frammåt och upprepa
+*/
+
+
+
+var loader = new THREE.FontLoader();
+
+loader.load( 'https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function ( font ) {
+  var geometry = new THREE.TextGeometry( 'Hello three.js!', {
+	font: font,
+	size: 1,
+	height: 0.5,
+	curveSegments: 4,
+	bevelEnabled: true,
+	bevelThickness: 0.02,
+	bevelSize: 0.05,
+	bevelSegments: 3
+  } );
+  geometry.center();
+  var material = new THREE.MeshNormalMaterial();
+  wordMesh = new THREE.Mesh( geometry, material );
+  wordMesh.position.y = -10;
+  wordMesh.rotation.x = -90;
+	scene.add( wordMesh );
+} );
+
+
+
+
+var loader = new THREE.ObjectLoader();
+
+loader.load(
+	// resource URL
+	"https://radiant-ridge-37495.herokuapp.com/api/outsiderAssociations",
+
+	// onLoad callback
+	// Here the loaded data is assumed to be an object
+	function ( obj ) {
+		// Add the loaded object to the scene
+		//scene.add( obj );
+    console.log(obj);
+	},
+
+	// onProgress callback
+	function ( xhr ) {
+		console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
+	},
+
+	// onError callback
+	function ( err ) {
+		console.error( 'An error happened' );
+	}
+);
 
 
 }
 
+
+
+
 function animate() {
 
+	
+
 	window.requestAnimationFrame(animate);
+	wordMesh.position.y -= 0.02;
 
 	controls.update();
 	renderer.render(scene, camera);
