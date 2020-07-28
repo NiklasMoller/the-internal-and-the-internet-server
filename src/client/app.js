@@ -4,6 +4,8 @@ import { DeviceOrientationControls } from 'three/examples/jsm/controls/DeviceOri
 var wallmaterial;
 
 var wordMesh;
+var outsiderObj = '';
+var peripheryObj = '';
 
 export const run = () => {
 	console.log("Loading material into scene ");
@@ -11,6 +13,11 @@ export const run = () => {
 	wallmaterial = new THREE.MeshBasicMaterial({
 		map: new THREE.TextureLoader().load('resources/backdrop.jpg')
 	});
+
+	loadAssociationsToJSON();
+	createMeshArrayWithAssociations();
+
+
 };
 
 var camera, scene, renderer, controls;
@@ -155,11 +162,16 @@ loader.load( 'https://threejs.org/examples/fonts/helvetiker_regular.typeface.jso
 	scene.add( wordMesh );
 } );
 
+}
+
+// -----------------  GET REQUEST OF ASSOCIATIONS -----------------
 
 
 
-var fileloader = new THREE.FileLoader();
+function loadAssociationsToJSON(){
 
+	var fileloader = new THREE.FileLoader();
+	
 //load a text file and output the result to the console
 fileloader.load(
 	// resource URL
@@ -170,16 +182,9 @@ fileloader.load(
 		// output the text to the console
 		console.log( data )
 
-
-		//var obj = JSON.parse('{"association":[{"_id":"5eedf686c80fe037401c5630","association":"helloWorldIamAtGothia","__v":0},{"_id":"5eee00ea6784614dc47b53fc","association":"apple","__v":0},{"_id":"5eee1a157603f4523006b2f8","association":"myNewAssociation","__v":0},{"_id":"5eee1a607603f4523006b2fa","association":"anotherAssociation with spaces","__v":0},{"_id":"5eef2a2fefdb570004f18729","association":"1136","__v":0},{"_id":"5eef2af3efdb570004f1872d","association":"testing","__v":0},{"_id":"5eef2b2cefdb570004f1872f","association":"ÖÖÖÖÖ sdvsv sdvsdv","__v":0},{"_id":"5eef2bdeefdb570004f18731","association":"Someone who is poor","__v":0},{"_id":"5eef42d563188b000468de3e","association":"Artists are outsiders","__v":0},{"_id":"5eefaa5a241d52000428fd4f","association":"Incels","__v":0},{"_id":"5ef7624256a2fb00045280a9","association":"My teammates","__v":0}]}');
-		var obj = JSON.parse(data);
-		console.log('ALL ASSOCIATIONS: ' + obj.association);
-		console.log(length (obj.association));
-		console.log(obj.association[1].association)
-
-		
-		
-		
+		//outsiderObj = JSON.parse(data);
+		//console.log(length (outsiderObj.association));
+		//console.log(outsiderObj.association[1].association)	
 
 	},
 
@@ -196,12 +201,76 @@ fileloader.load(
 
 
 
+//load a text file and output the result to the console
+fileloader.load(
+	// resource URL
+	'https://radiant-ridge-37495.herokuapp.com/api/peripheryAssociations',
+
+	// onLoad callback
+	function ( data ) {
+		// output the text to the console
+		//console.log( data )
+
+		peripheryObj = JSON.parse(data);
+		//console.log(length (outsiderObj.association));
+		//console.log(outsiderObj.association[1].association)	
+
+	},
+
+	// onProgress callback
+	function ( xhr ) {
+		console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
+	},
+
+	// onError callback
+	function ( err ) {
+		console.error( 'An error happened' );
+	}
+);
 
 }
 
 //Helper function to get length of object
 function length(obj) {
 	return Object.keys(obj).length;
+}
+
+
+
+var outsiderTextMeshArray = [];
+var peripheryTextMeshArray = [];
+
+function createMeshArrayWithAssociations(){
+
+
+	var loader = new THREE.FontLoader();
+
+	for(var i = 0; i < 1 + length(outsiderObj); i++){
+		//Create a new text mesh object and push it to the array
+
+		loader.load( 'https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function ( font ) {
+			var geometry = new THREE.TextGeometry( outsiderObj.association[i].association, {
+			  font: font,
+			  size: 1,
+			  height: 0.5,
+			  curveSegments: 4,
+			  bevelEnabled: true,
+			  bevelThickness: 0.02,
+			  bevelSize: 0.05,
+			  bevelSegments: 3
+			} );
+			geometry.center();
+			var material = new THREE.MeshNormalMaterial();
+			wordMesh = new THREE.Mesh( geometry, material );
+			wordMesh.position.y = -10;
+			wordMesh.rotation.x = -90;
+			outsiderTextMeshArray.push(wordMesh);
+		  } );
+
+
+	}
+
+
 }
 
 
