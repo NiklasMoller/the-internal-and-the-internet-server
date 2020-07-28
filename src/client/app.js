@@ -283,7 +283,7 @@ function animate() {
 	
 
 	window.requestAnimationFrame(animate);
-	wordMesh.position.y -= 0.02;
+	//wordMesh.position.y -= 0.02;
 
 	controls.update();
 	renderer.render(scene, camera);
