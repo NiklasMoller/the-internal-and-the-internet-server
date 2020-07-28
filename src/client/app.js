@@ -169,6 +169,18 @@ fileloader.load(
 	function ( data ) {
 		// output the text to the console
 		console.log( data )
+
+
+		//var obj = JSON.parse('{"association":[{"_id":"5eedf686c80fe037401c5630","association":"helloWorldIamAtGothia","__v":0},{"_id":"5eee00ea6784614dc47b53fc","association":"apple","__v":0},{"_id":"5eee1a157603f4523006b2f8","association":"myNewAssociation","__v":0},{"_id":"5eee1a607603f4523006b2fa","association":"anotherAssociation with spaces","__v":0},{"_id":"5eef2a2fefdb570004f18729","association":"1136","__v":0},{"_id":"5eef2af3efdb570004f1872d","association":"testing","__v":0},{"_id":"5eef2b2cefdb570004f1872f","association":"ÖÖÖÖÖ sdvsv sdvsdv","__v":0},{"_id":"5eef2bdeefdb570004f18731","association":"Someone who is poor","__v":0},{"_id":"5eef42d563188b000468de3e","association":"Artists are outsiders","__v":0},{"_id":"5eefaa5a241d52000428fd4f","association":"Incels","__v":0},{"_id":"5ef7624256a2fb00045280a9","association":"My teammates","__v":0}]}');
+		var obj = JSON.parse(data);
+		console.log('ALL ASSOCIATIONS: ' + obj.association);
+		console.log(length (obj.association));
+		console.log(obj.association[1].association)
+
+		
+		
+		
+
 	},
 
 	// onProgress callback
@@ -183,8 +195,14 @@ fileloader.load(
 );
 
 
+
+
 }
 
+//Helper function to get length of object
+function length(obj) {
+	return Object.keys(obj).length;
+}
 
 
 
