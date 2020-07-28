@@ -56,7 +56,7 @@ function init() {
 
 		textgeometry = new THREE.TextGeometry('Hello three.js!', {
 			font: font,
-			size: 80,
+			size: 300,
 			height: 5,
 			curveSegments: 12,
 			bevelEnabled: true,
@@ -69,14 +69,14 @@ function init() {
 
 	var textmaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
 	var word = new THREE.Mesh(textgeometry, textmaterial);
-	word.position.x = 10;
+	word.position.x = -20;
 	scene.add(word);
 
 
 	var boxgeometry = new THREE.BoxGeometry();
 	var boxmaterial = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
 	var cube = new THREE.Mesh( boxgeometry, boxmaterial );
-	cube.position.y = 20;
+	cube.position.x = 20;
 	scene.add( cube );
 
 
