@@ -48,6 +48,38 @@ function init() {
 	window.addEventListener('resize', onWindowResize, false);
 
 
+
+	//Loading the font
+	var textgeometry;
+	var loader = new THREE.FontLoader();
+	loader.load('MuseoModerno.json', function (font) {
+
+		textgeometry = new THREE.TextGeometry('Hello three.js!', {
+			font: font,
+			size: 80,
+			height: 5,
+			curveSegments: 12,
+			bevelEnabled: true,
+			bevelThickness: 10,
+			bevelSize: 8,
+			bevelOffset: 0,
+			bevelSegments: 5
+		});
+	});
+
+	var textmaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+	var word = new THREE.Mesh(textgeometry, textmaterial);
+	word.position.x = 1;
+	scene.add(word);
+
+
+	var boxgeometry = new THREE.BoxGeometry();
+	var boxmaterial = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+	var cube = new THREE.Mesh( boxgeometry, boxmaterial );
+	cube.position.y = 1;
+	scene.add( cube );
+
+
 }
 
 function animate() {
