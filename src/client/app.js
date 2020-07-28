@@ -4,6 +4,8 @@ export const run = () => {
 };
 
 import * as THREE from 'three';
+
+//To load the JSON strings of associations
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 import { DeviceOrientationControls } from 'three/examples/jsm/controls/DeviceOrientationControls.js';
@@ -15,6 +17,7 @@ var camera, scene, renderer, controls;
 var startButton = document.getElementById('startButton');
 startButton.addEventListener('click', function () {
 
+	DeviceOrientationEvent.requestPermission();
 	init();
 	animate();
 
@@ -49,7 +52,7 @@ function init() {
 			function (cubeTexture) {
 
 				// Geometry
-				var geometry = new THREE.SphereGeometry(1, 20, 20);
+				var geometry = new THREE.SphereBufferGeometry(1, 20, 20);
 
 				// Material
 				var material = new THREE.MeshBasicMaterial({
