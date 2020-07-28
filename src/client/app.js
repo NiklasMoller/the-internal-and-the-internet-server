@@ -4,7 +4,7 @@ import { DeviceOrientationControls } from 'three/examples/jsm/controls/DeviceOri
 var material;
 
 export const run = () => {
-	console.log("Loading material into scene");
+	console.log("Loading material into scene ");
 
 	material = new THREE.MeshBasicMaterial({
 		map: new THREE.TextureLoader().load('resources/backdrop.jpg')
@@ -67,4 +67,3 @@ function onWindowResize() {
 	renderer.setSize(window.innerWidth, window.innerHeight);
 
 }
-
