@@ -158,18 +158,17 @@ loader.load( 'https://threejs.org/examples/fonts/helvetiker_regular.typeface.jso
 
 
 
-var loader = new THREE.ObjectLoader();
+var fileloader = new THREE.FileLoader();
 
-loader.load(
+//load a text file and output the result to the console
+fileloader.load(
 	// resource URL
-	"https://radiant-ridge-37495.herokuapp.com/api/outsiderAssociations",
+	'https://radiant-ridge-37495.herokuapp.com/api/outsiderAssociations',
 
 	// onLoad callback
-	// Here the loaded data is assumed to be an object
-	function ( obj ) {
-		// Add the loaded object to the scene
-		//scene.add( obj );
-    console.log(obj);
+	function ( data ) {
+		// output the text to the console
+		console.log( data )
 	},
 
 	// onProgress callback
