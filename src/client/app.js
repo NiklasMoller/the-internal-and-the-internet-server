@@ -7,6 +7,9 @@ var wordMesh;
 var outsiderObj = '';
 var peripheryObj = '';
 
+var outsiderTextMeshArray = [];
+var peripheryTextMeshArray = [];
+
 export const run = () => {
 	console.log("Loading material into scene ");
 
@@ -140,7 +143,7 @@ scene.add( plane );
 */
 
 
-
+/*
 var loader = new THREE.FontLoader();
 
 loader.load( 'https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function ( font ) {
@@ -161,6 +164,9 @@ loader.load( 'https://threejs.org/examples/fonts/helvetiker_regular.typeface.jso
   wordMesh.rotation.x = -90;
 	scene.add( wordMesh );
 } );
+*/
+
+scene.add(outsiderTextMeshArray[1]);
 
 }
 
@@ -236,9 +242,6 @@ function length(obj) {
 }
 
 
-
-var outsiderTextMeshArray = [];
-var peripheryTextMeshArray = [];
 
 function createMeshArrayWithAssociations(){
 
