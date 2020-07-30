@@ -1,6 +1,7 @@
 function loadAssociationsToJSON(){
 
 	var fileloader = new THREE.FileLoader();
+	console.log('GET associations');
 	
 //load a text file and output the result to the console
 fileloader.load(
@@ -37,7 +38,8 @@ fileloader.load(
 	// onLoad callback
 	function ( data ) {
 		// output the text to the console
-		//console.log( data )
+		console.log( data );
+	
 
 		peripheryObj = JSON.parse(data);
 		//console.log(length (outsiderObj.association));
