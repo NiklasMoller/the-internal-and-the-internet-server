@@ -16,6 +16,8 @@ var camera, scene, renderer, controls;
 
 var wordcounter;
 
+var outsiderAssociationsText = '';
+
 var startButton = document.getElementById('startButton');
 
 //To load fonts
@@ -47,12 +49,15 @@ function init() {
 	setupTHREEStartComponents();
 	addPlanes();
 
+
+	createTextString();
+
 	addWordToScene();
 
 
 	/*
-	1. Få objektet att röra sig bakåt
-	2. När det har nått en viss punkt
+	1. Skapa en text string genom att iterrera igenom alla orden och lägg till /n däri
+	2. Lägg till texten
 	3. 
 	*/
 
@@ -105,12 +110,8 @@ function setupTHREEStartComponents() {
 
 function addWordToScene() {
 
-	var index = wordcounter % length(outsiderObj);
-	var text = outsiderObj.association[index].association;
-	console.log('Outsiderword: ' + text);
-
 	loader.load( 'https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function ( font ) {
-	  var geometry = new THREE.TextGeometry( 'Hello \n I am Niklas', {
+	  var geometry = new THREE.TextGeometry( outsiderAssociationsText, {
 		font: font,
 		size: 1,
 		height: 0.5,
@@ -128,8 +129,6 @@ function addWordToScene() {
 		scene.add( wordMesh );
 	} );
 
-	updateCounter();
-
 }
 
 function removeWordFromScene(){
@@ -140,6 +139,18 @@ function updateCounter(){
 	wordcounter += wordcounter;
 }
 
+function createTextString(){
+
+	for(var i = 0; i < length(outsiderObj) + 1; i++){
+		
+		outsiderAssociationsText += outsiderObj.association[i].association + '\n';
+
+	}
+
+	console.log(outsiderAssociationsText);
+
+
+}
 
 
 
