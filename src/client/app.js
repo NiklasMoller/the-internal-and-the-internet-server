@@ -137,7 +137,7 @@ function removeWordFromScene(){
 }
 
 function updateCounter(){
-	wordCounter += wordcounter;
+	wordcounter += wordcounter;
 }
 
 
