@@ -253,12 +253,14 @@ function animate() {
 
 
 	window.requestAnimationFrame(animate);
-	wordMesh.position.y -= 0.02;
-
-	if(wordMesh.position.y < -12){
+	
+	if(wordMesh.position.y > -12){
+		wordMesh.position.y -= 0.02;
+	}else{
 		removeWordFromScene();
 		addWordToScene();
 	}
+	
 
 	controls.update();
 	renderer.render(scene, camera);
