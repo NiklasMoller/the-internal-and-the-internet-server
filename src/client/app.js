@@ -239,9 +239,9 @@ function loadAssociationsToJSON() {
 			// output the text to the console
 			console.log(data)
 
-			//outsiderObj = JSON.parse(data);
+			outsiderObj = JSON.parse(data);
 			//console.log(length (outsiderObj.association));
-			//console.log(outsiderObj.association[1].association)	
+			console.log('1:' + outsiderObj.association[1].association)	
 
 		},
 
