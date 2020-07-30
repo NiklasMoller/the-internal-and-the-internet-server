@@ -1,5 +1,5 @@
-import {run} from "./client/app.js"
+import {preLoad} from "./client/app.js"
 
-run();
+preLoad();
 
 //main.js in dist talks with this file somehow...
