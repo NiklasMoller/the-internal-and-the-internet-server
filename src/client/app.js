@@ -110,7 +110,7 @@ function addWordToScene() {
 	console.log('Outsiderword: ' + text);
 
 	loader.load( 'https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function ( font ) {
-	  var geometry = new THREE.TextGeometry( text, {
+	  var geometry = new THREE.TextGeometry( 'Hello \n I am Niklas', {
 		font: font,
 		size: 1,
 		height: 0.5,
@@ -259,8 +259,8 @@ function animate() {
 	if(wordMesh.position.y > -12){
 		wordMesh.position.y -= 0.02;
 	}else{
-		removeWordFromScene();
-		addWordToScene();
+		//removeWordFromScene();
+		//addWordToScene();
 	}
 	
 
