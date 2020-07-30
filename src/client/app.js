@@ -14,7 +14,12 @@ var peripheryTextMeshArray = [];
 
 var camera, scene, renderer, controls;
 
+var wordcounter;
+
 var startButton = document.getElementById('startButton');
+
+//To load fonts
+var loader = new THREE.FontLoader();
 
 startButton.addEventListener('click', function () {
 
@@ -36,6 +41,8 @@ export const preLoad = () => {
 
 function init() {
 
+	wordcounter = 0;
+
 	removeOverlay();
 	setupTHREEStartComponents();
 	addPlanes();
@@ -43,108 +50,13 @@ function init() {
 	addWordToScene();
 
 
-
-
 	/*
-
-	//Loading the font
-	var textgeometry;
-	var loader = new THREE.FontLoader();
-	loader.load('MuseoModerno.json', function (font) {
-
-		textgeometry = new THREE.TextGeometry('Hello three.js!', {
-			font: font,
-			size: 300,
-			height: 5,
-			curveSegments: 12,
-			bevelEnabled: true,
-			bevelThickness: 10,
-			bevelSize: 8,
-			bevelOffset: 0,
-			bevelSegments: 5
-		});
-	});
-
-	var textmaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-	var word = new THREE.Mesh(textgeometry, textmaterial);
-	word.position.x = -20;
-	scene.add(word);
-
-
-	var boxgeometry = new THREE.BoxGeometry();
-	var boxmaterial = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-	var cube = new THREE.Mesh( boxgeometry, boxmaterial );
-	cube.position.y = -20;
-	scene.add( cube );
-
-*/
-
-	/*
-	var loader = new THREE.FontLoader();
-	var textgeometry;
-	
-	loader.load( 'resources/helvetiker_regular.typeface.json', function ( font ) {
-	
-		textgeometry = new THREE.TextGeometry( 'Hello three.js!', {
-			font: font,
-			size: 80,
-			height: 5,
-			curveSegments: 12,
-			bevelEnabled: true,
-			bevelThickness: 10,
-			bevelSize: 8,
-			bevelOffset: 0,
-			bevelSegments: 5
-		} );
-	} );
-	
-	
-	var textmaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-	var textMesh1 = new THREE.Mesh( textgeometry, textmaterial );
-	textMesh1.position.y = -20;
-	scene.add(textMesh1);
-	*/
-	/*
-	var boxgeometry = new THREE.BoxGeometry();
-	var boxmaterial = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-	var cube = new THREE.Mesh( boxgeometry, boxmaterial );
-	cube.position.y = -22;
-	scene.add( cube );
+	1. Få objektet att röra sig bakåt
+	2. När det har nått en viss punkt
+	3. 
 	*/
 
 
-
-	/*
-	1. JSON OBJEKTET laddas in
-	2. Varje association i JSONobjektet laddas in till en array av TextGeometri Mesher
-	3. Animationen trackar om positionen går frammåt eller bakåt
-	4. Om den går bakom en viss gräns, byt i arrayen
-	5. frammåt och upprepa
-	*/
-
-
-	/*
-	var loader = new THREE.FontLoader();
-	
-	loader.load( 'https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function ( font ) {
-	  var geometry = new THREE.TextGeometry( 'Hello three.js!', {
-		font: font,
-		size: 1,
-		height: 0.5,
-		curveSegments: 4,
-		bevelEnabled: true,
-		bevelThickness: 0.02,
-		bevelSize: 0.05,
-		bevelSegments: 3
-	  } );
-	  geometry.center();
-	  var material = new THREE.MeshNormalMaterial();
-	  wordMesh = new THREE.Mesh( geometry, material );
-	  wordMesh.position.y = -10;
-	  wordMesh.rotation.x = -90;
-		scene.add( wordMesh );
-	} );
-	*/
 
 
 }
@@ -193,9 +105,8 @@ function setupTHREEStartComponents() {
 
 function addWordToScene() {
 
-	var loader = new THREE.FontLoader();
-
-	var text = outsiderObj.association[1].association;
+	var index = wordcounter % length(outsiderObj);
+	var text = outsiderObj.association[index].association;
 	console.log('Outsiderword: ' + text);
 
 	loader.load( 'https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function ( font ) {
@@ -219,6 +130,13 @@ function addWordToScene() {
 
 }
 
+function removeWordFromScene(){
+	scene.remove(wordMesh);
+}
+
+function updateCounter(){
+	wordCounter += wordcounter;
+}
 
 
 
@@ -335,7 +253,12 @@ function animate() {
 
 
 	window.requestAnimationFrame(animate);
-	//wordMesh.position.y -= 0.02;
+	wordMesh.position.y -= 0.02;
+
+	if(wordMesh.position.y < -12){
+		removeWordFromScene();
+		addWordToScene();
+	}
 
 	controls.update();
 	renderer.render(scene, camera);
