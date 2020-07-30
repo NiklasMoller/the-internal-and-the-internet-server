@@ -40,7 +40,7 @@ function init() {
 	setupTHREEStartComponents();
 	addPlanes();
 
-	//addWordToScene();
+	addWordToScene();
 
 
 
