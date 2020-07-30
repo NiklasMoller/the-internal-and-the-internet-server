@@ -141,6 +141,8 @@ function updateCounter(){
 
 function createTextString(){
 
+	console.log('Length of outsider object is' + length(outsiderObj));
+
 	for(var i = 0; i < length(outsiderObj) + 1; i++){
 		
 		outsiderAssociationsText += outsiderObj.association[i].association + '\n';
