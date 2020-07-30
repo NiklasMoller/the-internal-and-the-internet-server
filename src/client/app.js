@@ -128,6 +128,8 @@ function addWordToScene() {
 		scene.add( wordMesh );
 	} );
 
+	updateCounter();
+
 }
 
 function removeWordFromScene(){
