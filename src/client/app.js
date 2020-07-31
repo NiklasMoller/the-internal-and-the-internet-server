@@ -5,7 +5,9 @@ import { DeviceOrientationControls } from 'three/examples/jsm/controls/DeviceOri
 
 var wallmaterial;
 
-var wordMesh;
+var outsiderWordMesh;
+var peripheryWordMesh;
+
 var outsiderObj = '';
 var peripheryObj = '';
 
@@ -17,6 +19,7 @@ var camera, scene, renderer, controls;
 var wordcounter;
 
 var outsiderAssociationsText = 'TEST \n';
+var peripheryAssociationsText = 'TEST2 \n';
 
 var startButton = document.getElementById('startButton');
 
@@ -60,8 +63,6 @@ function init() {
 	2. Lägg till texten
 	3. 
 	*/
-
-
 
 
 }
@@ -123,16 +124,36 @@ function addWordToScene() {
 	  } );
 	  geometry.center();
 	  var material = new THREE.MeshNormalMaterial();
-	  wordMesh = new THREE.Mesh( geometry, material );
-	  wordMesh.position.y = -10;
-	  wordMesh.rotation.x = -90;
-		scene.add( wordMesh );
+	  outsiderWordMesh = new THREE.Mesh( geometry, material );
+	  outsiderWordMesh.position.y = -10;
+	  outsiderWordMesh.rotation.x = -90;
+		scene.add( outsiderWordMesh );
+	} );
+
+	
+	loader.load( './MuseoModerno.json', function ( font ) {
+	  var geometry = new THREE.TextGeometry( peripheryAssociationsText, {
+		font: font,
+		size: 1,
+		height: 0.5,
+		curveSegments: 4,
+		bevelEnabled: true,
+		bevelThickness: 0.02,
+		bevelSize: 0.05,
+		bevelSegments: 3
+	  } );
+	  geometry.center();
+	  var material = new THREE.MeshNormalMaterial();
+	  peripheryWordMesh = new THREE.Mesh( geometry, material );
+	  peripheryWordMesh.position.y = -10;
+	  peripheryWordMesh.rotation.x = -70;
+		scene.add( peripheryWordMesh );
 	} );
 
 }
 
 function removeWordFromScene(){
-	scene.remove(wordMesh);
+	scene.remove(outsiderWordMesh);
 }
 
 function updateCounter(){
@@ -249,9 +270,9 @@ function createMeshArrayWithAssociations() {
 			geometry.center();
 
 			//var material = new THREE.MeshNormalMaterial();
-			//wordMesh = new THREE.Mesh( geometry, material );
-			//wordMesh.position.y = -10;
-			//wordMesh.rotation.x = -90;
+			//outsiderWordMesh = new THREE.Mesh( geometry, material );
+			//outsiderWordMesh.position.y = -10;
+			//outsiderWordMesh.rotation.x = -90;
 			outsiderTextMeshArray.push(geometry);
 		});
 
@@ -269,8 +290,8 @@ function animate() {
 
 	window.requestAnimationFrame(animate);
 	
-	if(wordMesh.position.y > -12){
-		wordMesh.position.y -= 0.02;
+	if(outsiderWordMesh.position.y > -12){
+		outsiderWordMesh.position.y -= 0.02;
 	}else{
 		//removeWordFromScene();
 		//addWordToScene();
