@@ -278,6 +278,8 @@ function animate() {
 
 	window.requestAnimationFrame(animate);
 
+/*
+
 	if(outsiderWordsMesh.position.y > -12){
 		outsiderWordsMesh.position.y -= 0.02;
 	}else{
@@ -285,7 +287,7 @@ function animate() {
 		//addWordToScene();
 	}
 
-
+*/
 	controls.update();
 	renderer.render(scene, camera);
 
