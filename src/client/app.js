@@ -50,7 +50,7 @@ function init() {
 
 	removeOverlay();
 	setupTHREEStartComponents();
-	addPlanes();
+	//addPlanes();
 
 
 	createTextString();
@@ -125,7 +125,8 @@ function addWordToScene() {
 	  geometry.center();
 	  var material = new THREE.MeshNormalMaterial();
 	  outsiderWordMesh = new THREE.Mesh( geometry, material );
-	  outsiderWordMesh.position.y = -10;
+	  outsiderWordMesh.position.y = 45;
+	  outsiderWordMesh.position.x = 45;
 	  outsiderWordMesh.rotation.x = -90;
 		scene.add( outsiderWordMesh );
 	} );
@@ -143,9 +144,10 @@ function addWordToScene() {
 		bevelSegments: 3
 	  } );
 	  geometry.center();
-	  var material = new THREE.MeshBasicMaterial({color: 0x000000});
+	  var material = new THREE.MeshBasicMaterial({color: 0x403b2c});
 	  peripheryWordMesh = new THREE.Mesh( geometry, material );
-	  peripheryWordMesh.position.y = -10;
+	  peripheryWordMesh.position.y = 45;
+	  peripheryWordMesh.position.x = -45;
 	  peripheryWordMesh.rotation.x = -70;
 		scene.add( peripheryWordMesh );
 	} );
@@ -162,15 +164,17 @@ function updateCounter(){
 
 function createTextString(){
 
-	console.log('Length of outsider object is' + length(outsiderObj.association));
-
 	for(var i = 0; i < length(outsiderObj.association); i++){
 		
 		outsiderAssociationsText += outsiderObj.association[i].association + '\n';
 
 	}
 
-	console.log(outsiderAssociationsText);
+	for(var i = 0; i < length(peripheryObj.association); i++){
+		
+		peripheryAssociationsText += peripheryObj.association[i].association + '\n';
+
+	}
 
 
 }
