@@ -18,6 +18,9 @@ var camera, scene, renderer, controls;
 
 var wordcounter;
 
+const TWO_PI = 6.28318530718;
+const PI = 3.14159265359;
+
 var outsiderAssociationsText = 'TEST \n';
 var peripheryAssociationsText = 'TEST2 \n';
 
@@ -129,7 +132,7 @@ function addWordToScene() {
 	  outsiderWordMesh.position.x = 45;
 	  //outsiderWordMesh.rotation.x = -90;
 	  //outsiderWordMesh.rotation.y = 210; STRAIGHT OUT
-	  outsiderWordMesh.rotation.y = 0;
+	  outsiderWordMesh.rotation.y = TWO_PI * 0.75;
 
 		scene.add( outsiderWordMesh );
 	} );
@@ -149,9 +152,9 @@ function addWordToScene() {
 	  geometry.center();
 	  var material = new THREE.MeshBasicMaterial({color: 0x403b2c});
 	  peripheryWordMesh = new THREE.Mesh( geometry, material );
-	  peripheryWordMesh.position.y = 45;
+	  peripheryWordMesh.position.y = 25;
 	  peripheryWordMesh.position.x = -45;
-	  peripheryWordMesh.rotation.x = -70;
+	  peripheryWordMesh.rotation.y = TWO_PI * 0.25;
 		scene.add( peripheryWordMesh );
 	} );
 
@@ -307,9 +310,9 @@ function animate() {
 	*/
 
 
-	outsiderWordMesh.rotation.y += 0.003;
-	var position = 	outsiderWordMesh.rotation.y;
-	console.log(position);
+	//outsiderWordMesh.rotation.y += 0.003;
+	//var position = 	outsiderWordMesh.rotation.y;
+	//console.log(position);
 
 	controls.update();
 	renderer.render(scene, camera);
