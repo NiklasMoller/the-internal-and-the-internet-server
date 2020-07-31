@@ -16,7 +16,7 @@ var camera, scene, renderer, controls;
 
 var wordcounter;
 
-var outsiderAssociationsText = '';
+var outsiderAssociationsText = 'TEST \n';
 
 var startButton = document.getElementById('startButton');
 
