@@ -1,22 +1,18 @@
 import * as THREE from 'three';
 import { DeviceOrientationControls } from 'three/examples/jsm/controls/DeviceOrientationControls.js';
 
-
-
 var wallmaterial;
 
-var wordMesh;
+var outsiderWordsMesh;
+var peripheryWordsMesh;
+
 var outsiderObj = '';
 var peripheryObj = '';
 
-var outsiderTextMeshArray = [];
-var peripheryTextMeshArray = [];
-
 var camera, scene, renderer, controls;
 
-var wordcounter;
-
 var outsiderAssociationsText = '';
+var peripheryAssociationsText = '';
 
 var startButton = document.getElementById('startButton');
 
@@ -37,28 +33,22 @@ export const preLoad = () => {
 	});
 
 	loadAssociationsToJSON();
-	//createMeshArrayWithAssociations();
+	createTextStrings();
+	setupTHREEStartComponents();
+	addWordsToScene();
+
 
 };
 
 function init() {
 
-	wordcounter = 0;
-
 	removeOverlay();
-	setupTHREEStartComponents();
-	addPlanes();
-
-
-	createTextString();
-
-	addWordToScene();
 
 
 	/*
 	1. Skapa en text string genom att iterrera igenom alla orden och lägg till /n däri
 	2. Lägg till texten
-	3. 
+	3.
 	*/
 
 
@@ -108,9 +98,9 @@ function setupTHREEStartComponents() {
 
 }
 
-function addWordToScene() {
+function addWordsToScene() {
 
-	loader.load( 'https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function ( font ) {
+	loader.load( './MuseoModerno.json', function ( font ) {
 	  var geometry = new THREE.TextGeometry( outsiderAssociationsText, {
 		font: font,
 		size: 1,
@@ -123,34 +113,53 @@ function addWordToScene() {
 	  } );
 	  geometry.center();
 	  var material = new THREE.MeshNormalMaterial();
-	  wordMesh = new THREE.Mesh( geometry, material );
-	  wordMesh.position.y = -10;
-	  wordMesh.rotation.x = -90;
-		scene.add( wordMesh );
+	  outsiderWordsMesh = new THREE.Mesh( geometry, material );
+	  outsiderWordsMesh.position.y = -10;
+	  outsiderWordsMesh.rotation.x = -90;
+		scene.add( outsiderWordsMesh );
 	} );
+
+	loader.load( './MuseoModerno.json', function ( font ) {
+	  var geometry = new THREE.TextGeometry( peipheryAssociationsText, {
+		font: font,
+		size: 1,
+		height: 0.5,
+		curveSegments: 4,
+		bevelEnabled: true,
+		bevelThickness: 0.02,
+		bevelSize: 0.05,
+		bevelSegments: 3
+	  } );
+	  geometry.center();
+	  var material = new THREE.MeshNormalMaterial();
+	  outsiderWordsMesh = new THREE.Mesh( geometry, material );
+	  outsiderWordsMesh.position.y = -10;
+	  outsiderWordsMesh.rotation.x = -70;
+		scene.add( outsiderWordsMesh );
+	} );
+
 
 }
 
 function removeWordFromScene(){
-	scene.remove(wordMesh);
+	scene.remove(outsiderWordsMesh);
 }
 
-function updateCounter(){
-	wordcounter += wordcounter;
-}
 
-function createTextString(){
 
-	console.log('Length of outsider object is' + length(outsiderObj.association));
+function createTextStrings(){
 
 	for(var i = 0; i < length(outsiderObj.association); i++){
-		
+
 		outsiderAssociationsText += outsiderObj.association[i].association + '\n';
 
 	}
 
-	console.log(outsiderAssociationsText);
+	for(var i = 0; i < length(peripheryObj.association); i++){
 
+		peripheryAssociationsText += peripheryObj.association[i].association + '\n';
+
+	}
 
 }
 
@@ -174,7 +183,7 @@ function loadAssociationsToJSON() {
 
 			outsiderObj = JSON.parse(data);
 			//console.log(length (outsiderObj.association));
-			console.log('1:' + outsiderObj.association[1].association)	
+			console.log('1:' + outsiderObj.association[1].association)
 
 		},
 
@@ -202,7 +211,7 @@ function loadAssociationsToJSON() {
 
 			peripheryObj = JSON.parse(data);
 			//console.log(length (outsiderObj.association));
-			//console.log(outsiderObj.association[1].association)	
+			//console.log(outsiderObj.association[1].association)
 
 		},
 
@@ -249,9 +258,9 @@ function createMeshArrayWithAssociations() {
 			geometry.center();
 
 			//var material = new THREE.MeshNormalMaterial();
-			//wordMesh = new THREE.Mesh( geometry, material );
-			//wordMesh.position.y = -10;
-			//wordMesh.rotation.x = -90;
+			//outsiderWordsMesh = new THREE.Mesh( geometry, material );
+			//outsiderWordsMesh.position.y = -10;
+			//outsiderWordsMesh.rotation.x = -90;
 			outsiderTextMeshArray.push(geometry);
 		});
 
@@ -268,14 +277,14 @@ function animate() {
 
 
 	window.requestAnimationFrame(animate);
-	
-	if(wordMesh.position.y > -12){
-		wordMesh.position.y -= 0.02;
+
+	if(outsiderWordsMesh.position.y > -12){
+		outsiderWordsMesh.position.y -= 0.02;
 	}else{
 		//removeWordFromScene();
 		//addWordToScene();
 	}
-	
+
 
 	controls.update();
 	renderer.render(scene, camera);
@@ -290,5 +299,3 @@ function onWindowResize() {
 	renderer.setSize(window.innerWidth, window.innerHeight);
 
 }
-
-
