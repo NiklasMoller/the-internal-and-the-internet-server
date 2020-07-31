@@ -111,7 +111,7 @@ function setupTHREEStartComponents() {
 
 function addWordToScene() {
 
-	loader.load( 'https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function ( font ) {
+	loader.load( './MuseoModerno.json', function ( font ) {
 	  var geometry = new THREE.TextGeometry( outsiderAssociationsText, {
 		font: font,
 		size: 1,
@@ -143,7 +143,7 @@ function addWordToScene() {
 		bevelSegments: 3
 	  } );
 	  geometry.center();
-	  var material = new THREE.MeshNormalMaterial();
+	  var material = new THREE.MeshBasicMaterial( { color: 0x000000 } );
 	  peripheryWordMesh = new THREE.Mesh( geometry, material );
 	  peripheryWordMesh.position.y = -10;
 	  peripheryWordMesh.rotation.x = -70;
