@@ -306,6 +306,11 @@ function animate() {
 	}
 	*/
 
+
+	outsiderWordMesh.rotation.y += 0.5;
+	var position = 	outsiderWordMesh.rotation.y;
+	console.log(position);
+
 	controls.update();
 	renderer.render(scene, camera);
 
