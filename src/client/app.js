@@ -62,8 +62,8 @@ function init() {
 
 
 	/*
-	1. Skapa en text string genom att iterrera igenom alla orden och lägg till /n däri
-	2. Lägg till texten
+	1. Fixa en font som ser bra ut
+	2. 
 	3. 
 	*/
 
@@ -114,11 +114,11 @@ function setupTHREEStartComponents() {
 
 function addWordToScene() {
 
-	loader.load( './MuseoModerno.json', function ( font ) {
+	loader.load( './RussoOneRegular.json', function ( font ) {
 	  var geometry = new THREE.TextGeometry( outsiderAssociationsText, {
 		font: font,
-		size: 1,
-		height: 0.5,
+		size: 2,
+		height: 0.02,
 		curveSegments: 4,
 		bevelEnabled: true,
 		bevelThickness: 0.02,
@@ -126,7 +126,8 @@ function addWordToScene() {
 		bevelSegments: 3
 	  } );
 	  geometry.center();
-	  var material = new THREE.MeshNormalMaterial();
+	  //var material = new THREE.MeshNormalMaterial();
+	  var material = new THREE.MeshBasicMaterial({color: 0x000000}); 
 	  outsiderWordMesh = new THREE.Mesh( geometry, material );
 	  outsiderWordMesh.position.y = 25;
 	  outsiderWordMesh.position.x = 45;
@@ -138,7 +139,7 @@ function addWordToScene() {
 	} );
 
 	
-	loader.load( './MuseoModerno.json', function ( font ) {
+	loader.load( './RussoOneRegular.json', function ( font ) {
 	  var geometry = new THREE.TextGeometry( peripheryAssociationsText, {
 		font: font,
 		size: 1,
@@ -150,7 +151,7 @@ function addWordToScene() {
 		bevelSegments: 3
 	  } );
 	  geometry.center();
-	  var material = new THREE.MeshBasicMaterial({color: 0x403b2c});
+	  var material = new THREE.MeshBasicMaterial({color: 0x000000});
 	  peripheryWordMesh = new THREE.Mesh( geometry, material );
 	  peripheryWordMesh.position.y = 25;
 	  peripheryWordMesh.position.x = -45;
