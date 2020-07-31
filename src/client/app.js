@@ -128,7 +128,9 @@ function addWordToScene() {
 	  outsiderWordMesh.position.y = 25;
 	  outsiderWordMesh.position.x = 45;
 	  //outsiderWordMesh.rotation.x = -90;
-	  outsiderWordMesh.rotation.y = 210;
+	  //outsiderWordMesh.rotation.y = 210; STRAIGHT OUT
+	  outsiderWordMesh.rotation.y = 100;
+
 		scene.add( outsiderWordMesh );
 	} );
 
