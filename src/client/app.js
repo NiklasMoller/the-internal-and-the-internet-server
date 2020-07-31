@@ -124,6 +124,7 @@ function addWordToScene() {
 	  } );
 	  geometry.center();
 	  var material = new THREE.MeshNormalMaterial();
+	  material.color.setHex(0xffffff );
 	  outsiderWordMesh = new THREE.Mesh( geometry, material );
 	  outsiderWordMesh.position.y = -10;
 	  outsiderWordMesh.rotation.x = -90;
@@ -143,7 +144,8 @@ function addWordToScene() {
 		bevelSegments: 3
 	  } );
 	  geometry.center();
-	  var material = new THREE.MeshBasicMaterial( { color: 0x000000 } );
+	  //var material = new THREE.MeshBasicMaterial( { color: 0x000000 } );
+	 var material = new THREE.MeshPhongMaterial( { color: 0xffffff, flatShading: true } ); 
 	  peripheryWordMesh = new THREE.Mesh( geometry, material );
 	  peripheryWordMesh.position.y = -10;
 	  peripheryWordMesh.rotation.x = -70;
