@@ -22,7 +22,6 @@ var loader = new THREE.FontLoader();
 startButton.addEventListener('click', function () {
 
 	init();
-	animate();
 
 }, false);
 
@@ -43,6 +42,7 @@ export const preLoad = () => {
 function init() {
 
 	removeOverlay();
+	animate();
 
 
 	/*
