@@ -11,8 +11,8 @@ var peripheryObj = '';
 
 var camera, scene, renderer, controls;
 
-var outsiderAssociationsText = '';
-var peripheryAssociationsText = '';
+var outsiderAssociationsText = 'TEST \n';
+var peripheryAssociationsText = 'TEST \n';
 
 var startButton = document.getElementById('startButton');
 
