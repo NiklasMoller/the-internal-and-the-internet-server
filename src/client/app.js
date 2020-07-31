@@ -135,7 +135,7 @@ function addWordToScene() {
 	  var geometry = new THREE.TextGeometry( peripheryAssociationsText, {
 		font: font,
 		size: 1,
-		height: 0.5,
+		height: 0.02,
 		curveSegments: 4,
 		bevelEnabled: true,
 		bevelThickness: 0.02,
@@ -143,7 +143,7 @@ function addWordToScene() {
 		bevelSegments: 3
 	  } );
 	  geometry.center();
-	  var material = new THREE.MeshNormalMaterial();
+	  var material = new THREE.MeshBasicMaterial({color: 0x000000});
 	  peripheryWordMesh = new THREE.Mesh( geometry, material );
 	  peripheryWordMesh.position.y = -10;
 	  peripheryWordMesh.rotation.x = -70;
