@@ -100,7 +100,7 @@ function setupTHREEStartComponents() {
 
 function addWordsToScene() {
 
-	loader.load( './MuseoModerno.json', function ( font ) {
+	loader.load( 'https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function ( font ) {
 	  var geometry = new THREE.TextGeometry( outsiderAssociationsText, {
 		font: font,
 		size: 1,
