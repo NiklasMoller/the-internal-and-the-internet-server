@@ -31,9 +31,9 @@ export const preLoad = () => {
 		map: new THREE.TextureLoader().load('resources/backdrop.jpg')
 	});
 
+	setupTHREEStartComponents();
 	loadAssociationsToJSON();
 	createTextStrings();
-	setupTHREEStartComponents();
 	addWordsToScene();
 
 
