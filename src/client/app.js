@@ -307,7 +307,7 @@ function animate() {
 	*/
 
 
-	outsiderWordMesh.rotation.y += 0.5;
+	outsiderWordMesh.rotation.y += 0.01;
 	var position = 	outsiderWordMesh.rotation.y;
 	console.log(position);
 
