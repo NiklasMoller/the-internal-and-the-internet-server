@@ -125,10 +125,11 @@ function addWordToScene() {
 	  geometry.center();
 	  var material = new THREE.MeshNormalMaterial();
 	  outsiderWordMesh = new THREE.Mesh( geometry, material );
-	  outsiderWordMesh.position.y = 30;
+	  outsiderWordMesh.position.y = 25;
 	  outsiderWordMesh.position.x = 45;
 	  //outsiderWordMesh.rotation.x = -90;
 	  outsiderWordMesh.rotation.y = -80;
+	  outsiderWordMesh.rotation.x = 180;
 		scene.add( outsiderWordMesh );
 	} );
 
