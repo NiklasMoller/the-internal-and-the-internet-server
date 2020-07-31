@@ -127,7 +127,7 @@ function addWordToScene() {
 	  outsiderWordMesh = new THREE.Mesh( geometry, material );
 	  outsiderWordMesh.position.y = 45;
 	  outsiderWordMesh.position.x = 45;
-	  outsiderWordMesh.rotation.x = -90;
+	  //outsiderWordMesh.rotation.x = -90;
 		scene.add( outsiderWordMesh );
 	} );
 
@@ -294,13 +294,14 @@ function animate() {
 
 	window.requestAnimationFrame(animate);
 	
+	/*
 	if(outsiderWordMesh.position.y > -12){
 		outsiderWordMesh.position.y -= 0.02;
 	}else{
 		//removeWordFromScene();
 		//addWordToScene();
 	}
-	
+	*/
 
 	controls.update();
 	renderer.render(scene, camera);
