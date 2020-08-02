@@ -52,7 +52,7 @@ function init() {
 
 	addWordToScene();
 
-	//animate();
+	animate();
 
 
 	/*
@@ -125,9 +125,9 @@ function addWordToScene() {
 	  var material = new THREE.MeshNormalMaterial();
 	  //var material = new THREE.MeshBasicMaterial({color: 0x000000}); 
 	  outsiderWordMesh = new THREE.Mesh( geometry, material );
-	  outsiderWordMesh.position.y = 25;
-	  outsiderWordMesh.position.x = 20;
-	  outsiderWordMesh.rotation.y = TWO_PI * 0.75;
+	  //outsiderWordMesh.position.y = 25;
+	  //outsiderWordMesh.position.x = 20;
+	  //outsiderWordMesh.rotation.y = (TWO_PI * 0.75);
 
 		scene.add( outsiderWordMesh );
 	} );
