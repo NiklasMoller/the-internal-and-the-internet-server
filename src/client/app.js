@@ -5,8 +5,8 @@ import { DeviceOrientationControls } from 'three/examples/jsm/controls/DeviceOri
 
 var wallmaterial;
 
-var outsiderWordMesh;
-var peripheryWordMesh;
+//var outsiderWordMesh;
+//var peripheryWordMesh;
 
 var outsiderObj = '';
 var peripheryObj = '';
@@ -114,6 +114,8 @@ function setupTHREEStartComponents() {
 
 function addWordToScene() {
 
+	console.log('Adding the associations to mesh and scene');
+
 	loader.load( './RussoOneRegular.json', function ( font ) {
 	  var geometry = new THREE.TextGeometry( outsiderAssociationsText, {
 		font: font,
@@ -128,11 +130,9 @@ function addWordToScene() {
 	  geometry.center();
 	  var material = new THREE.MeshNormalMaterial();
 	  //var material = new THREE.MeshBasicMaterial({color: 0x000000}); 
-	  outsiderWordMesh = new THREE.Mesh( geometry, material );
+	  var outsiderWordMesh = new THREE.Mesh( geometry, material );
 	  outsiderWordMesh.position.y = 25;
 	  outsiderWordMesh.position.x = 20;
-	  //outsiderWordMesh.rotation.x = -90;
-	  //outsiderWordMesh.rotation.y = 210; STRAIGHT OUT
 	  outsiderWordMesh.rotation.y = TWO_PI * 0.75;
 
 		scene.add( outsiderWordMesh );
@@ -153,7 +153,7 @@ function addWordToScene() {
 	  geometry.center();
 	  var material = new THREE.MeshNormalMaterial();
 	  //var material = new THREE.MeshBasicMaterial({color: 0x000000});
-	  peripheryWordMesh = new THREE.Mesh( geometry, material );
+	  var peripheryWordMesh = new THREE.Mesh( geometry, material );
 	  peripheryWordMesh.position.y = 25;
 	  peripheryWordMesh.position.x = -20;
 	  peripheryWordMesh.rotation.y = TWO_PI * 0.25;
