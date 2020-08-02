@@ -93,6 +93,9 @@ function setupTHREEStartComponents() {
 	// invert the geometry on the x-axis so that all of the faces point inward
 	buildingGeometry.scale(- 1, 1, 1);
 
+	var light = new THREE.AmbientLight( 0x2fc975 );
+	scene.add( light );
+
 
 	var buildingMesh = new THREE.Mesh(buildingGeometry, wallmaterial);
 	scene.add(buildingMesh);
@@ -113,6 +116,8 @@ function addWordToScene() {
 
 	//./RussoOneRegular.json
 
+
+
 	loader.load( './Roboto_Regular.json', function ( font ) {
 	  var geometry = new THREE.TextGeometry( outsiderAssociationsText, {
 		font: font,
@@ -125,7 +130,7 @@ function addWordToScene() {
 		bevelSegments: 3
 	  } );
 	  geometry.center();
-	  var material = new THREE.MeshNormalMaterial();
+	  var material = 	new THREE.MeshLambertMaterial({color: 0xb33131});
 	  //var material = new THREE.MeshBasicMaterial({color: 0x000000}); 
 	  outsiderWordMesh = new THREE.Mesh( geometry, material );
 	  outsiderWordMesh.position.y = 15;
