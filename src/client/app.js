@@ -113,16 +113,16 @@ function addWordToScene() {
 
 	//./RussoOneRegular.json
 
-	loader.load( 'https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function ( font ) {
+	loader.load( './RussoOneRegular.json', function ( font ) {
 	  var geometry = new THREE.TextGeometry( outsiderAssociationsText, {
 		font: font,
 		size: 2,
 		height: 0.02,
-		curveSegments: 4,
-		bevelEnabled: true,
-		bevelThickness: 0.02,
-		bevelSize: 0.05,
-		bevelSegments: 3
+		//curveSegments: 4,
+		//bevelEnabled: true,
+		//bevelThickness: 0.02,
+		//bevelSize: 0.05,
+		//bevelSegments: 3
 	  } );
 	  geometry.center();
 	  var material = new THREE.MeshNormalMaterial();
@@ -136,7 +136,7 @@ function addWordToScene() {
 	} );
 
 	
-	loader.load( 'https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function ( font ) {
+	loader.load( './RussoOneRegular.json', function ( font ) {
 	  var geometry = new THREE.TextGeometry( peripheryAssociationsText, {
 		font: font,
 		size: 1,
