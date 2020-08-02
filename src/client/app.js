@@ -5,18 +5,19 @@ import { DeviceOrientationControls } from 'three/examples/jsm/controls/DeviceOri
 
 var wallmaterial;
 
-var wordMesh;
+var outsiderWordMesh;
+var peripheryWordMesh;
+
 var outsiderObj = '';
 var peripheryObj = '';
 
-var outsiderTextMeshArray = [];
-var peripheryTextMeshArray = [];
-
 var camera, scene, renderer, controls;
 
-var wordcounter;
+const TWO_PI = 6.28318530718;
+const PI = 3.14159265359;
 
-var outsiderAssociationsText = '';
+var outsiderAssociationsText = 'TEST \n';
+var peripheryAssociationsText = 'TEST2 \n';
 
 var startButton = document.getElementById('startButton');
 
@@ -26,7 +27,6 @@ var loader = new THREE.FontLoader();
 startButton.addEventListener('click', function () {
 
 	init();
-	animate();
 
 }, false);
 
@@ -37,31 +37,29 @@ export const preLoad = () => {
 	});
 
 	loadAssociationsToJSON();
-	//createMeshArrayWithAssociations();
 
 };
 
 function init() {
 
-	wordcounter = 0;
+
 
 	removeOverlay();
 	setupTHREEStartComponents();
-	addPlanes();
 
 
 	createTextString();
 
 	addWordToScene();
 
+	animate();
+
 
 	/*
-	1. Skapa en text string genom att iterrera igenom alla orden och lägg till /n däri
-	2. Lägg till texten
+	1. Fixa en font som ser bra ut
+	2. 
 	3. 
 	*/
-
-
 
 
 }
@@ -95,6 +93,9 @@ function setupTHREEStartComponents() {
 	// invert the geometry on the x-axis so that all of the faces point inward
 	buildingGeometry.scale(- 1, 1, 1);
 
+	var light = new THREE.AmbientLight( 0x2fc975, 2.5 );
+	scene.add( light );
+
 
 	var buildingMesh = new THREE.Mesh(buildingGeometry, wallmaterial);
 	scene.add(buildingMesh);
@@ -110,11 +111,18 @@ function setupTHREEStartComponents() {
 
 function addWordToScene() {
 
-	loader.load( 'https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function ( font ) {
+	console.log('Adding the associations to mesh and scene');
+
+
+	//./RussoOneRegular.json
+
+
+
+	loader.load( './Roboto_Regular.json', function ( font ) {
 	  var geometry = new THREE.TextGeometry( outsiderAssociationsText, {
 		font: font,
-		size: 1,
-		height: 0.5,
+		size: 0.5,
+		height: 0.02,
 		curveSegments: 4,
 		bevelEnabled: true,
 		bevelThickness: 0.02,
@@ -122,26 +130,42 @@ function addWordToScene() {
 		bevelSegments: 3
 	  } );
 	  geometry.center();
-	  var material = new THREE.MeshNormalMaterial();
-	  wordMesh = new THREE.Mesh( geometry, material );
-	  wordMesh.position.y = -10;
-	  wordMesh.rotation.x = -90;
-		scene.add( wordMesh );
+	  var material = 	new THREE.MeshLambertMaterial({color: 0xb33131});
+	  //var material = new THREE.MeshBasicMaterial({color: 0x000000}); 
+	  outsiderWordMesh = new THREE.Mesh( geometry, material );
+	  outsiderWordMesh.position.y = 10;
+	  outsiderWordMesh.position.x = 18;
+	  outsiderWordMesh.rotation.y = (TWO_PI * 0.75);
+
+		scene.add( outsiderWordMesh );
+	} );
+
+	
+	loader.load( './Roboto_Regular.json', function ( font ) {
+	  var geometry = new THREE.TextGeometry( peripheryAssociationsText, {
+		font: font,
+		size: 0.5,
+		height: 0.02
+		//curveSegments: 4,
+		//bevelEnabled: true,
+		//bevelThickness: 0.02,
+		//bevelSize: 0.05,
+		//bevelSegments: 3
+	  } );
+	  geometry.center();
+	 // var material = new THREE.MeshNormalMaterial();
+	  var material = 	new THREE.MeshLambertMaterial({color: 0xab0000});	  
+	  peripheryWordMesh = new THREE.Mesh( geometry, material );
+	  peripheryWordMesh.position.y = 10;
+	  peripheryWordMesh.position.x = -18;
+	  peripheryWordMesh.rotation.y = TWO_PI * 0.25;
+		scene.add( peripheryWordMesh );
 	} );
 
 }
 
-function removeWordFromScene(){
-	scene.remove(wordMesh);
-}
-
-function updateCounter(){
-	wordcounter += wordcounter;
-}
 
 function createTextString(){
-
-	console.log('Length of outsider object is' + length(outsiderObj.association));
 
 	for(var i = 0; i < length(outsiderObj.association); i++){
 		
@@ -149,7 +173,11 @@ function createTextString(){
 
 	}
 
-	console.log(outsiderAssociationsText);
+	for(var i = 0; i < length(peripheryObj.association); i++){
+		
+		peripheryAssociationsText += peripheryObj.association[i].association + '\n';
+
+	}
 
 
 }
@@ -173,8 +201,6 @@ function loadAssociationsToJSON() {
 			console.log(data)
 
 			outsiderObj = JSON.parse(data);
-			//console.log(length (outsiderObj.association));
-			console.log('1:' + outsiderObj.association[1].association)	
 
 		},
 
@@ -199,10 +225,7 @@ function loadAssociationsToJSON() {
 			// output the text to the console
 			console.log(data);
 
-
 			peripheryObj = JSON.parse(data);
-			//console.log(length (outsiderObj.association));
-			//console.log(outsiderObj.association[1].association)	
 
 		},
 
@@ -227,55 +250,11 @@ function length(obj) {
 
 //---------------------------------------------------------------------------
 
-function createMeshArrayWithAssociations() {
-
-
-	var loader = new THREE.FontLoader();
-
-	for (var i = 0; i < 1 + length(outsiderObj); i++) {
-		//Create a new text mesh object and push it to the array
-
-		loader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function (font) {
-			var geometry = new THREE.TextGeometry(outsiderObj.association[i].association, {
-				font: font,
-				size: 1,
-				height: 0.5,
-				curveSegments: 4,
-				bevelEnabled: true,
-				bevelThickness: 0.02,
-				bevelSize: 0.05,
-				bevelSegments: 3
-			});
-			geometry.center();
-
-			//var material = new THREE.MeshNormalMaterial();
-			//wordMesh = new THREE.Mesh( geometry, material );
-			//wordMesh.position.y = -10;
-			//wordMesh.rotation.x = -90;
-			outsiderTextMeshArray.push(geometry);
-		});
-
-
-	}
-
-
-}
-
-
-
 function animate() {
 
 
 
 	window.requestAnimationFrame(animate);
-	
-	if(wordMesh.position.y > -12){
-		wordMesh.position.y -= 0.02;
-	}else{
-		//removeWordFromScene();
-		//addWordToScene();
-	}
-	
 
 	controls.update();
 	renderer.render(scene, camera);
