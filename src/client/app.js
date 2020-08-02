@@ -11,12 +11,7 @@ var peripheryWordMesh;
 var outsiderObj = '';
 var peripheryObj = '';
 
-var outsiderTextMeshArray = [];
-var peripheryTextMeshArray = [];
-
 var camera, scene, renderer, controls;
-
-var wordcounter;
 
 const TWO_PI = 6.28318530718;
 const PI = 3.14159265359;
@@ -32,7 +27,6 @@ var loader = new THREE.FontLoader();
 startButton.addEventListener('click', function () {
 
 	init();
-	animate();
 
 }, false);
 
@@ -43,7 +37,6 @@ export const preLoad = () => {
 	});
 
 	loadAssociationsToJSON();
-	//createMeshArrayWithAssociations();
 
 };
 
@@ -53,12 +46,13 @@ function init() {
 
 	removeOverlay();
 	setupTHREEStartComponents();
-	//addPlanes();
 
 
 	createTextString();
 
 	addWordToScene();
+
+	animate();
 
 
 	/*
@@ -131,9 +125,9 @@ function addWordToScene() {
 	  var material = new THREE.MeshNormalMaterial();
 	  //var material = new THREE.MeshBasicMaterial({color: 0x000000}); 
 	  outsiderWordMesh = new THREE.Mesh( geometry, material );
-	  //outsiderWordMesh.position.y = 25;
-	  //outsiderWordMesh.position.x = 20;
-	  //outsiderWordMesh.rotation.y = TWO_PI * 0.75;
+	  outsiderWordMesh.position.y = 25;
+	  outsiderWordMesh.position.x = 20;
+	  outsiderWordMesh.rotation.y = TWO_PI * 0.75;
 
 		scene.add( outsiderWordMesh );
 	} );
@@ -162,13 +156,6 @@ function addWordToScene() {
 
 }
 
-function removeWordFromScene(){
-	scene.remove(outsiderWordMesh);
-}
-
-function updateCounter(){
-	wordcounter += wordcounter;
-}
 
 function createTextString(){
 
@@ -206,8 +193,6 @@ function loadAssociationsToJSON() {
 			console.log(data)
 
 			outsiderObj = JSON.parse(data);
-			//console.log(length (outsiderObj.association));
-			console.log('1:' + outsiderObj.association[1].association)	
 
 		},
 
@@ -232,10 +217,7 @@ function loadAssociationsToJSON() {
 			// output the text to the console
 			console.log(data);
 
-
 			peripheryObj = JSON.parse(data);
-			//console.log(length (outsiderObj.association));
-			//console.log(outsiderObj.association[1].association)	
 
 		},
 
@@ -260,61 +242,11 @@ function length(obj) {
 
 //---------------------------------------------------------------------------
 
-function createMeshArrayWithAssociations() {
-
-
-	var loader = new THREE.FontLoader();
-
-	for (var i = 0; i < 1 + length(outsiderObj); i++) {
-		//Create a new text mesh object and push it to the array
-
-		loader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function (font) {
-			var geometry = new THREE.TextGeometry(outsiderObj.association[i].association, {
-				font: font,
-				size: 1,
-				height: 0.5,
-				curveSegments: 4,
-				bevelEnabled: true,
-				bevelThickness: 0.02,
-				bevelSize: 0.05,
-				bevelSegments: 3
-			});
-			geometry.center();
-
-			//var material = new THREE.MeshNormalMaterial();
-			//outsiderWordMesh = new THREE.Mesh( geometry, material );
-			//outsiderWordMesh.position.y = -10;
-			//outsiderWordMesh.rotation.x = -90;
-			outsiderTextMeshArray.push(geometry);
-		});
-
-
-	}
-
-
-}
-
-
-
 function animate() {
 
 
 
 	window.requestAnimationFrame(animate);
-	
-	/*
-	if(outsiderWordMesh.position.y > -12){
-		outsiderWordMesh.position.y -= 0.02;
-	}else{
-		//removeWordFromScene();
-		//addWordToScene();
-	}
-	*/
-
-
-	//outsiderWordMesh.rotation.y += 0.003;
-	//var position = 	outsiderWordMesh.rotation.y;
-	//console.log(position);
 
 	controls.update();
 	renderer.render(scene, camera);
