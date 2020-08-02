@@ -93,7 +93,7 @@ function setupTHREEStartComponents() {
 	// invert the geometry on the x-axis so that all of the faces point inward
 	buildingGeometry.scale(- 1, 1, 1);
 
-	var light = new THREE.AmbientLight( 0x2fc975, 4 );
+	var light = new THREE.AmbientLight( 0x2fc975, 1.2 );
 	scene.add( light );
 
 
@@ -133,7 +133,7 @@ function addWordToScene() {
 	  var material = 	new THREE.MeshLambertMaterial({color: 0xb33131});
 	  //var material = new THREE.MeshBasicMaterial({color: 0x000000}); 
 	  outsiderWordMesh = new THREE.Mesh( geometry, material );
-	  outsiderWordMesh.position.y = 15;
+	  outsiderWordMesh.position.y = 10;
 	  outsiderWordMesh.position.x = 18;
 	  outsiderWordMesh.rotation.y = (TWO_PI * 0.75);
 
