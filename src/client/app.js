@@ -110,7 +110,10 @@ function addWordToScene() {
 
 	console.log('Adding the associations to mesh and scene');
 
-	loader.load( './RussoOneRegular.json', function ( font ) {
+
+	//./RussoOneRegular.json
+
+	loader.load( 'https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function ( font ) {
 	  var geometry = new THREE.TextGeometry( outsiderAssociationsText, {
 		font: font,
 		size: 2,
@@ -133,7 +136,7 @@ function addWordToScene() {
 	} );
 
 	
-	loader.load( './RussoOneRegular.json', function ( font ) {
+	loader.load( 'https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function ( font ) {
 	  var geometry = new THREE.TextGeometry( peripheryAssociationsText, {
 		font: font,
 		size: 1,
