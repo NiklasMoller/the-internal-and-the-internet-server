@@ -117,7 +117,7 @@ function addWordToScene() {
 	  var geometry = new THREE.TextGeometry( outsiderAssociationsText, {
 		font: font,
 		size: 2,
-		height: 0.02,
+		height: 0.02
 		//curveSegments: 4,
 		//bevelEnabled: true,
 		//bevelThickness: 0.02,
@@ -140,7 +140,7 @@ function addWordToScene() {
 	  var geometry = new THREE.TextGeometry( peripheryAssociationsText, {
 		font: font,
 		size: 1,
-		height: 0.02,
+		height: 0.02
 		//curveSegments: 4,
 		//bevelEnabled: true,
 		//bevelThickness: 0.02,
