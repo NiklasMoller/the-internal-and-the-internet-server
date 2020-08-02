@@ -93,7 +93,7 @@ function setupTHREEStartComponents() {
 	// invert the geometry on the x-axis so that all of the faces point inward
 	buildingGeometry.scale(- 1, 1, 1);
 
-	var light = new THREE.AmbientLight( 0x2fc975, 20 );
+	var light = new THREE.AmbientLight( 0x2fc975, 10 );
 	scene.add( light );
 
 
