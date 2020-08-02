@@ -93,7 +93,7 @@ function setupTHREEStartComponents() {
 	// invert the geometry on the x-axis so that all of the faces point inward
 	buildingGeometry.scale(- 1, 1, 1);
 
-	var light = new THREE.AmbientLight( 0x2fc975, 1.2 );
+	var light = new THREE.AmbientLight( 0x2fc975, 2.5 );
 	scene.add( light );
 
 
@@ -144,7 +144,7 @@ function addWordToScene() {
 	loader.load( './Roboto_Regular.json', function ( font ) {
 	  var geometry = new THREE.TextGeometry( peripheryAssociationsText, {
 		font: font,
-		size: 0.2,
+		size: 0.5,
 		height: 0.02
 		//curveSegments: 4,
 		//bevelEnabled: true,
@@ -153,10 +153,10 @@ function addWordToScene() {
 		//bevelSegments: 3
 	  } );
 	  geometry.center();
-	  var material = new THREE.MeshNormalMaterial();
-	  //var material = new THREE.MeshBasicMaterial({color: 0x000000});
+	 // var material = new THREE.MeshNormalMaterial();
+	  var material = 	new THREE.MeshLambertMaterial({color: 0xab0000});	  
 	  peripheryWordMesh = new THREE.Mesh( geometry, material );
-	  peripheryWordMesh.position.y = 15;
+	  peripheryWordMesh.position.y = 10;
 	  peripheryWordMesh.position.x = -18;
 	  peripheryWordMesh.rotation.y = TWO_PI * 0.25;
 		scene.add( peripheryWordMesh );
