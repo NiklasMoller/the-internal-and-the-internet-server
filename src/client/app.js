@@ -42,7 +42,7 @@ export const preLoad = () => {
 
 function init() {
 
-	wordcounter = 0;
+
 
 	removeOverlay();
 	setupTHREEStartComponents();
