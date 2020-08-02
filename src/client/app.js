@@ -113,7 +113,7 @@ function addWordToScene() {
 
 	//./RussoOneRegular.json
 
-	loader.load( './RussoOneRegular.json', function ( font ) {
+	loader.load( './Roboto_Regular.json', function ( font ) {
 	  var geometry = new THREE.TextGeometry( outsiderAssociationsText, {
 		font: font,
 		size: 2,
@@ -136,7 +136,7 @@ function addWordToScene() {
 	} );
 
 	
-	loader.load( './RussoOneRegular.json', function ( font ) {
+	loader.load( './Roboto_Regular.json', function ( font ) {
 	  var geometry = new THREE.TextGeometry( peripheryAssociationsText, {
 		font: font,
 		size: 1,
