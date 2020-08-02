@@ -5,8 +5,8 @@ import { DeviceOrientationControls } from 'three/examples/jsm/controls/DeviceOri
 
 var wallmaterial;
 
-//var outsiderWordMesh;
-//var peripheryWordMesh;
+var outsiderWordMesh;
+var peripheryWordMesh;
 
 var outsiderObj = '';
 var peripheryObj = '';
@@ -130,10 +130,10 @@ function addWordToScene() {
 	  geometry.center();
 	  var material = new THREE.MeshNormalMaterial();
 	  //var material = new THREE.MeshBasicMaterial({color: 0x000000}); 
-	  var outsiderWordMesh = new THREE.Mesh( geometry, material );
-	  outsiderWordMesh.position.y = 25;
-	  outsiderWordMesh.position.x = 20;
-	  outsiderWordMesh.rotation.y = TWO_PI * 0.75;
+	  outsiderWordMesh = new THREE.Mesh( geometry, material );
+	  //outsiderWordMesh.position.y = 25;
+	  //outsiderWordMesh.position.x = 20;
+	  //outsiderWordMesh.rotation.y = TWO_PI * 0.75;
 
 		scene.add( outsiderWordMesh );
 	} );
@@ -153,10 +153,10 @@ function addWordToScene() {
 	  geometry.center();
 	  var material = new THREE.MeshNormalMaterial();
 	  //var material = new THREE.MeshBasicMaterial({color: 0x000000});
-	  var peripheryWordMesh = new THREE.Mesh( geometry, material );
-	  peripheryWordMesh.position.y = 25;
-	  peripheryWordMesh.position.x = -20;
-	  peripheryWordMesh.rotation.y = TWO_PI * 0.25;
+	  peripheryWordMesh = new THREE.Mesh( geometry, material );
+	  //peripheryWordMesh.position.y = 25;
+	  //peripheryWordMesh.position.x = -20;
+	  //peripheryWordMesh.rotation.y = TWO_PI * 0.25;
 		scene.add( peripheryWordMesh );
 	} );
 
