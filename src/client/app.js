@@ -141,11 +141,11 @@ function addWordToScene() {
 		font: font,
 		size: 1,
 		height: 0.02,
-		curveSegments: 4,
-		bevelEnabled: true,
-		bevelThickness: 0.02,
-		bevelSize: 0.05,
-		bevelSegments: 3
+		//curveSegments: 4,
+		//bevelEnabled: true,
+		//bevelThickness: 0.02,
+		//bevelSize: 0.05,
+		//bevelSegments: 3
 	  } );
 	  geometry.center();
 	  var material = new THREE.MeshNormalMaterial();
