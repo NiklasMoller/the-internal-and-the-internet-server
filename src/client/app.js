@@ -126,8 +126,8 @@ function addWordToScene() {
 		bevelSegments: 3
 	  } );
 	  geometry.center();
-	  //var material = new THREE.MeshNormalMaterial();
-	  var material = new THREE.MeshBasicMaterial({color: 0x000000}); 
+	  var material = new THREE.MeshNormalMaterial();
+	  //var material = new THREE.MeshBasicMaterial({color: 0x000000}); 
 	  outsiderWordMesh = new THREE.Mesh( geometry, material );
 	  outsiderWordMesh.position.y = 25;
 	  outsiderWordMesh.position.x = 20;
@@ -151,7 +151,8 @@ function addWordToScene() {
 		bevelSegments: 3
 	  } );
 	  geometry.center();
-	  var material = new THREE.MeshBasicMaterial({color: 0x000000});
+	  var material = new THREE.MeshNormalMaterial();
+	  //var material = new THREE.MeshBasicMaterial({color: 0x000000});
 	  peripheryWordMesh = new THREE.Mesh( geometry, material );
 	  peripheryWordMesh.position.y = 25;
 	  peripheryWordMesh.position.x = -20;
