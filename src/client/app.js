@@ -50,9 +50,9 @@ function init() {
 
 	createTextString();
 
-	//addWordToScene();
+	addWordToScene();
 
-	animate();
+	//animate();
 
 
 	/*
