@@ -1,8 +1,6 @@
 import * as THREE from 'three';
 import { DeviceOrientationControls } from 'three/examples/jsm/controls/DeviceOrientationControls.js';
 
-
-
 var wallmaterial;
 
 var outsiderWordMesh;
@@ -11,7 +9,15 @@ var peripheryWordMesh;
 var outsiderObj = '';
 var peripheryObj = '';
 
+
+//Root
+var planeRoot, wordRoot1, wordRoot2;
+var rootHasLoaded = false;
+var wordMesh, wordMesh2;
+
 var camera, scene, renderer, controls;
+
+
 
 const TWO_PI = 6.28318530718;
 const PI = 3.14159265359;
@@ -48,24 +54,111 @@ function init() {
 	setupTHREEStartComponents();
 
 
-	createTextString();
+	//createTextString();
 
-	addWordToScene();
+	//addWordToScene();
+
+	addTestPlane();
 
 	animate();
 
-
-	/*
-	1. Fixa en font som ser bra ut
-	2. 
-	3. 
-	*/
 
 
 }
 
 
-function addPlanes() {
+function addTestPlane(){
+
+
+	console.log("Add test plane 17 aug");
+
+	/*
+	const objects = [];
+
+	planeRoot = new THREE.Object3D();
+	planeRoot.position.y = -20;
+	planeRoot.rotation.x = (TWO_PI);
+	
+	scene.add(planeRoot);
+
+
+	wordRoot1 = new THREE.Object3D();
+	//planeRoot.add(wordRoot1);
+
+
+	wordRoot2 = new THREE.Object3D();
+
+
+
+	objects.push(planeRoot);
+
+	const planegeometry = new THREE.PlaneBufferGeometry(10, 10);
+	const planematerial = new THREE.MeshBasicMaterial({ color: 0xffff00 });
+	const planeMesh = new THREE.Mesh(planegeometry, planematerial);
+	//planeMesh.position.y = -20;
+	//planeMesh.rotation.x = -90;
+	//planeRoot.add(planeMesh); 
+	//objects.push(planeMesh);
+
+
+	const planegeometry2 = new THREE.PlaneBufferGeometry(10, 10);
+	const planematerial2 = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+	const planeMesh2 = new THREE.Mesh(planegeometry2, planematerial2);
+	//planeMesh.position.y = -20;
+	planeMesh2.rotation.x = (TWO_PI * 0.5);
+	//planeRoot.add(planeMesh2); 
+
+*/
+
+		loader.load( './Roboto_Regular.json', function ( font ) {
+	  var geometry = new THREE.TextGeometry( "WorldASITIS SOO MUCH", {
+		font: font,
+		size: 0.5,
+		height: 0.02,
+		curveSegments: 4,
+		bevelEnabled: true,
+		bevelThickness: 0.02,
+		bevelSize: 0.05,
+		bevelSegments: 3
+	  } );
+	  geometry.center();
+	  //var material = 	new THREE.MeshLambertMaterial({color: 0xb33131});
+	  var material = new THREE.MeshBasicMaterial({color: 0x000000}); 
+	  wordMesh = new THREE.Mesh( geometry, material );
+	  wordMesh.position.y = -20;
+	  //wordMesh.rotation.y = (TWO_PI * 0.75);
+	  //wordMesh.rotation.x = (TWO_PI * 0.5);
+	  scene.add(wordMesh);
+	} );
+
+	loader.load( './Roboto_Regular.json', function ( font ) {
+		var geometry = new THREE.TextGeometry( "Hello", {
+		  font: font,
+		  size: 0.5,
+		  height: 0.02,
+		  curveSegments: 4,
+		  bevelEnabled: true,
+		  bevelThickness: 0.02,
+		  bevelSize: 0.05,
+		  bevelSegments: 3
+		} );
+		geometry.center();
+		//var material = 	new THREE.MeshLambertMaterial({color: 0xb33131});
+		var material = new THREE.MeshBasicMaterial({color: 0x000000}); 
+		wordMesh2 = new THREE.Mesh( geometry, material );
+		wordMesh2.position.y = -20;
+		//wordMesh.rotation.y = (TWO_PI * 0.75);
+		//wordMesh.rotation.x = (TWO_PI * 0.5);
+		//wordRoot2.add(wordMesh2);
+	  } );
+
+
+	rootHasLoaded = true;
+
+}
+
+
+function addPlane() {
 	var planegeometry = new THREE.PlaneBufferGeometry(50, 200);
 	var planematerial = new THREE.MeshBasicMaterial({ color: 0xffff00 });
 	var plane = new THREE.Mesh(planegeometry, planematerial);
@@ -250,7 +343,25 @@ function length(obj) {
 
 //---------------------------------------------------------------------------
 
+var counter = 0;
+var counterYes = true;
+
 function animate() {
+
+if(rootHasLoaded){
+
+	counter += 1;
+
+	if(counter > 300){
+		scene.remove(wordMesh);
+		if(counterYes){
+			scene.add(wordMesh2);
+			counterYes = false;
+		}
+		
+	}
+}
+
 
 
 
