@@ -13,13 +13,16 @@ var outsiderObjects = [];
 var peripheryObjects = [];
 
 var outsiderUUID = [];
+var tempUUID = '';
 
 var hasLoded = false;
 
 //Root
-var planeRoot, wordRoot1, wordRoot2;
+//var planeRoot, wordRoot1, wordRoot2;
 var rootHasLoaded = false;
 var wordMesh, wordMesh2;
+
+var wordRoot = new THREE.Object3D();
 
 var camera, scene, renderer, controls;
 
@@ -230,21 +233,27 @@ function createWordGeometries(){
 		  geometry.center();
 		  var material = 	new THREE.MeshLambertMaterial({color: 0xb33131});
 		  //var material = new THREE.MeshBasicMaterial({color: 0x000000});
-		  outsiderObjects[i] = new THREE.Mesh( geometry, material );
-		  outsiderObjects[i].position.y = -20;
+		  outsiderWordMesh = new THREE.Mesh( geometry, material );
+		  outsiderWordMesh.position.y = -20;
 		  //outsiderObjects[i].rotation.y = (TWO_PI * 0.75);
 
-			var uuid = outsiderObjects[i].uuid;
+			var uuid = outsiderWordMesh.uuid;
+			tempUUID = outsiderWordMesh.uuid;
 			console.log('uuid is: ' + uuid);
 			outsiderUUID.push(uuid);
-			scene.add(outsiderObjects[i]);
+			//scene.add(outsiderObjects[i]);
 			console.log('Lenght of outsiderObjects is' + length(outsiderObjects));
 			hasLoded = true;
+			wordRoot.add(outsiderWordMesh);
+
+			console.log('Getting UUID from wordroot' + wordRoot.getObjectById(i+2).uuid)
 
 		} );
 
 	}
 
+
+	console.log('Getting UUID from wordroot' + wordRoot.getObjectById(2).uuid)
 
 	//console.log('Pushed the associations into array which now has length: ' + length(outsiderObjects) );
 	console.log('Length of UUIDS is: ' + length(outsiderUUID) );
@@ -419,9 +428,6 @@ var counterYes = true;
 
 function animate() {
 
-if(hasLoded){
-	scene.add(outsiderObjects[0]);
-}
 
 	window.requestAnimationFrame(animate);
 
