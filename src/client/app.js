@@ -287,7 +287,7 @@ function setupTHREEStartComponents() {
 		  scene.add( outsiderWordMesh );
 
 		  index++;
-		  loadNextFile();
+		  loadNextOutsiderWord();
 
 	  }	);
   
