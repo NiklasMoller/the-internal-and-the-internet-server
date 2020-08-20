@@ -234,6 +234,7 @@ var group = new THREE.Group();
 			group.add(outsiderWordMesh);
 
 			var uuid = outsiderWordMesh.uuid;
+			console.log(uuid);
 			outsiderUUID.push(uuid);
 
 		} );
@@ -246,7 +247,7 @@ var group = new THREE.Group();
 
 	scene.add(group);
 
-	console.log(scene.children);
+	//console.log(scene.children);
 
 	//console.log(group.traverse());
 
