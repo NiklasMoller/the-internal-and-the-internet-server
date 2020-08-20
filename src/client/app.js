@@ -285,11 +285,12 @@ function setupTHREEStartComponents() {
 		outsiderWordMesh.position.y = 10;
 		outsiderWordMesh.position.x = 18;
 		outsiderWordMesh.rotation.y = (TWO_PI * 0.75);
-		//outsiderWordMesh.visible = false;
+		outsiderWordMesh.visible = false;
 		outsiderRoot.add(outsiderWordMesh);
   
 		  index++;
 		  loadNextOutsiderWord();
+		  hasLoded = true;
 
 	  }	);
   
@@ -585,7 +586,9 @@ function animate() {
 
 	numberOfIterations++;
 
-			//outsiderRoot.children[0].visible = true;
+			if(hasLoded){
+				outsiderRoot.children[0].visible = true;
+			} 
 		
 
 
