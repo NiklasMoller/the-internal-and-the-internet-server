@@ -236,6 +236,8 @@ function createWordGeometries(){
 	console.log('Pushed the associations into array which now has length: ' + length(outsiderObjects) );
 	console.log('Length of words in db is: ' + length(outsiderObj.association) );
 
+	scene.add(outsiderObjects[5]);
+
 }
 
 
@@ -385,23 +387,6 @@ var counter = 0;
 var counterYes = true;
 
 function animate() {
-
-if(rootHasLoaded){
-
-	counter += 1;
-
-	if(counter > 300){
-		scene.remove(wordMesh);
-		if(counterYes){
-			scene.add(wordMesh2);
-			counterYes = false;
-		}
-
-	}
-}
-
-
-
 
 	window.requestAnimationFrame(animate);
 
