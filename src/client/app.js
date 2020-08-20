@@ -76,7 +76,7 @@ function init() {
 
 	//createTextString();
 
-	addWordToScene();
+	//addWordToScene();
 
 	//addTestPlane();
 
@@ -280,7 +280,7 @@ function createWordGeometries(){
 		  //outsiderWordMesh.visible = false;
 		outsiderRoot.add(outsiderWordMesh);
 
-			hasLoded = true;
+			//hasLoded = true;
 		} );
 
 	}
@@ -440,11 +440,9 @@ function animate() {
 
 	numberOfIterations++;
 
-	if(numberOfIterations % 120 == 1){
-		if(hasLoded){
-			outsiderRoot.children[0].visible = true;
+			//outsiderRoot.children[0].visible = true;
 		}
-	}
+
 
 	window.requestAnimationFrame(animate);
 
