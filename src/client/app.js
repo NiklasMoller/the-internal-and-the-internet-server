@@ -260,7 +260,7 @@ function createWordGeometries(){
 	for(var i = 0; i < length(outsiderObj.association); i++){
 
 		loader.load( './Roboto_Regular.json', function ( font ) {
-		  var geometry = new THREE.TextGeometry( outsiderObj.association[0], {
+		  var geometry = new THREE.TextGeometry( outsiderObj.association[i], {
 			font: font,
 			size: 0.5,
 			height: 0.02,
@@ -274,10 +274,10 @@ function createWordGeometries(){
 		  var material = 	new THREE.MeshLambertMaterial({color: 0xb33131});
 		  //var material = new THREE.MeshBasicMaterial({color: 0x000000});
 		  outsiderWordMesh = new THREE.Mesh( geometry, material );
-		  outsiderWordMesh.position.y = 10;
-		  outsiderWordMesh.position.x = 18;
-		  outsiderWordMesh.rotation.y = (TWO_PI * 0.75);
-		  outsiderWordMesh.visible = false;
+		  outsiderWordMesh.position.y = -10;
+		  outsiderWordMesh.position.x = 0;
+		  outsiderWordMesh.rotation.y = (TWO_PI * 0.5);
+		  //outsiderWordMesh.visible = false;
 		outsiderRoot.add(outsiderWordMesh);
 
 			hasLoded = true;
