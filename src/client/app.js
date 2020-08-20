@@ -255,8 +255,11 @@ function createWordGeometries(){
 
 	for(var i = 0; i < length(outsiderObj.association); i++){
 
+
+		var textString = outsiderObj.association[i];
+
 		loader.load( './Roboto_Regular.json', function ( font ) {
-		  var geometry = new THREE.TextGeometry( outsiderObj.association[i], {
+		  var geometry = new THREE.TextGeometry( textString, {
 			font: font,
 			size: 0.5,
 			height: 0.02,
@@ -281,7 +284,7 @@ function createWordGeometries(){
 
 	}
 
-	//scene.add(outsiderRoot);
+	scene.add(outsiderRoot);
 
 }
 
