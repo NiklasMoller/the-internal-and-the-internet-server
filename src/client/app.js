@@ -262,7 +262,7 @@ function setupTHREEStartComponents() {
   
 	loader.load( './Roboto_Regular.json', function ( font ) {
 
-		var textString = outsiderObj.association[index];
+		var textString = JSON.stringify(outsiderObj.association[index]);
 		console.log('in loadNextOutsiderWord' + textString);
 
 		var geometry = new THREE.TextGeometry( textString, {
