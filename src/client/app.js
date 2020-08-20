@@ -206,8 +206,6 @@ function setupTHREEStartComponents() {
 
 function createWordGeometries(){
 
-	var
-
 	for(var i = 0; i < length(outsiderObj.association); i++){
 
 		loader.load( './Roboto_Regular.json', function ( font ) {
