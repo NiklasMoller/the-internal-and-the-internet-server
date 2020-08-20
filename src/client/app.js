@@ -206,6 +206,8 @@ function setupTHREEStartComponents() {
 
 function createWordGeometries(){
 
+var group = new THREE.Group();
+
 	for(var i = 0; i < length(outsiderObj.association); i++){
 
 		loader.load( './Roboto_Regular.json', function ( font ) {
@@ -226,7 +228,7 @@ function createWordGeometries(){
 		  outsiderWordMesh.position.y = -20;
 		  outsiderWordMesh.rotation.y = (TWO_PI * 0.75);
 
-			outsiderObjects.push(outsiderWordMesh);
+			group.add(outsiderWordMesh);
 
 		} );
 
@@ -234,9 +236,11 @@ function createWordGeometries(){
 
 
 	console.log('Pushed the associations into array which now has length: ' + length(outsiderObjects) );
-	console.log('Length of words in db is: ' + length(outsiderObj.association) );
+	//console.log('Length of words in db is: ' + length(outsiderObj.association) );
 
-	scene.add(outsiderObjects[5]);
+	scene.add(group);
+
+	console.log(scene.children);
 
 }
 
