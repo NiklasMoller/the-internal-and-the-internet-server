@@ -259,10 +259,11 @@ function createWordGeometries(){
 
 
 	var loader = new THREE.FontLoader();
+	var textString = outsiderObj.association[i];
 		
 	loader.load( './Roboto_Regular.json', function ( font ) {
 
-			var textString = outsiderObj.association[i];
+
 
 		var geometry = new THREE.TextGeometry( textString, {
 		  font: font,
