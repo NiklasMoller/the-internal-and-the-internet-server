@@ -255,25 +255,6 @@ function setupTHREEStartComponents() {
 
 }
 
-
-
-function loadNextFile() {
-
-	if (index > files.length - 1) return;
-  
-	objLoader.load(files[index], function(object) {
-  
-	  scene.add(object);
-  
-	  index++;
-	  loadNextFile();
-  
-	});
-  
-  }
-
-
-
   var loader = new THREE.FontLoader();
   var index = 0;
 
