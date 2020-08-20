@@ -81,6 +81,8 @@ function init() {
 	//createWordGeometries();
 	animate();
 
+	scene.add(outsiderRoot);
+
 	//debugRoots();
 
 
@@ -256,13 +258,13 @@ function setupTHREEStartComponents() {
 
   function loadNextOutsiderWord() {
 
-	console.log('In loadNextOutsiderWord');
+	//console.log('In loadNextOutsiderWord');
 
 	if (index > length(outsiderObj.association) - 1) return;
   
 	loader.load( './Roboto_Regular.json', function ( font ) {
 
-		var textString = JSON.stringify(outsiderObj.association[index]);
+		var textString = JSON.stringify(outsiderObj.association[index].association);
 		console.log('in loadNextOutsiderWord' + textString);
 
 		var geometry = new THREE.TextGeometry( textString, {
@@ -283,9 +285,9 @@ function setupTHREEStartComponents() {
 		outsiderWordMesh.position.y = 10;
 		outsiderWordMesh.position.x = 18;
 		outsiderWordMesh.rotation.y = (TWO_PI * 0.75);
+		//outsiderWordMesh.visible = false;
+		outsiderRoot.add(outsiderWordMesh);
   
-		  scene.add( outsiderWordMesh );
-
 		  index++;
 		  loadNextOutsiderWord();
 
@@ -293,8 +295,47 @@ function setupTHREEStartComponents() {
   
 	}
 
+/*
+	function loadNextOutsiderWordCopy() {
 
+		console.log('In loadNextOutsiderWord');
+	
+		if (index > length(outsiderObj.association) - 1) return;
+	  
+		loader.load( './Roboto_Regular.json', function ( font ) {
+	
+			var textString = JSON.stringify(outsiderObj.association[index].association);
+			console.log('in loadNextOutsiderWord' + textString);
+	
+			var geometry = new THREE.TextGeometry( textString, {
+			  font: font,
+			  size: 5,
+			  height: 0.02,
+			  curveSegments: 4,
+			  bevelEnabled: true,
+			  bevelThickness: 0.02,
+			  bevelSize: 0.05,
+			  bevelSegments: 3
+			} );
+	
+			geometry.center();
+			var material = 	new THREE.MeshLambertMaterial({color: 0xb33131});
+			//var material = new THREE.MeshBasicMaterial({color: 0x000000});
+			var outsiderWordMesh = new THREE.Mesh( geometry, material );
+			outsiderWordMesh.position.y = 10;
+			outsiderWordMesh.position.x = 18;
+			outsiderWordMesh.rotation.y = (TWO_PI * 0.75);
+	  
+			  scene.add( outsiderWordMesh );
+	
+			  index++;
+			  loadNextOutsiderWord();
+	
+		  }	);
+	  
+		}
 
+*/
 
 function createWordGeometries(){
 
