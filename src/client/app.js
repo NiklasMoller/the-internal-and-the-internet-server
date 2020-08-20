@@ -441,7 +441,7 @@ function animate() {
 	numberOfIterations++;
 
 			//outsiderRoot.children[0].visible = true;
-		}
+		
 
 
 	window.requestAnimationFrame(animate);
