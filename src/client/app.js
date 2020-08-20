@@ -275,8 +275,9 @@ function createWordGeometries(){
 		 var outsiderWordMesh = new THREE.Mesh( geometry, material );
 		  outsiderWordMesh.position.y = -10;
 		  outsiderWordMesh.position.x = 0;
-		  outsiderWordMesh.rotation.y = (TWO_PI * 0.5);
+		  outsiderWordMesh.rotation.y = (TWO_PI * 0.6);
 		  //outsiderWordMesh.visible = false;
+		  scene.add(outsiderWordMesh);
 		outsiderRoot.add(outsiderWordMesh);
 
 			//hasLoded = true;
