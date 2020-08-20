@@ -230,13 +230,11 @@ function createWordGeometries(){
 
 		} );
 
-console.log('Pushed the associations into array which now has length: ' + length(outsiderObjects) );
-console.log('Length of words in db is: ' + length(outsiderObj.association) );
-
-
-
 	}
 
+
+	console.log('Pushed the associations into array which now has length: ' + length(outsiderObjects) );
+	console.log('Length of words in db is: ' + length(outsiderObj.association) );
 
 }
 
