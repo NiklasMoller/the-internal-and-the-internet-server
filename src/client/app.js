@@ -32,10 +32,6 @@ var scene = new THREE.Scene();
 
 var numberOfIterations = 0;
 
-var font = new THREE.Font();
-
-
-
 const TWO_PI = 6.28318530718;
 const PI = 3.14159265359;
 
@@ -84,9 +80,9 @@ function init() {
 
 	//addTestPlane();
 
+	loadNextOutsiderWord();
 
-
-	createWordGeometries();
+	//createWordGeometries();
 	animate();
 
 	//debugRoots();
@@ -259,17 +255,36 @@ function setupTHREEStartComponents() {
 
 }
 
-function createWordGeometries(){
-
-	for(var i = 0; i < length(outsiderObj.association); i++){
 
 
-	var loader = new THREE.FontLoader();
-	var textString = outsiderObj.association[i];
-		
+function loadNextFile() {
+
+	if (index > files.length - 1) return;
+  
+	objLoader.load(files[index], function(object) {
+  
+	  scene.add(object);
+  
+	  index++;
+	  loadNextFile();
+  
+	});
+  
+  }
+
+
+
+  var loader = new THREE.FontLoader();
+  var index = 0;
+
+  function loadNextOutsiderWord() {
+
+	if (index > length(outsiderObj.association) - 1) return;
+  
 	loader.load( './Roboto_Regular.json', function ( font ) {
 
-
+		var textString = outsiderObj.association[index];
+		console.log('in loadNextOutsiderWord' + textString);
 
 		var geometry = new THREE.TextGeometry( textString, {
 		  font: font,
@@ -281,6 +296,7 @@ function createWordGeometries(){
 		  bevelSize: 0.05,
 		  bevelSegments: 3
 		} );
+
 		geometry.center();
 		var material = 	new THREE.MeshLambertMaterial({color: 0xb33131});
 		//var material = new THREE.MeshBasicMaterial({color: 0x000000});
@@ -291,9 +307,51 @@ function createWordGeometries(){
   
 		  scene.add( outsiderWordMesh );
 
-	  } 	);
-
+	  }	);
+  
 	}
+
+
+
+
+function createWordGeometries(){
+
+
+
+
+	var loader = new THREE.FontLoader();
+
+		
+	loader.load( './Roboto_Regular.json', function ( font ) {
+
+		for(var i = 0; i < length(outsiderObj.association); i++){
+		var textString = outsiderObj.association[i];
+		console.log(textString);
+
+		var geometry = new THREE.TextGeometry( textString, {
+		  font: font,
+		  size: 5,
+		  height: 0.02,
+		  curveSegments: 4,
+		  bevelEnabled: true,
+		  bevelThickness: 0.02,
+		  bevelSize: 0.05,
+		  bevelSegments: 3
+		} );
+
+		geometry.center();
+		var material = 	new THREE.MeshLambertMaterial({color: 0xb33131});
+		//var material = new THREE.MeshBasicMaterial({color: 0x000000});
+		outsiderWordMesh = new THREE.Mesh( geometry, material );
+		outsiderWordMesh.position.y = 10;
+		outsiderWordMesh.position.x = 18;
+		outsiderWordMesh.rotation.y = (TWO_PI * 0.75);
+  
+		  scene.add( outsiderWordMesh );
+
+	  }	}	);
+
+
 
 
 
