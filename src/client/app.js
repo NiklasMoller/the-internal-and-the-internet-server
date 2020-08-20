@@ -12,6 +12,8 @@ var peripheryObj = '';
 var outsiderObjects = [];
 var peripheryObjects = [];
 
+var outsiderUUID = [];
+
 //Root
 var planeRoot, wordRoot1, wordRoot2;
 var rootHasLoaded = false;
@@ -231,6 +233,8 @@ var group = new THREE.Group();
 
 			group.add(outsiderWordMesh);
 
+			outsiderUUID.push(outsiderWordMesh.uuid);
+
 		} );
 
 	}
@@ -244,6 +248,10 @@ var group = new THREE.Group();
 	console.log(scene.children);
 
 	console.log(group.traverse());
+
+	console.log('Outsider UUIDs: ' + outsiderUUID);
+
+
 
 }
 
