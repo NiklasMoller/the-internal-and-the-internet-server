@@ -14,6 +14,8 @@ var peripheryObjects = [];
 
 var outsiderUUID = [];
 
+var hasLoded = false;
+
 //Root
 var planeRoot, wordRoot1, wordRoot2;
 var rootHasLoaded = false;
@@ -237,6 +239,7 @@ function createWordGeometries(){
 			outsiderUUID.push(uuid);
 			scene.add(outsiderObjects[i]);
 			console.log('Lenght of outsiderObjects is' + length(outsiderObjects));
+			hasLoded = true;
 
 		} );
 
@@ -245,6 +248,8 @@ function createWordGeometries(){
 
 	//console.log('Pushed the associations into array which now has length: ' + length(outsiderObjects) );
 	console.log('Length of UUIDS is: ' + length(outsiderUUID) );
+
+
 
 
 
@@ -413,6 +418,10 @@ var counter = 0;
 var counterYes = true;
 
 function animate() {
+
+if(hasLoded){
+	scene.add(outsiderObjects[0]);
+}
 
 	window.requestAnimationFrame(animate);
 
