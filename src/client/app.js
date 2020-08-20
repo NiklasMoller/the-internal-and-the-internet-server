@@ -62,9 +62,10 @@ function init() {
 
 	//addTestPlane();
 
-	//animate();
+
 
 	createWordGeometries();
+	animate();
 
 }
 
@@ -241,6 +242,8 @@ var group = new THREE.Group();
 	scene.add(group);
 
 	console.log(scene.children);
+
+	console.log(group.traverse());
 
 }
 
