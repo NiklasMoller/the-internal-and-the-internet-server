@@ -9,8 +9,8 @@ var peripheryWordMesh;
 var outsiderObj = '';
 var peripheryObj = '';
 
-const outsiderObjects = [];
-const peripheryObjects = [];
+var outsiderObjects = [];
+var peripheryObjects = [];
 
 //Root
 var planeRoot, wordRoot1, wordRoot2;
