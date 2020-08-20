@@ -53,7 +53,7 @@ export const preLoad = () => {
 function init() {
 
 
-	console.log('13.08');
+	console.log('13.22');
 
 
 	removeOverlay();
@@ -211,7 +211,6 @@ function setupTHREEStartComponents() {
 
 function createWordGeometries(){
 
-var group = new THREE.Group();
 
 	for(var i = 0; i < length(outsiderObj.association); i++){
 
@@ -231,9 +230,7 @@ var group = new THREE.Group();
 		  //var material = new THREE.MeshBasicMaterial({color: 0x000000});
 		  outsiderObjects[i] = new THREE.Mesh( geometry, material );
 		  outsiderObjects[i].position.y = -20;
-		  outsiderObjects[i].rotation.y = (TWO_PI * 0.75);
-
-			group.add(outsiderObjects[i]);
+		  //outsiderObjects[i].rotation.y = (TWO_PI * 0.75);
 
 			var uuid = outsiderObjects[i].uuid;
 			console.log('uuid is: ' + uuid);
@@ -247,7 +244,6 @@ var group = new THREE.Group();
 	//console.log('Pushed the associations into array which now has length: ' + length(outsiderObjects) );
 	console.log('Length of UUIDS is: ' + length(outsiderUUID) );
 
-	scene.add(group);
 
 	//console.log(scene.children);
 
@@ -261,6 +257,8 @@ var group = new THREE.Group();
 	  console.log(entry);
 	});
 */
+
+scene.add(outsiderObjects[1]);
 
 }
 
