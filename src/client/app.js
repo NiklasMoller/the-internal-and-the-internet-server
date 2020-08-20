@@ -249,7 +249,11 @@ var group = new THREE.Group();
 
 	//console.log(group.traverse());
 
-	console.log('Outsider UUIDs: ' + outsiderUUID);
+	//console.log('Outsider UUIDs: ' + outsiderUUID);
+
+	outsiderUUID.forEach(function(entry) {
+  console.log(entry);
+});
 
 
 
