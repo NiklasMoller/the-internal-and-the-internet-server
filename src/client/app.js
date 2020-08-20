@@ -213,7 +213,7 @@ function createWordGeometries(){
 
 var group = new THREE.Group();
 
-	//for(var i = 0; i < length(outsiderObj.association); i++){
+	for(var i = 0; i < length(outsiderObj.association); i++){
 
 		loader.load( './Roboto_Regular.json', function ( font ) {
 		  var geometry = new THREE.TextGeometry( outsiderObj.association[0], {
@@ -229,19 +229,19 @@ var group = new THREE.Group();
 		  geometry.center();
 		  var material = 	new THREE.MeshLambertMaterial({color: 0xb33131});
 		  //var material = new THREE.MeshBasicMaterial({color: 0x000000});
-		  outsiderWordMesh = new THREE.Mesh( geometry, material );
-		  outsiderWordMesh.position.y = -20;
-		  outsiderWordMesh.rotation.y = (TWO_PI * 0.75);
+		  outsiderWordMesh + i = new THREE.Mesh( geometry, material );
+		  outsiderWordMesh + i.position.y = -20;
+		  outsiderWordMesh + i.rotation.y = (TWO_PI * 0.75);
 
-			group.add(outsiderWordMesh);
+			group.add(outsiderWordMesh+i);
 
-			var uuid = outsiderWordMesh.uuid;
+			var uuid = outsiderWordMesh + i.uuid;
 			console.log('uuid is: ' + uuid);
 			outsiderUUID.push(uuid);
 
 		} );
 
-//	}
+	}
 
 
 	//console.log('Pushed the associations into array which now has length: ' + length(outsiderObjects) );
