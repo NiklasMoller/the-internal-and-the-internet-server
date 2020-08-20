@@ -255,13 +255,12 @@ function setupTHREEStartComponents() {
 
 function createWordGeometries(){
 
+	for(var i = 0; i < length(outsiderObj.association); i++){
 
 
+	var loader = new THREE.FontLoader();
 		
 	loader.load( './Roboto_Regular.json', function ( font ) {
-
-		for(var i = 0; i < length(outsiderObj.association); i++){
-
 
 			var textString = outsiderObj.association[i];
 
@@ -285,9 +284,9 @@ function createWordGeometries(){
   
 		  scene.add( outsiderWordMesh );
 
+	  } 	);
 
-
-	  } 	});
+	}
 
 
 
