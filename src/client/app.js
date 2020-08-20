@@ -55,10 +55,6 @@ export const preLoad = () => {
 		map: new THREE.TextureLoader().load('resources/backdrop.jpg')
 	});
 
-	font = loader.load( './Roboto_Regular.json', function ( font ) {
-		console.log('Font has loaded')
-	   } );
-
 	loadAssociationsToJSON();
 
 
