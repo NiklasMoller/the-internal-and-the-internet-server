@@ -65,10 +65,6 @@ function init() {
 
 	console.log('13.22');
 
-	
-
-
-
 
 	removeOverlay();
 	setupTHREEStartComponents();
@@ -82,7 +78,7 @@ function init() {
 
 
 
-	createWordGeometries();
+	//createWordGeometries();
 	animate();
 
 	//debugRoots();
