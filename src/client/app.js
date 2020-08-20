@@ -279,7 +279,7 @@ function setupTHREEStartComponents() {
 		geometry.center();
 		var material = 	new THREE.MeshLambertMaterial({color: 0xb33131});
 		//var material = new THREE.MeshBasicMaterial({color: 0x000000});
-		outsiderWordMesh = new THREE.Mesh( geometry, material );
+		var outsiderWordMesh = new THREE.Mesh( geometry, material );
 		outsiderWordMesh.position.y = 10;
 		outsiderWordMesh.position.x = 18;
 		outsiderWordMesh.rotation.y = (TWO_PI * 0.75);
