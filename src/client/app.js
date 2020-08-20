@@ -229,13 +229,13 @@ var group = new THREE.Group();
 		  geometry.center();
 		  var material = 	new THREE.MeshLambertMaterial({color: 0xb33131});
 		  //var material = new THREE.MeshBasicMaterial({color: 0x000000});
-		  outsiderWordMesh + i = new THREE.Mesh( geometry, material );
-		  outsiderWordMesh + i.position.y = -20;
-		  outsiderWordMesh + i.rotation.y = (TWO_PI * 0.75);
+		  outsiderObjects[i] = new THREE.Mesh( geometry, material );
+		  outsiderObjects[i].position.y = -20;
+		  outsiderObjects[i].rotation.y = (TWO_PI * 0.75);
 
-			group.add(outsiderWordMesh+i);
+			group.add(outsiderObjects[i]);
 
-			var uuid = outsiderWordMesh + i.uuid;
+			var uuid = outsiderObjects[i].uuid;
 			console.log('uuid is: ' + uuid);
 			outsiderUUID.push(uuid);
 
