@@ -9,7 +9,7 @@ var peripheryWordMesh;
 var outsiderObj = '';
 var peripheryObj = '';
 
-var outsiderObjects = new THREE.Object3D[];
+var outsiderObjects = [];
 var peripheryObjects = [];
 
 //Root
