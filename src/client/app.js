@@ -32,6 +32,8 @@ var scene = new THREE.Scene();
 
 var numberOfIterations = 0;
 
+var font;
+
 
 
 const TWO_PI = 6.28318530718;
@@ -56,6 +58,10 @@ export const preLoad = () => {
 	wallmaterial = new THREE.MeshBasicMaterial({
 		map: new THREE.TextureLoader().load('resources/backdrop.jpg')
 	});
+
+	font = loader.load( './Roboto_Regular.json', function ( font ) {
+		console.log('Font has loaded')
+	   } );
 
 	loadAssociationsToJSON();
 
@@ -313,6 +319,33 @@ function createWordGeometries(){
   
 		  scene.add( outsiderWordMesh );
 	  } );
+
+
+	  for(var i = 0; i < length(outsiderObj.association); i++){
+		  var mynewString = outsiderObj.association[i];
+
+		  var geometry = new THREE.TextGeometry( mynewString, {
+			font: font,
+			size: 5,
+			height: 0.02,
+			curveSegments: 4,
+			bevelEnabled: true,
+			bevelThickness: 0.02,
+			bevelSize: 0.05,
+			bevelSegments: 3
+		  } );
+		  geometry.center();
+		  var material = 	new THREE.MeshLambertMaterial({color: 0xb33131});
+		  //var material = new THREE.MeshBasicMaterial({color: 0x000000});
+		  outsiderWordMesh = new THREE.Mesh( geometry, material );
+		  outsiderWordMesh.position.y = 10;
+		  outsiderWordMesh.position.x = 18;
+		  outsiderWordMesh.rotation.y = (TWO_PI * 0.75);
+	
+			scene.add( outsiderWordMesh );
+
+
+	  }
 
 
 
