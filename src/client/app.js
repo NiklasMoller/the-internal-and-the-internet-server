@@ -9,6 +9,8 @@ var peripheryWordMesh;
 var outsiderObj = '';
 var peripheryObj = '';
 
+const outsiderObjects = [];
+const peripheryObjects = [];
 
 //Root
 var planeRoot, wordRoot1, wordRoot2;
@@ -58,11 +60,11 @@ function init() {
 
 	//addWordToScene();
 
-	addTestPlane();
+	//addTestPlane();
 
-	animate();
+	//animate();
 
-
+	createWordGeometries();
 
 }
 
@@ -78,7 +80,7 @@ function addTestPlane(){
 	planeRoot = new THREE.Object3D();
 	planeRoot.position.y = -20;
 	planeRoot.rotation.x = (TWO_PI);
-	
+
 	scene.add(planeRoot);
 
 
@@ -97,7 +99,7 @@ function addTestPlane(){
 	const planeMesh = new THREE.Mesh(planegeometry, planematerial);
 	//planeMesh.position.y = -20;
 	//planeMesh.rotation.x = -90;
-	//planeRoot.add(planeMesh); 
+	//planeRoot.add(planeMesh);
 	//objects.push(planeMesh);
 
 
@@ -106,7 +108,7 @@ function addTestPlane(){
 	const planeMesh2 = new THREE.Mesh(planegeometry2, planematerial2);
 	//planeMesh.position.y = -20;
 	planeMesh2.rotation.x = (TWO_PI * 0.5);
-	//planeRoot.add(planeMesh2); 
+	//planeRoot.add(planeMesh2);
 
 */
 
@@ -123,7 +125,7 @@ function addTestPlane(){
 	  } );
 	  geometry.center();
 	  //var material = 	new THREE.MeshLambertMaterial({color: 0xb33131});
-	  var material = new THREE.MeshBasicMaterial({color: 0x000000}); 
+	  var material = new THREE.MeshBasicMaterial({color: 0x000000});
 	  wordMesh = new THREE.Mesh( geometry, material );
 	  wordMesh.position.y = -20;
 	  //wordMesh.rotation.y = (TWO_PI * 0.75);
@@ -144,7 +146,7 @@ function addTestPlane(){
 		} );
 		geometry.center();
 		//var material = 	new THREE.MeshLambertMaterial({color: 0xb33131});
-		var material = new THREE.MeshBasicMaterial({color: 0x000000}); 
+		var material = new THREE.MeshBasicMaterial({color: 0x000000});
 		wordMesh2 = new THREE.Mesh( geometry, material );
 		wordMesh2.position.y = -20;
 		//wordMesh.rotation.y = (TWO_PI * 0.75);
@@ -202,6 +204,46 @@ function setupTHREEStartComponents() {
 
 }
 
+function createWordGeometries(){
+
+	var
+
+	for(var i = 0; i < length(outsiderObj.association); i++){
+
+		loader.load( './Roboto_Regular.json', function ( font ) {
+		  var geometry = new THREE.TextGeometry( outsiderObj.association[i], {
+			font: font,
+			size: 0.5,
+			height: 0.02,
+			curveSegments: 4,
+			bevelEnabled: true,
+			bevelThickness: 0.02,
+			bevelSize: 0.05,
+			bevelSegments: 3
+		  } );
+		  geometry.center();
+		  var material = 	new THREE.MeshLambertMaterial({color: 0xb33131});
+		  //var material = new THREE.MeshBasicMaterial({color: 0x000000});
+		  outsiderWordMesh = new THREE.Mesh( geometry, material );
+		  outsiderWordMesh.position.y = -20;
+		  outsiderWordMesh.rotation.y = (TWO_PI * 0.75);
+
+			outsiderObjects.push(outsiderWordMesh);
+
+		} );
+
+console.log('Pushed the associations into array which now has length: ' + length(outsiderObjects) );
+console.log('Length of words in db is: ' + length(outsiderObj.association) );
+
+
+
+	}
+
+
+}
+
+
+
 function addWordToScene() {
 
 	console.log('Adding the associations to mesh and scene');
@@ -224,7 +266,7 @@ function addWordToScene() {
 	  } );
 	  geometry.center();
 	  var material = 	new THREE.MeshLambertMaterial({color: 0xb33131});
-	  //var material = new THREE.MeshBasicMaterial({color: 0x000000}); 
+	  //var material = new THREE.MeshBasicMaterial({color: 0x000000});
 	  outsiderWordMesh = new THREE.Mesh( geometry, material );
 	  outsiderWordMesh.position.y = 10;
 	  outsiderWordMesh.position.x = 18;
@@ -233,7 +275,7 @@ function addWordToScene() {
 		scene.add( outsiderWordMesh );
 	} );
 
-	
+
 	loader.load( './Roboto_Regular.json', function ( font ) {
 	  var geometry = new THREE.TextGeometry( peripheryAssociationsText, {
 		font: font,
@@ -247,7 +289,7 @@ function addWordToScene() {
 	  } );
 	  geometry.center();
 	 // var material = new THREE.MeshNormalMaterial();
-	  var material = 	new THREE.MeshLambertMaterial({color: 0xab0000});	  
+	  var material = 	new THREE.MeshLambertMaterial({color: 0xab0000});
 	  peripheryWordMesh = new THREE.Mesh( geometry, material );
 	  peripheryWordMesh.position.y = 10;
 	  peripheryWordMesh.position.x = -18;
@@ -261,13 +303,13 @@ function addWordToScene() {
 function createTextString(){
 
 	for(var i = 0; i < length(outsiderObj.association); i++){
-		
+
 		outsiderAssociationsText += outsiderObj.association[i].association + '\n';
 
 	}
 
 	for(var i = 0; i < length(peripheryObj.association); i++){
-		
+
 		peripheryAssociationsText += peripheryObj.association[i].association + '\n';
 
 	}
@@ -358,7 +400,7 @@ if(rootHasLoaded){
 			scene.add(wordMesh2);
 			counterYes = false;
 		}
-		
+
 	}
 }
 
@@ -380,5 +422,3 @@ function onWindowResize() {
 	renderer.setSize(window.innerWidth, window.innerHeight);
 
 }
-
-
