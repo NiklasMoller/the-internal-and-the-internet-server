@@ -307,6 +307,9 @@ function loadNextFile() {
   
 		  scene.add( outsiderWordMesh );
 
+		  index++;
+		  loadNextFile();
+
 	  }	);
   
 	}
