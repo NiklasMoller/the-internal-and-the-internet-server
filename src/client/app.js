@@ -53,6 +53,8 @@ export const preLoad = () => {
 function init() {
 
 
+	console.log('13.04');
+
 
 	removeOverlay();
 	setupTHREEStartComponents();
@@ -253,10 +255,12 @@ var group = new THREE.Group();
 
 	//console.log('Outsider UUIDs: ' + outsiderUUID);
 
+
+/*
 	outsiderUUID.forEach(function(entry) {
 	  console.log(entry);
 	});
-
+*/
 
 }
 
