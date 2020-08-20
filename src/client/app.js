@@ -255,13 +255,16 @@ function setupTHREEStartComponents() {
 
 function createWordGeometries(){
 
-	for(var i = 0; i < length(outsiderObj.association); i++){
 
-
-		var textString = outsiderObj.association[i];
 
 		
 	loader.load( './Roboto_Regular.json', function ( font ) {
+
+		for(var i = 0; i < length(outsiderObj.association); i++){
+
+
+			var textString = outsiderObj.association[i];
+
 		var geometry = new THREE.TextGeometry( textString, {
 		  font: font,
 		  size: 5,
@@ -281,10 +284,13 @@ function createWordGeometries(){
 		outsiderWordMesh.rotation.y = (TWO_PI * 0.75);
   
 		  scene.add( outsiderWordMesh );
-	  } );
 
 
-	}
+
+	  } 	});
+
+
+
 
 	loader.load( './Roboto_Regular.json', function ( font ) {
 		var geometry = new THREE.TextGeometry( 'OUTSIDE OF LOOP', {
