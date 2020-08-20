@@ -233,14 +233,15 @@ var group = new THREE.Group();
 
 			group.add(outsiderWordMesh);
 
-			outsiderUUID.push(outsiderWordMesh.uuid);
+			var uuid = outsiderWordMesh.uuid;
+			outsiderUUID.push(uuid);
 
 		} );
 
 	}
 
 
-	console.log('Pushed the associations into array which now has length: ' + length(outsiderObjects) );
+	//console.log('Pushed the associations into array which now has length: ' + length(outsiderObjects) );
 	console.log('Length of UUIDS is: ' + length(outsiderUUID) );
 
 	scene.add(group);
@@ -251,7 +252,9 @@ var group = new THREE.Group();
 
 	//console.log('Outsider UUIDs: ' + outsiderUUID);
 
-
+	outsiderUUID.forEach(function(entry) {
+	  console.log(entry);
+	});
 
 
 }
