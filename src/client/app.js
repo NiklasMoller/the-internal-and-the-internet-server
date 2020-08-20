@@ -32,7 +32,7 @@ var scene = new THREE.Scene();
 
 var numberOfIterations = 0;
 
-var font = new THREE.font();
+var font = new THREE.Font();
 
 
 
