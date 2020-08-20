@@ -246,14 +246,14 @@ function createWordGeometries(){
 			hasLoded = true;
 			wordRoot.add(outsiderWordMesh);
 
-			console.log('Getting UUID from wordroot' + wordRoot.getObjectById(i+2).uuid)
+			console.log('Getting UUID from wordroot' + wordRoot.getObjectById(2).uuid)
 
 		} );
 
 	}
 
 
-	console.log('Getting UUID from wordroot' + wordRoot.getObjectById(2).uuid)
+	//console.log('Getting UUID from wordroot' + wordRoot.getObjectById(2).uuid)
 
 	//console.log('Pushed the associations into array which now has length: ' + length(outsiderObjects) );
 	console.log('Length of UUIDS is: ' + length(outsiderUUID) );
