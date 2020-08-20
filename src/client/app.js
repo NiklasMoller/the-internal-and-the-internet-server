@@ -246,7 +246,7 @@ function createWordGeometries(){
 			hasLoded = true;
 			wordRoot.add(outsiderWordMesh);
 
-			console.log('Getting UUID from wordroot' + wordRoot.getObjectById(2).uuid)
+			console.log('Getting UUID from wordroot' + wordRoot.getObjectById(1).uuid)
 
 		} );
 
