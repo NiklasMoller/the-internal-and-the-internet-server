@@ -74,7 +74,7 @@ function init() {
 
 	//createTextString();
 
-	//addWordToScene();
+	addWordToScene();
 
 	//addTestPlane();
 
@@ -254,7 +254,6 @@ function setupTHREEStartComponents() {
 }
 
 function createWordGeometries(){
-
 
 	for(var i = 0; i < length(outsiderObj.association); i++){
 
