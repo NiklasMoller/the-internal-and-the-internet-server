@@ -26,7 +26,9 @@ var wordRoot = new THREE.Object3D();
 
 var outsiderRoot = new THREE.Object3D();
 
-var camera, scene, renderer, controls;
+var camera, renderer, controls;
+
+var scene = new THREE.Scene();
 
 var numberOfIterations = 0;
 
