@@ -24,6 +24,8 @@ var wordMesh, wordMesh2;
 
 var wordRoot = new THREE.Object3D();
 
+var outsiderRoot = new THREE.Object3D();
+
 var camera, scene, renderer, controls;
 
 
@@ -53,12 +55,17 @@ export const preLoad = () => {
 
 	loadAssociationsToJSON();
 
+
 };
 
 function init() {
 
 
 	console.log('13.22');
+
+	
+
+
 
 
 	removeOverlay();
@@ -75,6 +82,38 @@ function init() {
 
 	createWordGeometries();
 	animate();
+
+	//debugRoots();
+
+
+
+}
+
+
+
+function debugRoots(){
+
+
+	var group = new THREE.Object3D();
+
+	for (var i = 0; i < 10; i++) {
+	
+		var geometry = new THREE.BoxGeometry(1, 1, 1);
+		var material = new THREE.MeshNormalMaterial();
+		var mesh = new THREE.Mesh(geometry, material);
+		mesh.position.x = 10;
+	
+		group.add(mesh);
+	
+	}
+	
+	scene.add(group);
+
+	//group.remove(group.children[i]);
+
+	console.log('!!! - - Position is: ' + group.children[1].position.x);
+
+
 
 }
 
@@ -236,47 +275,15 @@ function createWordGeometries(){
 		  outsiderWordMesh = new THREE.Mesh( geometry, material );
 		  outsiderWordMesh.position.y = -20;
 		  //outsiderObjects[i].rotation.y = (TWO_PI * 0.75);
+		  outsiderWordMesh.visible = false;
+		outsiderRoot.add(outsiderWordMesh);
 
-			var uuid = outsiderWordMesh.uuid;
-			tempUUID = outsiderWordMesh.uuid;
-			console.log('uuid is: ' + uuid);
-			outsiderUUID.push(uuid);
-			//scene.add(outsiderObjects[i]);
-			console.log('Lenght of outsiderObjects is' + length(outsiderObjects));
 			hasLoded = true;
-			wordRoot.add(outsiderWordMesh);
-
-			console.log('Getting UUID from wordroot' + wordRoot.getObjectById(1).uuid)
-
 		} );
 
 	}
 
-
-	//console.log('Getting UUID from wordroot' + wordRoot.getObjectById(2).uuid)
-
-	//console.log('Pushed the associations into array which now has length: ' + length(outsiderObjects) );
-	console.log('Length of UUIDS is: ' + length(outsiderUUID) );
-
-
-
-
-
-
-	//console.log(scene.children);
-
-	//console.log(group.traverse());
-
-	//console.log('Outsider UUIDs: ' + outsiderUUID);
-
-
-/*
-	outsiderUUID.forEach(function(entry) {
-	  console.log(entry);
-	});
-*/
-
-//scene.add(outsiderObjects[1]);
+	scene.add(outsiderRoot);
 
 }
 
@@ -433,6 +440,10 @@ function animate() {
 
 	controls.update();
 	renderer.render(scene, camera);
+
+	if(hasLoded){
+		outsiderRoot.children[0].visible = true;
+	}
 
 }
 
