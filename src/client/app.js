@@ -264,7 +264,7 @@ function createWordGeometries(){
 	loader.load( './Roboto_Regular.json', function ( font ) {
 		var geometry = new THREE.TextGeometry( textString, {
 		  font: font,
-		  size: 0.5,
+		  size: 5,
 		  height: 0.02,
 		  curveSegments: 4,
 		  bevelEnabled: true,
@@ -285,6 +285,30 @@ function createWordGeometries(){
 
 
 	}
+
+	loader.load( './Roboto_Regular.json', function ( font ) {
+		var geometry = new THREE.TextGeometry( 'OUTSIDE OF LOOP', {
+		  font: font,
+		  size: 5,
+		  height: 0.02,
+		  curveSegments: 4,
+		  bevelEnabled: true,
+		  bevelThickness: 0.02,
+		  bevelSize: 0.05,
+		  bevelSegments: 3
+		} );
+		geometry.center();
+		var material = 	new THREE.MeshLambertMaterial({color: 0xb33131});
+		//var material = new THREE.MeshBasicMaterial({color: 0x000000});
+		outsiderWordMesh = new THREE.Mesh( geometry, material );
+		outsiderWordMesh.position.y = 10;
+		outsiderWordMesh.position.x = 18;
+		outsiderWordMesh.rotation.y = (TWO_PI * 0.75);
+  
+		  scene.add( outsiderWordMesh );
+	  } );
+
+
 
 	//scene.add(outsiderRoot);
 
