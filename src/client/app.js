@@ -234,7 +234,7 @@ var group = new THREE.Group();
 			group.add(outsiderWordMesh);
 
 			var uuid = outsiderWordMesh.uuid;
-			console.log(uuid);
+			console.log('uuid is: ' + uuid);
 			outsiderUUID.push(uuid);
 
 		} );
