@@ -260,6 +260,8 @@ function setupTHREEStartComponents() {
 
   function loadNextOutsiderWord() {
 
+	console.log('In loadNextOutsiderWord');
+
 	if (index > length(outsiderObj.association) - 1) return;
   
 	loader.load( './Roboto_Regular.json', function ( font ) {
