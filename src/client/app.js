@@ -235,6 +235,7 @@ function createWordGeometries(){
 			var uuid = outsiderObjects[i].uuid;
 			console.log('uuid is: ' + uuid);
 			outsiderUUID.push(uuid);
+			scene.add(outsiderObjects[i]);
 
 		} );
 
@@ -258,7 +259,7 @@ function createWordGeometries(){
 	});
 */
 
-scene.add(outsiderObjects[1]);
+//scene.add(outsiderObjects[1]);
 
 }
 
