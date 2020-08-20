@@ -28,6 +28,8 @@ var outsiderRoot = new THREE.Object3D();
 
 var camera, scene, renderer, controls;
 
+var numberOfIterations = 0;
+
 
 
 const TWO_PI = 6.28318530718;
@@ -272,8 +274,9 @@ function createWordGeometries(){
 		  var material = 	new THREE.MeshLambertMaterial({color: 0xb33131});
 		  //var material = new THREE.MeshBasicMaterial({color: 0x000000});
 		  outsiderWordMesh = new THREE.Mesh( geometry, material );
-		  outsiderWordMesh.position.y = -20;
-		  //outsiderObjects[i].rotation.y = (TWO_PI * 0.75);
+		  outsiderWordMesh.position.y = 10;
+		  outsiderWordMesh.position.x = 18;
+		  outsiderWordMesh.rotation.y = (TWO_PI * 0.75);
 		  outsiderWordMesh.visible = false;
 		outsiderRoot.add(outsiderWordMesh);
 
@@ -435,14 +438,20 @@ var counterYes = true;
 function animate() {
 
 
+	numberOfIterations++;
+
+	if(numberOfIterations % 120 == 1){
+		if(hasLoded){
+			outsiderRoot.children[0].visible = true;
+		}
+	}
+
 	window.requestAnimationFrame(animate);
 
 	controls.update();
 	renderer.render(scene, camera);
 
-	if(hasLoded){
-		outsiderRoot.children[0].visible = true;
-	}
+
 
 }
 
