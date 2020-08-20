@@ -53,7 +53,7 @@ export const preLoad = () => {
 function init() {
 
 
-	console.log('13.04');
+	console.log('13.08');
 
 
 	removeOverlay();
@@ -213,10 +213,10 @@ function createWordGeometries(){
 
 var group = new THREE.Group();
 
-	for(var i = 0; i < length(outsiderObj.association); i++){
+	//for(var i = 0; i < length(outsiderObj.association); i++){
 
 		loader.load( './Roboto_Regular.json', function ( font ) {
-		  var geometry = new THREE.TextGeometry( outsiderObj.association[i], {
+		  var geometry = new THREE.TextGeometry( outsiderObj.association[0], {
 			font: font,
 			size: 0.5,
 			height: 0.02,
@@ -241,7 +241,7 @@ var group = new THREE.Group();
 
 		} );
 
-	}
+//	}
 
 
 	//console.log('Pushed the associations into array which now has length: ' + length(outsiderObjects) );
