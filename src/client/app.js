@@ -247,7 +247,7 @@ var group = new THREE.Group();
 
 	console.log(scene.children);
 
-	console.log(group.traverse());
+	//console.log(group.traverse());
 
 	console.log('Outsider UUIDs: ' + outsiderUUID);
 
