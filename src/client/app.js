@@ -130,8 +130,9 @@ function setupTHREEStartComponents() {
   
 	outsiderLoader.load( './Roboto_Regular.json', function ( font ) {
 
-		var outsiderTextString = JSON.stringify(outsiderIndex + '\n' + '\n' + outsiderObj.association[outsiderIndex - 1].association);
+		var outsiderTextString = JSON.stringify(outsiderIndex + '\n' + ' ' + '\n' + outsiderObj.association[outsiderIndex - 1].association);
 		outsiderTextString = outsiderTextString.slice(1, -1);
+		outsiderTextString = 
 		console.log('in loadNextOutsiderWord' + outsiderTextString);
 
 		var geometry = new THREE.TextGeometry( outsiderTextString, {
