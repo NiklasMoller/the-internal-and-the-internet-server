@@ -535,7 +535,7 @@ function loadAssociationsToJSON() {
 
 			amountOfOutsiderAssociations = length(outsiderObj.association);
 
-			var innerHTML1 = amountOfOutsiderAssociations + ' associations to the word outsider'
+			var innerHTML1 = amountOfOutsiderAssociations + ' associations to the word OUTSIDER'
 
 			document.getElementById("numberOfOutsiderAssociations").innerHTML = innerHTML1;
 
@@ -566,7 +566,7 @@ function loadAssociationsToJSON() {
 
 			amountOfPeripheryAssociations = length(peripheryObj.association);
 
-			var innerHTML2 = amountOfPeripheryAssociations + ' associations to the word periphery'
+			var innerHTML2 = amountOfPeripheryAssociations + ' associations to the word PERIPHERY'
 
 			document.getElementById("numberOfPeripheryAssociations").innerHTML = innerHTML2;
 
