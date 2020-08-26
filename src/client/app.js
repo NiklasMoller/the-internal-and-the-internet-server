@@ -149,14 +149,16 @@ function setupTHREEStartComponents() {
 		geometry.center();
 
 
-		var color = new THREE.Color("hsl(45, 99%, 60%)");
+		var myColor = new THREE.Color("hsl(45, 99%, 60%)");
 		var lerpColor = new THREE.Color("hsl(15, 99%, 60%)");
 		var lerbBy = 1 / amountOfOutsiderAssociations;
 		var lerpValue = outsiderIndex * lerbBy;
-		color.lerpHSL(lerpColor, lerpValue);
+		myColor.lerpHSL(lerpColor, lerpValue);
+
+		console.log('HSL:' + myColor.getHSL().h + ' ' + myColor.getHSL().s + ' ' + myColor.getHSL().l)
 
 		var material = 	new THREE.MeshLambertMaterial();
-		material.color.setHSL(color.getHSL().h, color.getHSL().s, color.getHSL().l)
+		material.color.setHSL(myColor.getHSL().h .getHSL().h, color.getHSL().s, color.getHSL().l)
 		//var material = new THREE.MeshBasicMaterial({color: 0x000000});
 		var outsiderWordMesh = new THREE.Mesh( geometry, material );
 		outsiderWordMesh.position.y = 5;
