@@ -158,7 +158,8 @@ function setupTHREEStartComponents() {
 
 		var colorInMaterial = '0x' + color.getHexString();
 
-		var colorValue = parseInt ( colorInMaterial.replace("#","0x"), 16 );
+		//var colorValue = parseInt ( colorInMaterial.replace("#","0x"), 16 );
+		var colorValue = parseInt ( color.getHexString(), 16 );
 		console.log('After parsing the color looks like: ' + colorValue);
 		var colored = new THREE.Color( colorValue );
 
