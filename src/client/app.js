@@ -259,13 +259,33 @@ function length(obj) {
 
 //---------------------------------------------------------------------------
 
+var tempIndex = 0;
+
 function animate() {
 
 
 	numberOfIterations++;
 
 			if(hasLoded){
-				outsiderRoot.children[1].visible = true;
+
+			
+				if(numberOfIterations % 120 === 2){
+
+					outsiderRoot.children[tempIndex].visible = false;
+
+					tempIndex++;
+
+					outsiderRoot.children[tempIndex].visible = true;
+
+					if(tempIndex - 1 > amountOfOutsiderAssociations){
+						tempIndex = 0;
+					}
+
+
+				}
+			
+			
+			
 			} 
 		
 
