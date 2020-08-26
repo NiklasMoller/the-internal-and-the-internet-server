@@ -535,6 +535,8 @@ function loadAssociationsToJSON() {
 
 			amountOfOutsiderAssociations = length(outsiderObj.association);
 
+			var innerHTML1 = amountOfOutsiderAssociations + ' associations to the word outsider'
+
 			document.getElementById("numberOfOutsiderAssociations").innerHTML = amountOfOutsiderAssociations;
 
 		},
@@ -564,7 +566,9 @@ function loadAssociationsToJSON() {
 
 			amountOfPeripheryAssociations = length(peripheryObj.association);
 
-			document.getElementById("numberOfPeripheryAssociations").innerHTML = amountOfPeripheryAssociations;
+			var innerHTML2 = amountOfPeripheryAssociations + ' associations to the word periphery'
+
+			document.getElementById("numberOfPeripheryAssociations").innerHTML = innerHTML2;
 
 
 		},
