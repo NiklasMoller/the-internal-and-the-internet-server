@@ -569,6 +569,8 @@ function loadAssociationsToJSON() {
 			var innerHTML2 = amountOfPeripheryAssociations + ' associations to the word PERIPHERY'
 
 			document.getElementById("numberOfPeripheryAssociations").innerHTML = innerHTML2;
+			document.getElementById("startButton").disabled = false;
+
 
 
 		},
