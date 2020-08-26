@@ -149,8 +149,8 @@ function setupTHREEStartComponents() {
 		geometry.center();
 
 
-		var myColor = new THREE.Color("hsl(45, 99%, 60%)");
-		var lerpColor = new THREE.Color("hsl(15, 99%, 60%)");
+		var myColor = new THREE.Color("hsl(13, 79%, 52%)");
+		var lerpColor = new THREE.Color("hsl(8, 89%, 40%)");
 		var lerbBy = 1 / amountOfOutsiderAssociations;
 		var lerpValue = outsiderIndex * lerbBy;
 		myColor.lerpHSL(lerpColor, lerpValue);
