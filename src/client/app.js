@@ -278,7 +278,7 @@ function animate() {
 					outsiderRoot.children[tempIndex].visible = true;
 
 
-					if(tempIndex + 1 > amountOfOutsiderAssociations){
+					if(tempIndex + 2 > amountOfOutsiderAssociations){
 						tempIndex = 0;
 					}
 
