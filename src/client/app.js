@@ -3,6 +3,9 @@ import { DeviceOrientationControls } from 'three/examples/jsm/controls/DeviceOri
 
 var wallmaterial;
 
+var amountOfOutsiderAssociations = 0;
+var amountOfPeripheryAssociations = 0;
+
 var outsiderWordMesh;
 var peripheryWordMesh;
 
@@ -526,9 +529,11 @@ function loadAssociationsToJSON() {
 		// onLoad callback
 		function (data) {
 			// output the text to the console
-			console.log(data)
+			//console.log(data)
 
 			outsiderObj = JSON.parse(data);
+
+			amountOfOutsiderAssociations = length(outsiderObj.association);
 
 		},
 
@@ -551,9 +556,13 @@ function loadAssociationsToJSON() {
 		// onLoad callback
 		function (data) {
 			// output the text to the console
-			console.log(data);
+			//console.log(data);
 
 			peripheryObj = JSON.parse(data);
+
+			amountOfOutsiderAssociations = length(peripheryObj.association);
+			
+			document.getElementById("numberOfOutsiderAssociations").innerHTML = amountOfOutsiderAssociations;
 
 		},
 
