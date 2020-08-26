@@ -137,7 +137,7 @@ function setupTHREEStartComponents() {
 
 		var geometry = new THREE.TextGeometry( outsiderTextString, {
 		  font: font,
-		  size: 3,
+		  size: 2,
 		  height: 0.02,
 		  curveSegments: 4,
 		  bevelEnabled: true,
@@ -151,7 +151,7 @@ function setupTHREEStartComponents() {
 		//var material = new THREE.MeshBasicMaterial({color: 0x000000});
 		var outsiderWordMesh = new THREE.Mesh( geometry, material );
 		outsiderWordMesh.position.y = 5;
-		outsiderWordMesh.position.x = 20;
+		outsiderWordMesh.position.x = 22;
 		outsiderWordMesh.rotation.y = (TWO_PI * 0.75);
 		outsiderWordMesh.visible = false;
 		outsiderRoot.add(outsiderWordMesh);
