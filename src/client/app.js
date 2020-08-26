@@ -537,7 +537,7 @@ function loadAssociationsToJSON() {
 
 			var innerHTML1 = amountOfOutsiderAssociations + ' associations to the word outsider'
 
-			document.getElementById("numberOfOutsiderAssociations").innerHTML = amountOfOutsiderAssociations;
+			document.getElementById("numberOfOutsiderAssociations").innerHTML = innerHTML1;
 
 		},
 
