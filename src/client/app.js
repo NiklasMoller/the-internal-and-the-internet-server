@@ -132,7 +132,7 @@ function setupTHREEStartComponents() {
 
 		var outsiderTextString = JSON.stringify(outsiderObj.association[outsiderIndex - 1].association);
 		outsiderTextString = outsiderTextString.slice(1, -1);
-		outsiderTextString = 'Association nr:' + outsiderIndex + '\n' + outsiderTextString;
+		outsiderTextString = 'Association: ' + outsiderIndex + '\n' + outsiderTextString;
 		console.log('in loadNextOutsiderWord' + outsiderTextString);
 
 		var geometry = new THREE.TextGeometry( outsiderTextString, {
@@ -147,7 +147,13 @@ function setupTHREEStartComponents() {
 		} );
 
 		geometry.center();
-		var material = 	new THREE.MeshLambertMaterial({color: 0xb33131});
+		var color = new THREE.Color( 0xfecb34 );
+		var lerpColor = new THREE.Color(0xfe6734);
+		var lerbBy = 1 / amountOfOutsiderAssociations;
+		console.log('Lerp by: ' + lerbBy);
+		color.lerpHSL(lerpColor, lerbBy);
+
+		var material = 	new THREE.MeshLambertMaterial(color);
 		//var material = new THREE.MeshBasicMaterial({color: 0x000000});
 		var outsiderWordMesh = new THREE.Mesh( geometry, material );
 		outsiderWordMesh.position.y = 5;
