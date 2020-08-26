@@ -158,7 +158,7 @@ function setupTHREEStartComponents() {
 		console.log('HSL:' + myColor.getHSL().h + ' ' + myColor.getHSL().s + ' ' + myColor.getHSL().l)
 
 		var material = 	new THREE.MeshLambertMaterial();
-		material.color.setHSL(myColor.getHSL().h .getHSL().h, color.getHSL().s, color.getHSL().l)
+		material.color.setHSL(myColor.getHSL().h, color.getHSL().s, color.getHSL().l)
 		//var material = new THREE.MeshBasicMaterial({color: 0x000000});
 		var outsiderWordMesh = new THREE.Mesh( geometry, material );
 		outsiderWordMesh.position.y = 5;
