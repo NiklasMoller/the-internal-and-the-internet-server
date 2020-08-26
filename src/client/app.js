@@ -535,6 +535,8 @@ function loadAssociationsToJSON() {
 
 			amountOfOutsiderAssociations = length(outsiderObj.association);
 
+			document.getElementById("numberOfOutsiderAssociations").innerHTML = amountOfOutsiderAssociations;
+
 		},
 
 		// onProgress callback
@@ -560,9 +562,10 @@ function loadAssociationsToJSON() {
 
 			peripheryObj = JSON.parse(data);
 
-			amountOfOutsiderAssociations = length(peripheryObj.association);
-			
-			document.getElementById("numberOfOutsiderAssociations").innerHTML = amountOfOutsiderAssociations;
+			amountOfPeripheryAssociations = length(peripheryObj.association);
+
+			document.getElementById("numberOfPeripheryAssociations").innerHTML = amountOfPeripheryAssociations;
+
 
 		},
 
