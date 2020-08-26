@@ -130,7 +130,7 @@ function setupTHREEStartComponents() {
   
 	outsiderLoader.load( './Roboto_Regular.json', function ( font ) {
 
-		var outsiderTextString = JSON.stringify(outsiderIndex + '\n' + '\n' + outsiderObj.association[index].association);
+		var outsiderTextString = JSON.stringify(outsiderIndex + '\n' + '\n' + outsiderObj.association[outsiderIndex - 1].association);
 		console.log('in loadNextOutsiderWord' + outsiderTextString);
 
 		var geometry = new THREE.TextGeometry( outsiderTextString, {
@@ -154,9 +154,9 @@ function setupTHREEStartComponents() {
 		outsiderWordMesh.visible = false;
 		outsiderRoot.add(outsiderWordMesh);
   
-		  index++;
+		outsiderIndex++;
 		  loadNextOutsiderWord();
-		  if(index === 3){
+		  if(outsiderIndex === 3){
 			hasLoded = true;
 		  }
 
