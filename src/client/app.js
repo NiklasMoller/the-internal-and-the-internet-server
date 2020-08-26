@@ -150,8 +150,9 @@ function setupTHREEStartComponents() {
 		var color = new THREE.Color( 0xfecb34 );
 		var lerpColor = new THREE.Color(0xfe6734);
 		var lerbBy = 1 / amountOfOutsiderAssociations;
-		console.log('Lerp by: ' + lerbBy);
-		color.lerpHSL(lerpColor, lerbBy);
+		var lerpValue = amountOfOutsiderAssociations * lerbBy;
+		console.log('Lerp value: ' + lerpValue);
+		color.lerpHSL(lerpColor, lerpValue);
 
 		var material = 	new THREE.MeshLambertMaterial(color);
 		//var material = new THREE.MeshBasicMaterial({color: 0x000000});
