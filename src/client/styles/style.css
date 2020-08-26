@@ -32,6 +32,10 @@ h1 {
     font: 'MuseoModerno', cursive;
 }
 
+h3 {
+  text-align: center;
+}
+
 .margin {
   margin-bottom: 40px;
   margin-left: 0px;
@@ -44,6 +48,7 @@ h1 {
 
 .Lato {
   font-family: 'Lato', sans-serif;
+  text-align: center;
 }
 
 

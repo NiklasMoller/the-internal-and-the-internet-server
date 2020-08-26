@@ -3,6 +3,9 @@ import { DeviceOrientationControls } from 'three/examples/jsm/controls/DeviceOri
 
 var wallmaterial;
 
+var amountOfOutsiderAssociations = 0;
+var amountOfPeripheryAssociations = 0;
+
 var outsiderWordMesh;
 var peripheryWordMesh;
 
@@ -43,6 +46,12 @@ var startButton = document.getElementById('startButton');
 //To load fonts
 var loader = new THREE.FontLoader();
 
+var outsiderLoader = new THREE.FontLoader();
+var outsiderIndex = 1;
+
+var peripheryLoader = new THREE.FontLoader();
+var peripheryIndex = 1;
+
 startButton.addEventListener('click', function () {
 
 	init();
@@ -62,161 +71,17 @@ export const preLoad = () => {
 
 function init() {
 
-
-	console.log('13.22');
-
-
 	removeOverlay();
 	setupTHREEStartComponents();
 
-
-	//createTextString();
-
-	//addWordToScene();
-
-	//addTestPlane();
-
-	loadNextOutsiderWord();
-
-	//createWordGeometries();
+	createWordGeometries();
+	
 	animate();
 
-	scene.add(outsiderRoot);
-
-	//debugRoots();
-
-
-
 }
 
 
 
-function debugRoots(){
-
-
-	var group = new THREE.Object3D();
-
-	for (var i = 0; i < 10; i++) {
-	
-		var geometry = new THREE.BoxGeometry(1, 1, 1);
-		var material = new THREE.MeshNormalMaterial();
-		var mesh = new THREE.Mesh(geometry, material);
-		mesh.position.x = 10;
-	
-		group.add(mesh);
-	
-	}
-	
-	scene.add(group);
-
-	//group.remove(group.children[i]);
-
-	console.log('!!! - - Position is: ' + group.children[1].position.x);
-
-
-
-}
-
-
-function addTestPlane(){
-
-
-	console.log("Add test plane 17 aug");
-
-	/*
-	const objects = [];
-
-	planeRoot = new THREE.Object3D();
-	planeRoot.position.y = -20;
-	planeRoot.rotation.x = (TWO_PI);
-
-	scene.add(planeRoot);
-
-
-	wordRoot1 = new THREE.Object3D();
-	//planeRoot.add(wordRoot1);
-
-
-	wordRoot2 = new THREE.Object3D();
-
-
-
-	objects.push(planeRoot);
-
-	const planegeometry = new THREE.PlaneBufferGeometry(10, 10);
-	const planematerial = new THREE.MeshBasicMaterial({ color: 0xffff00 });
-	const planeMesh = new THREE.Mesh(planegeometry, planematerial);
-	//planeMesh.position.y = -20;
-	//planeMesh.rotation.x = -90;
-	//planeRoot.add(planeMesh);
-	//objects.push(planeMesh);
-
-
-	const planegeometry2 = new THREE.PlaneBufferGeometry(10, 10);
-	const planematerial2 = new THREE.MeshBasicMaterial({ color: 0xff0000 });
-	const planeMesh2 = new THREE.Mesh(planegeometry2, planematerial2);
-	//planeMesh.position.y = -20;
-	planeMesh2.rotation.x = (TWO_PI * 0.5);
-	//planeRoot.add(planeMesh2);
-
-*/
-
-		loader.load( './Roboto_Regular.json', function ( font ) {
-	  var geometry = new THREE.TextGeometry( "WorldASITIS SOO MUCH", {
-		font: font,
-		size: 0.5,
-		height: 0.02,
-		curveSegments: 4,
-		bevelEnabled: true,
-		bevelThickness: 0.02,
-		bevelSize: 0.05,
-		bevelSegments: 3
-	  } );
-	  geometry.center();
-	  //var material = 	new THREE.MeshLambertMaterial({color: 0xb33131});
-	  var material = new THREE.MeshBasicMaterial({color: 0x000000});
-	  wordMesh = new THREE.Mesh( geometry, material );
-	  wordMesh.position.y = -20;
-	  //wordMesh.rotation.y = (TWO_PI * 0.75);
-	  //wordMesh.rotation.x = (TWO_PI * 0.5);
-	  scene.add(wordMesh);
-	} );
-
-	loader.load( './Roboto_Regular.json', function ( font ) {
-		var geometry = new THREE.TextGeometry( "Hello", {
-		  font: font,
-		  size: 0.5,
-		  height: 0.02,
-		  curveSegments: 4,
-		  bevelEnabled: true,
-		  bevelThickness: 0.02,
-		  bevelSize: 0.05,
-		  bevelSegments: 3
-		} );
-		geometry.center();
-		//var material = 	new THREE.MeshLambertMaterial({color: 0xb33131});
-		var material = new THREE.MeshBasicMaterial({color: 0x000000});
-		wordMesh2 = new THREE.Mesh( geometry, material );
-		wordMesh2.position.y = -20;
-		//wordMesh.rotation.y = (TWO_PI * 0.75);
-		//wordMesh.rotation.x = (TWO_PI * 0.5);
-		//wordRoot2.add(wordMesh2);
-	  } );
-
-
-	rootHasLoaded = true;
-
-}
-
-
-function addPlane() {
-	var planegeometry = new THREE.PlaneBufferGeometry(50, 200);
-	var planematerial = new THREE.MeshBasicMaterial({ color: 0xffff00 });
-	var plane = new THREE.Mesh(planegeometry, planematerial);
-	plane.position.y = -20;
-	plane.rotation.x = -90;
-	scene.add(plane);
-}
 
 
 function removeOverlay() {
@@ -237,7 +102,7 @@ function setupTHREEStartComponents() {
 	// invert the geometry on the x-axis so that all of the faces point inward
 	buildingGeometry.scale(- 1, 1, 1);
 
-	var light = new THREE.AmbientLight( 0x2fc975, 2.5 );
+	var light = new THREE.AmbientLight( 0xffffff, 2 );
 	scene.add( light );
 
 
@@ -251,25 +116,28 @@ function setupTHREEStartComponents() {
 
 	window.addEventListener('resize', onWindowResize, false);
 
+	scene.add(outsiderRoot);
+
 }
 
-  var loader = new THREE.FontLoader();
-  var index = 0;
+
 
   function loadNextOutsiderWord() {
 
 	//console.log('In loadNextOutsiderWord');
 
-	if (index > length(outsiderObj.association) - 1) return;
+	if (outsiderIndex > amountOfOutsiderAssociations) return;
   
-	loader.load( './Roboto_Regular.json', function ( font ) {
+	outsiderLoader.load( './Roboto_Regular.json', function ( font ) {
 
-		var textString = JSON.stringify(outsiderObj.association[index].association);
-		console.log('in loadNextOutsiderWord' + textString);
+		var outsiderTextString = JSON.stringify(outsiderObj.association[outsiderIndex - 1].association);
+		outsiderTextString = outsiderTextString.slice(1, -1);
+		outsiderTextString = 'Association: ' + outsiderIndex + '\n' + outsiderTextString;
+		console.log('in loadNextOutsiderWord' + outsiderTextString);
 
-		var geometry = new THREE.TextGeometry( textString, {
+		var geometry = new THREE.TextGeometry( outsiderTextString, {
 		  font: font,
-		  size: 5,
+		  size: 2,
 		  height: 0.02,
 		  curveSegments: 4,
 		  bevelEnabled: true,
@@ -279,234 +147,43 @@ function setupTHREEStartComponents() {
 		} );
 
 		geometry.center();
-		var material = 	new THREE.MeshLambertMaterial({color: 0xb33131});
-		//var material = new THREE.MeshBasicMaterial({color: 0x000000});
+
+
+		var myColor = new THREE.Color("hsl(13, 79%, 52%)");
+		var lerpColor = new THREE.Color("hsl(8, 89%, 40%)");
+		var lerbBy = 1 / amountOfOutsiderAssociations;
+		var lerpValue = outsiderIndex * lerbBy;
+		myColor.lerpHSL(lerpColor, lerpValue);
+
+		console.log('HSL:' + myColor.getHSL().h + ' ' + myColor.getHSL().s + ' ' + myColor.getHSL().l)
+
+		//var material = 	new THREE.MeshLambertMaterial();
+		var material = new THREE.MeshBasicMaterial();
+		material.color.setHSL(myColor.getHSL().h, myColor.getHSL().s, myColor.getHSL().l)		
 		var outsiderWordMesh = new THREE.Mesh( geometry, material );
-		outsiderWordMesh.position.y = 10;
-		outsiderWordMesh.position.x = 18;
+		outsiderWordMesh.position.y = 5;
+		outsiderWordMesh.position.x = 25;
 		outsiderWordMesh.rotation.y = (TWO_PI * 0.75);
 		outsiderWordMesh.visible = false;
 		outsiderRoot.add(outsiderWordMesh);
   
-		  index++;
+		outsiderIndex++;
 		  loadNextOutsiderWord();
-		  hasLoded = true;
+		  if(outsiderIndex === 3){
+			hasLoded = true;
+		  }
+
 
 	  }	);
   
 	}
 
-/*
-	function loadNextOutsiderWordCopy() {
 
-		console.log('In loadNextOutsiderWord');
-	
-		if (index > length(outsiderObj.association) - 1) return;
-	  
-		loader.load( './Roboto_Regular.json', function ( font ) {
-	
-			var textString = JSON.stringify(outsiderObj.association[index].association);
-			console.log('in loadNextOutsiderWord' + textString);
-	
-			var geometry = new THREE.TextGeometry( textString, {
-			  font: font,
-			  size: 5,
-			  height: 0.02,
-			  curveSegments: 4,
-			  bevelEnabled: true,
-			  bevelThickness: 0.02,
-			  bevelSize: 0.05,
-			  bevelSegments: 3
-			} );
-	
-			geometry.center();
-			var material = 	new THREE.MeshLambertMaterial({color: 0xb33131});
-			//var material = new THREE.MeshBasicMaterial({color: 0x000000});
-			var outsiderWordMesh = new THREE.Mesh( geometry, material );
-			outsiderWordMesh.position.y = 10;
-			outsiderWordMesh.position.x = 18;
-			outsiderWordMesh.rotation.y = (TWO_PI * 0.75);
-	  
-			  scene.add( outsiderWordMesh );
-	
-			  index++;
-			  loadNextOutsiderWord();
-	
-		  }	);
-	  
-		}
 
-*/
 
 function createWordGeometries(){
 
-
-
-
-	var loader = new THREE.FontLoader();
-
-		
-	loader.load( './Roboto_Regular.json', function ( font ) {
-
-		for(var i = 0; i < length(outsiderObj.association); i++){
-		var textString = outsiderObj.association[i];
-		console.log(textString);
-
-		var geometry = new THREE.TextGeometry( textString, {
-		  font: font,
-		  size: 5,
-		  height: 0.02,
-		  curveSegments: 4,
-		  bevelEnabled: true,
-		  bevelThickness: 0.02,
-		  bevelSize: 0.05,
-		  bevelSegments: 3
-		} );
-
-		geometry.center();
-		var material = 	new THREE.MeshLambertMaterial({color: 0xb33131});
-		//var material = new THREE.MeshBasicMaterial({color: 0x000000});
-		outsiderWordMesh = new THREE.Mesh( geometry, material );
-		outsiderWordMesh.position.y = 10;
-		outsiderWordMesh.position.x = 18;
-		outsiderWordMesh.rotation.y = (TWO_PI * 0.75);
-  
-		  scene.add( outsiderWordMesh );
-
-	  }	}	);
-
-
-
-
-
-
-	loader.load( './Roboto_Regular.json', function ( font ) {
-		var geometry = new THREE.TextGeometry( 'OUTSIDE OF LOOP', {
-		  font: font,
-		  size: 5,
-		  height: 0.02,
-		  curveSegments: 4,
-		  bevelEnabled: true,
-		  bevelThickness: 0.02,
-		  bevelSize: 0.05,
-		  bevelSegments: 3
-		} );
-		geometry.center();
-		var material = 	new THREE.MeshLambertMaterial({color: 0xb33131});
-		//var material = new THREE.MeshBasicMaterial({color: 0x000000});
-		outsiderWordMesh = new THREE.Mesh( geometry, material );
-		outsiderWordMesh.position.y = 10;
-		outsiderWordMesh.position.x = 18;
-		outsiderWordMesh.rotation.y = (TWO_PI * 0.75);
-  
-		  scene.add( outsiderWordMesh );
-	  } );
-
-
-	  for(var i = 0; i < length(outsiderObj.association); i++){
-		  var mynewString = outsiderObj.association[i];
-
-		  var geometry = new THREE.TextGeometry( mynewString, {
-			font: font,
-			size: 5,
-			height: 0.02,
-			curveSegments: 4,
-			bevelEnabled: true,
-			bevelThickness: 0.02,
-			bevelSize: 0.05,
-			bevelSegments: 3
-		  } );
-		  geometry.center();
-		  var material = 	new THREE.MeshLambertMaterial({color: 0xb33131});
-		  //var material = new THREE.MeshBasicMaterial({color: 0x000000});
-		  outsiderWordMesh = new THREE.Mesh( geometry, material );
-		  outsiderWordMesh.position.y = 10;
-		  outsiderWordMesh.position.x = 18;
-		  outsiderWordMesh.rotation.y = (TWO_PI * 0.75);
-	
-			scene.add( outsiderWordMesh );
-
-
-	  }
-
-
-
-	//scene.add(outsiderRoot);
-
-}
-
-
-
-function addWordToScene() {
-
-	console.log('Adding the associations to mesh and scene');
-
-
-	//./RussoOneRegular.json
-
-
-
-	loader.load( './Roboto_Regular.json', function ( font ) {
-	  var geometry = new THREE.TextGeometry( outsiderAssociationsText, {
-		font: font,
-		size: 0.5,
-		height: 0.02,
-		curveSegments: 4,
-		bevelEnabled: true,
-		bevelThickness: 0.02,
-		bevelSize: 0.05,
-		bevelSegments: 3
-	  } );
-	  geometry.center();
-	  var material = 	new THREE.MeshLambertMaterial({color: 0xb33131});
-	  //var material = new THREE.MeshBasicMaterial({color: 0x000000});
-	  outsiderWordMesh = new THREE.Mesh( geometry, material );
-	  outsiderWordMesh.position.y = 10;
-	  outsiderWordMesh.position.x = 18;
-	  outsiderWordMesh.rotation.y = (TWO_PI * 0.75);
-
-		scene.add( outsiderWordMesh );
-	} );
-
-
-	loader.load( './Roboto_Regular.json', function ( font ) {
-	  var geometry = new THREE.TextGeometry( peripheryAssociationsText, {
-		font: font,
-		size: 0.5,
-		height: 0.02
-		//curveSegments: 4,
-		//bevelEnabled: true,
-		//bevelThickness: 0.02,
-		//bevelSize: 0.05,
-		//bevelSegments: 3
-	  } );
-	  geometry.center();
-	 // var material = new THREE.MeshNormalMaterial();
-	  var material = 	new THREE.MeshLambertMaterial({color: 0xab0000});
-	  peripheryWordMesh = new THREE.Mesh( geometry, material );
-	  peripheryWordMesh.position.y = 10;
-	  peripheryWordMesh.position.x = -18;
-	  peripheryWordMesh.rotation.y = TWO_PI * 0.25;
-		scene.add( peripheryWordMesh );
-	} );
-
-}
-
-
-function createTextString(){
-
-	for(var i = 0; i < length(outsiderObj.association); i++){
-
-		outsiderAssociationsText += outsiderObj.association[i].association + '\n';
-
-	}
-
-	for(var i = 0; i < length(peripheryObj.association); i++){
-
-		peripheryAssociationsText += peripheryObj.association[i].association + '\n';
-
-	}
-
+	loadNextOutsiderWord();
 
 }
 
@@ -526,9 +203,15 @@ function loadAssociationsToJSON() {
 		// onLoad callback
 		function (data) {
 			// output the text to the console
-			console.log(data)
+			//console.log(data)
 
 			outsiderObj = JSON.parse(data);
+
+			amountOfOutsiderAssociations = length(outsiderObj.association);
+
+			var innerHTML1 = amountOfOutsiderAssociations + ' associations to the word OUTSIDER'
+
+			document.getElementById("numberOfOutsiderAssociations").innerHTML = innerHTML1;
 
 		},
 
@@ -551,9 +234,18 @@ function loadAssociationsToJSON() {
 		// onLoad callback
 		function (data) {
 			// output the text to the console
-			console.log(data);
+			//console.log(data);
 
 			peripheryObj = JSON.parse(data);
+
+			amountOfPeripheryAssociations = length(peripheryObj.association);
+
+			var innerHTML2 = amountOfPeripheryAssociations + ' associations to the word PERIPHERY'
+
+			document.getElementById("numberOfPeripheryAssociations").innerHTML = innerHTML2;
+			document.getElementById("startButton").disabled = false;
+
+
 
 		},
 
@@ -578,8 +270,7 @@ function length(obj) {
 
 //---------------------------------------------------------------------------
 
-var counter = 0;
-var counterYes = true;
+var tempIndex = 0;
 
 function animate() {
 
@@ -587,7 +278,24 @@ function animate() {
 	numberOfIterations++;
 
 			if(hasLoded){
-				outsiderRoot.children[0].visible = true;
+
+			
+				if(numberOfIterations % 400 === 2){
+
+					if(tempIndex + 2 > amountOfOutsiderAssociations){
+						outsiderRoot.children[tempIndex].visible = false;
+						tempIndex = 0;
+					}
+
+					outsiderRoot.children[tempIndex].visible = false;
+
+					tempIndex++;
+
+					outsiderRoot.children[tempIndex].visible = true;
+
+				}
+
+			
 			} 
 		
 
