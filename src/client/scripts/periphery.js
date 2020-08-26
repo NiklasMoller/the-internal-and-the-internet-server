@@ -22,13 +22,29 @@ function buttonPressed(){
 
     socket.emit('peripheryAssociation', message);
   }
-  else if (n === 1){
+  else if (n > 0){
+    console.log('Pressed another time');
 
-    animation.playSegments([1575, 1900], false);
 
-    socket.emit('e-mailAddress', message);
+      if (validateEmail(message)) {
+
+        animation.playSegments([1575, 1900], false);
+        socket.emit('e-mailAddress', message);
+
+      } else {
+
+        console.log('Not an valid e-mail');
+
+      }
+
+
   }
 
   n = n + 1;
 
+}
+
+function validateEmail(email) {
+  const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(email);
 }
