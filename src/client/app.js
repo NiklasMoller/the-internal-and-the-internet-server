@@ -269,7 +269,7 @@ function animate() {
 			if(hasLoded){
 
 			
-				if(numberOfIterations % 120 === 2){
+				if(numberOfIterations % 400 === 2){
 
 					outsiderRoot.children[tempIndex].visible = false;
 
@@ -277,14 +277,12 @@ function animate() {
 
 					outsiderRoot.children[tempIndex].visible = true;
 
-					if(tempIndex - 1 > amountOfOutsiderAssociations){
-						tempIndex = 0;
-					}
-
-
 				}
-			
-			
+
+				if(tempIndex > amountOfOutsiderAssociations){
+					tempIndex = 0;
+				}
+		
 			
 			} 
 		
