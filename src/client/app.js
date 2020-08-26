@@ -154,17 +154,11 @@ function setupTHREEStartComponents() {
 		var lerbBy = 1 / amountOfOutsiderAssociations;
 		var lerpValue = outsiderIndex * lerbBy;
 		color.lerpHSL(lerpColor, lerpValue);
-		console.log('Lerp value: ' + lerpValue + 'and style: ' + color.getHexString());
 
-		var colorInMaterial = '0x' + color.getHexString();
-
-		//var colorValue = parseInt ( colorInMaterial.replace("#","0x"), 16 );
-		var colorValue = parseInt ( color.getHexString(), 16 );
-		console.log('After parsing the color looks like: ' + colorValue);
-		var colored = new THREE.Color( colorValue );
+		console.log('Color of material in HSL is: ' + color.getHSL);
 
 		var material = 	new THREE.MeshLambertMaterial();
-		material.color.setHex(color.getHex);
+		material.color.setHSL(color.getHSL);
 		//var material = new THREE.MeshBasicMaterial({color: 0x000000});
 		var outsiderWordMesh = new THREE.Mesh( geometry, material );
 		outsiderWordMesh.position.y = 5;
