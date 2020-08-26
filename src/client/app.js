@@ -132,7 +132,7 @@ function setupTHREEStartComponents() {
 
 		var outsiderTextString = JSON.stringify(outsiderObj.association[outsiderIndex - 1].association);
 		outsiderTextString = outsiderTextString.slice(1, -1);
-		outsiderTextString = outsiderIndex + '\n' + outsiderTextString;
+		outsiderTextString = 'Association nr:' + outsiderIndex + '\n' + outsiderTextString;
 		console.log('in loadNextOutsiderWord' + outsiderTextString);
 
 		var geometry = new THREE.TextGeometry( outsiderTextString, {
@@ -271,16 +271,16 @@ function animate() {
 			
 				if(numberOfIterations % 400 === 2){
 
+					if(tempIndex + 2 > amountOfOutsiderAssociations){
+						outsiderRoot.children[tempIndex].visible = false;
+						tempIndex = 0;
+					}
+
 					outsiderRoot.children[tempIndex].visible = false;
 
 					tempIndex++;
 
 					outsiderRoot.children[tempIndex].visible = true;
-
-
-					if(tempIndex + 2 > amountOfOutsiderAssociations){
-						tempIndex = 0;
-					}
 
 				}
 
