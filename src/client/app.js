@@ -155,10 +155,8 @@ function setupTHREEStartComponents() {
 		var lerpValue = outsiderIndex * lerbBy;
 		color.lerpHSL(lerpColor, lerpValue);
 
-		console.log('Color of material in HSL is: ' + color.getHSL());
-
 		var material = 	new THREE.MeshLambertMaterial();
-		material.color.add(color);
+		material.color.setHSL(color.getHSL().h, color.getHSL().s, color.getHSL().l)
 		//var material = new THREE.MeshBasicMaterial({color: 0x000000});
 		var outsiderWordMesh = new THREE.Mesh( geometry, material );
 		outsiderWordMesh.position.y = 5;
