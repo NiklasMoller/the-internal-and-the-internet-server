@@ -162,7 +162,7 @@ function setupTHREEStartComponents() {
 		console.log('After parsing the color looks like: ' + colorValue);
 		var colored = new THREE.Color( colorValue );
 
-		var material = 	new THREE.MeshLambertMaterial({color: colorInMaterial});
+		var material = 	new THREE.MeshLambertMaterial({color: colorValue});
 		//var material = new THREE.MeshBasicMaterial({color: 0x000000});
 		var outsiderWordMesh = new THREE.Mesh( geometry, material );
 		outsiderWordMesh.position.y = 5;
