@@ -147,14 +147,16 @@ function setupTHREEStartComponents() {
 		} );
 
 		geometry.center();
+
+
 		var color = new THREE.Color( 0xfecb34 );
 		var lerpColor = new THREE.Color(0xfe6734);
 		var lerbBy = 1 / amountOfOutsiderAssociations;
-		var lerpValue = amountOfOutsiderAssociations * lerbBy;
-		console.log('Lerp value: ' + lerpValue);
+		var lerpValue = outsiderIndex * lerbBy;
+		console.log('Lerp value: ' + lerpValue + 'and style' + color.getHexString());
 		color.lerpHSL(lerpColor, lerpValue);
 
-		var material = 	new THREE.MeshLambertMaterial(color);
+		var material = 	new THREE.MeshLambertMaterial(color.getHexString());
 		//var material = new THREE.MeshBasicMaterial({color: 0x000000});
 		var outsiderWordMesh = new THREE.Mesh( geometry, material );
 		outsiderWordMesh.position.y = 5;
