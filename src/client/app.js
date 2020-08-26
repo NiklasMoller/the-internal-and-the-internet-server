@@ -151,7 +151,7 @@ function setupTHREEStartComponents() {
 		//var material = new THREE.MeshBasicMaterial({color: 0x000000});
 		var outsiderWordMesh = new THREE.Mesh( geometry, material );
 		outsiderWordMesh.position.y = 5;
-		outsiderWordMesh.position.x = 22;
+		outsiderWordMesh.position.x = 25;
 		outsiderWordMesh.rotation.y = (TWO_PI * 0.75);
 		outsiderWordMesh.visible = false;
 		outsiderRoot.add(outsiderWordMesh);
