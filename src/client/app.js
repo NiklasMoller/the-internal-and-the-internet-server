@@ -157,7 +157,10 @@ function setupTHREEStartComponents() {
 		console.log('Lerp value: ' + lerpValue + 'and style: ' + color.getHexString());
 
 		var colorInMaterial = '0x' + color.getHexString();
-		var colorInMaterial = colorInMaterial.toUpperCase();
+
+		var colorValue = parseInt ( colorInMaterial.replace("#","0x"), 16 );
+		console.log('After parsing the color looks like: ' + colorValue);
+		var colored = new THREE.Color( colorValue );
 
 		var material = 	new THREE.MeshLambertMaterial({color: colorInMaterial});
 		//var material = new THREE.MeshBasicMaterial({color: 0x000000});
