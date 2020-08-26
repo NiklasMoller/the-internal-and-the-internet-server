@@ -277,12 +277,13 @@ function animate() {
 
 					outsiderRoot.children[tempIndex].visible = true;
 
+
+					if(tempIndex > amountOfOutsiderAssociations){
+						tempIndex = 0;
+					}
+
 				}
 
-				if(tempIndex > amountOfOutsiderAssociations){
-					tempIndex = 0;
-				}
-		
 			
 			} 
 		
