@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var io = require('socket.io')(http);
 const axios = require('axios')
 
-import sslRedirect from 'heroku-ssl-redirect';
+//import sslRedirect from 'heroku-ssl-redirect';
 
 var Schema = mongoose.Schema;
 var emailsController = require('./emailsController.js');
@@ -33,10 +33,6 @@ app.use(express.static(path.join(__dirname, '/../src/client')));
 //Enabling express to access files in the dist folder
 app.use(express.static(path.join(__dirname, '/../dist')));
 
-
-
-// enable ssl redirect
-app.use(sslRedirect());
 
 
 app.get('/', function(req, res){
