@@ -32,6 +32,25 @@ app.use(express.static(path.join(__dirname, '/../src/client')));
 app.use(express.static(path.join(__dirname, '/../dist')));
 
 
+
+// -------- EXPERIMENT --------
+
+app.use((req, res, next) => {
+    if (process.env.NODE_ENV === 'production') {
+        //if (req.headers.host === 'radiant-ridge-37495.herokuapp.com')
+        //    return res.redirect(301, 'https://www.your-custom-domain.com');
+        if (req.headers['x-forwarded-proto'] !== 'https')
+            return res.redirect('https://' + req.headers.host + req.url);
+        else
+            return next();
+    } else
+        return next();
+});
+
+// --------------------------
+
+
+
 app.get('/', function(req, res){
     res.sendFile(path.resolve(__dirname + '/../src/client/index.html'));
 });
@@ -47,6 +66,9 @@ app.get('/gallery', function(req, res){
   res.sendFile(path.resolve(__dirname + '/../src/client/redirect.html'));
 });
 */
+
+
+
 
 app.get('/gallery', function(req, res){
 res.redirect('https://radiant-ridge-37495.herokuapp.com/fringe')
