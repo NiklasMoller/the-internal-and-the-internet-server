@@ -382,7 +382,7 @@ function animate() {
 
 
 										//If  the counter 
-										if(peripheryCounter + 1 < peripheryObjects.children.length){
+										if(peripheryCounter + 1 < peripheryRoot.children.length){
 											peripheryRoot.children[peripheryCounter].visible = false;
 											peripheryCounter++;
 											peripheryRoot.children[peripheryCounter].visible = true;
