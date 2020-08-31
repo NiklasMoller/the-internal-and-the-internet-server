@@ -1,49 +1,50 @@
-<!DOCTYPE html> 
-<html> 
-      
-<head> 
-    <title> 
-Turning The Outside In
-    </title> 
-</head> 
-  
-<body> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Turning the Outside In</title>
 
-      
-    <button id="btn1" onclick="addClick()"> 
-        Click Me! 
-    </button> 
-      
-    <script type="text/javascript"> 
-      
-        let clicks = 0; 
-  
-        function addClick() { 
-            clicks = clicks + 1; 
-            document.querySelector('.total-clicks').textContent 
-                        = clicks; 
-        } 
-  
-        // Simulate click function 
-        function clickButton() { 
-            document.querySelector('#btn1').click(); 
-        } 
-  
-        // Simulate a click every second 
-        setInterval(clickButton, 1000); 
-    </script> 
+    <!-- Importing Google Font-->
+    <link href="https://fonts.googleapis.com/css2?family=MuseoModerno&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
 
-<form action="https://radiant-ridge-37495.herokuapp.com/fringe">
-  <button type="submit">Click me</button>
-</form>
-
-<a href="https://radiant-ridge-37495.herokuapp.com/fringe" target="_blank">Visit the gallery</a>
-
-<a href="https://radiant-ridge-37495.herokuapp.com/fringe" target="_top">Top</a>
-
-<a href="https://radiant-ridge-37495.herokuapp.com/fringe" target="_parent">Parent</a>
+    <!-- Importing customized stylesheet-->
+    <link rel="stylesheet" type="text/css" href="./styles/style.css">
 
 
-</body> 
-  
-</html> 
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!-- Assuring Bootstrap is responsive on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+
+    body {
+            text-align: center;
+        }
+
+    </style>
+
+</head>
+<body class="bg-2">
+<div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+  <a href="https://radiant-ridge-37495.herokuapp.com/fringe" target="_top">  <button class="btn btn-secondary"> Step inside </button></a>
+
+</div>
+
+
+</body>
+</html>
