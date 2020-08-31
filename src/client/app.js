@@ -28,6 +28,11 @@ var wordMesh, wordMesh2;
 var wordRoot = new THREE.Object3D();
 
 var outsiderRoot = new THREE.Object3D();
+var peripheryRoot = new THREE.Object3D();
+
+//Used in animate function as a counter
+var outsiderCounter = 0;
+var peripheryCounter = 0;
 
 var camera, renderer, controls;
 
@@ -73,8 +78,6 @@ function init() {
 
 	removeOverlay();
 	setupTHREEStartComponents();
-
-	createWordGeometries();
 	
 	animate();
 
@@ -117,6 +120,7 @@ function setupTHREEStartComponents() {
 	window.addEventListener('resize', onWindowResize, false);
 
 	scene.add(outsiderRoot);
+	scene.add(peripheryRoot);
 
 }
 
@@ -132,12 +136,12 @@ function setupTHREEStartComponents() {
 
 		var outsiderTextString = JSON.stringify(outsiderObj.association[outsiderIndex - 1].association);
 		outsiderTextString = outsiderTextString.slice(1, -1);
-		outsiderTextString = 'Association: ' + outsiderIndex + '\n' + outsiderTextString;
+		//outsiderTextString = 'Association: ' + outsiderIndex + '\n' + outsiderTextString;
 		console.log('in loadNextOutsiderWord' + outsiderTextString);
 
 		var geometry = new THREE.TextGeometry( outsiderTextString, {
 		  font: font,
-		  size: 2,
+		  size: 1.8,
 		  height: 0.02,
 		  curveSegments: 4,
 		  bevelEnabled: true,
@@ -149,23 +153,36 @@ function setupTHREEStartComponents() {
 		geometry.center();
 
 
+/*
 		var myColor = new THREE.Color("hsl(13, 79%, 52%)");
 		var lerpColor = new THREE.Color("hsl(8, 89%, 40%)");
 		var lerbBy = 1 / amountOfOutsiderAssociations;
 		var lerpValue = outsiderIndex * lerbBy;
 		myColor.lerpHSL(lerpColor, lerpValue);
+*/
 
-		console.log('HSL:' + myColor.getHSL().h + ' ' + myColor.getHSL().s + ' ' + myColor.getHSL().l)
+		//console.log('HSL:' + myColor.getHSL().h + ' ' + myColor.getHSL().s + ' ' + myColor.getHSL().l)
 
 		//var material = 	new THREE.MeshLambertMaterial();
-		var material = new THREE.MeshBasicMaterial();
-		material.color.setHSL(myColor.getHSL().h, myColor.getHSL().s, myColor.getHSL().l)		
+		var material = new THREE.MeshBasicMaterial({color: 0x31412f});
+		//material.color.setHSL(myColor.getHSL().h, myColor.getHSL().s, myColor.getHSL().l)
+		
+		
 		var outsiderWordMesh = new THREE.Mesh( geometry, material );
-		outsiderWordMesh.position.y = 5;
+		outsiderWordMesh.position.y = 3;
 		outsiderWordMesh.position.x = 25;
 		outsiderWordMesh.rotation.y = (TWO_PI * 0.75);
-		outsiderWordMesh.visible = false;
+
+			//To prevent the first one from being set invisible
+			if(outsiderIndex !== 0){
+				outsiderWordMesh.visible = false;
+			}
+
+
 		outsiderRoot.add(outsiderWordMesh);
+
+		console.log('Lenght of outsider root children is ' + outsiderRoot.children.length);
+
   
 		outsiderIndex++;
 		  loadNextOutsiderWord();
@@ -178,14 +195,76 @@ function setupTHREEStartComponents() {
   
 	}
 
+	function loadNextPeripheryWord() {
+
+		//console.log('In loadNextOutsiderWord');
+	
+		if (peripheryIndex > amountOfPeripheryAssociations) return;
+	  
+		peripheryLoader.load( './Roboto_Regular.json', function ( font ) {
+	
+			var peripheryTextString = JSON.stringify(peripheryObj.association[peripheryIndex - 1].association);
+			peripheryTextString = peripheryTextString.slice(1, -1);
+			//outsiderTextString = 'Association: ' + outsiderIndex + '\n' + outsiderTextString;
+			console.log('in loadNextPeripheryWord' + peripheryTextString);
+	
+			var geometry = new THREE.TextGeometry( peripheryTextString, {
+			  font: font,
+			  size: 1.8,
+			  height: 0.02,
+			  curveSegments: 4,
+			  bevelEnabled: true,
+			  bevelThickness: 0.02,
+			  bevelSize: 0.05,
+			  bevelSegments: 3
+			} );
+	
+			geometry.center();
+	
+	
+	/*
+			var myColor = new THREE.Color("hsl(13, 79%, 52%)");
+			var lerpColor = new THREE.Color("hsl(8, 89%, 40%)");
+			var lerbBy = 1 / amountOfOutsiderAssociations;
+			var lerpValue = outsiderIndex * lerbBy;
+			myColor.lerpHSL(lerpColor, lerpValue);
+	*/
+	
+			//console.log('HSL:' + myColor.getHSL().h + ' ' + myColor.getHSL().s + ' ' + myColor.getHSL().l)
+	
+			//var material = 	new THREE.MeshLambertMaterial();
+			var material = new THREE.MeshBasicMaterial({color: 0x31412f});
+			//material.color.setHSL(myColor.getHSL().h, myColor.getHSL().s, myColor.getHSL().l)
+			
+			
+			var peripheryWordMesh = new THREE.Mesh( geometry, material );
+			peripheryWordMesh.position.y = 3;
+			peripheryWordMesh.position.x = -25;
+			peripheryWordMesh.rotation.y = (TWO_PI * 0.25);
+
+			//To prevent the first one from being set invisible
+			if(peripheryIndex !== 0){
+				peripheryWordMesh.visible = false;
+			}
+
+			peripheryRoot.add(peripheryWordMesh);
+
+			console.log('Lenght of periphery root children is ' + peripheryRoot.children.length);
+	  
+			peripheryIndex++;
+			  loadNextPeripheryWord();
+
+	
+	
+		  }	);
+	  
+		}
 
 
 
-function createWordGeometries(){
 
-	loadNextOutsiderWord();
 
-}
+
 
 
 
@@ -207,11 +286,13 @@ function loadAssociationsToJSON() {
 
 			outsiderObj = JSON.parse(data);
 
-			amountOfOutsiderAssociations = length(outsiderObj.association);
+			amountOfOutsiderAssociations = length(outsiderObj.association) - 1;
 
 			var innerHTML1 = amountOfOutsiderAssociations + ' associations to the word OUTSIDER'
 
 			document.getElementById("numberOfOutsiderAssociations").innerHTML = innerHTML1;
+
+			loadNextOutsiderWord();
 
 		},
 
@@ -238,12 +319,14 @@ function loadAssociationsToJSON() {
 
 			peripheryObj = JSON.parse(data);
 
-			amountOfPeripheryAssociations = length(peripheryObj.association);
+			amountOfPeripheryAssociations = length(peripheryObj.association) - 1;
 
-			var innerHTML2 = amountOfPeripheryAssociations + ' associations to the word PERIPHERY'
+			var innerHTML2 = amountOfPeripheryAssociations + ' associations to the word INSIDER'
 
 			document.getElementById("numberOfPeripheryAssociations").innerHTML = innerHTML2;
 			document.getElementById("startButton").disabled = false;
+
+			loadNextPeripheryWord();
 
 
 
@@ -270,33 +353,48 @@ function length(obj) {
 
 //---------------------------------------------------------------------------
 
-var tempIndex = 0;
+
 
 function animate() {
 
 
 	numberOfIterations++;
 
-			if(hasLoded){
-
 			
 				if(numberOfIterations % 400 === 2){
 
-					if(tempIndex + 2 > amountOfOutsiderAssociations){
-						outsiderRoot.children[tempIndex].visible = false;
-						tempIndex = 0;
+
+
+					//RESETS THE COUNTER AT 0
+					if(outsiderCounter + 2 > amountOfOutsiderAssociations){
+						outsiderRoot.children[outsiderCounter].visible = false;
+						outsiderCounter = 0;
 					}
 
-					outsiderRoot.children[tempIndex].visible = false;
+					if(outsiderCounter + 1 < outsiderRoot.children.length){
+						outsiderRoot.children[outsiderCounter].visible = false;
+						outsiderCounter++;
+						outsiderRoot.children[outsiderCounter].visible = true;
+					}
 
-					tempIndex++;
 
-					outsiderRoot.children[tempIndex].visible = true;
+
+					//RESETS THE COUNTER AT 0
+					if(peripheryCounter + 2 > amountOfPeripheryAssociations){
+						peripheryRoot.children[peripheryCounter].visible = false;
+						peripheryCounter = 0;
+					}
+
+					if(peripheryCounter +1 < peripheryRoot.children.length){
+						peripheryRoot.children[peripheryCounter].visible = false;
+						peripheryCounter++;
+						peripheryRoot.children[peripheryCounter].visible = true;
+					}
+
 
 				}
 
-			
-			} 
+
 		
 
 

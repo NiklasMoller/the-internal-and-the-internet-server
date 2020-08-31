@@ -7,7 +7,7 @@ var animation = bodymovin.loadAnimation({
   renderer: 'svg',
   loop: false,
   autoplay: true,
-  path: './resources/animations/periphery.json',
+  path: './resources/animations/insider.json',
   initialSegment: [1,700]
 })
 
