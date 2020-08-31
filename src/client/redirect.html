@@ -1,37 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html> 
+<html> 
+      
+<head> 
+    <title> 
+Turning The Outside In
+    </title> 
+</head> 
+  
+<body> 
 
-  <!--  Meta  -->
-  <meta charset="UTF-8" />
-  <title>Turning the Outside In</title>
+      
+    <button id="btn1" onclick="addClick()"> 
+        Click Me! 
+    </button> 
+      
+    <script type="text/javascript"> 
+      
+        let clicks = 0; 
+  
+        function addClick() { 
+            clicks = clicks + 1; 
+            document.querySelector('.total-clicks').textContent 
+                        = clicks; 
+        } 
+  
+        // Simulate click function 
+        function clickButton() { 
+            document.querySelector('#btn1').click(); 
+        } 
+  
+        // Simulate a click every second 
+        setInterval(clickButton, 1000); 
+    </script> 
 
-  <!-- Bootstrap Stylesheet -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-  <!-- Importing Google Font-->
-  <link href="https://fonts.googleapis.com/css2?family=MuseoModerno&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-
-  <!-- Importing customized stylesheet-->
-  <style>
-  body {background-color: #000000;}
-  </style>
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<form action="http://radiant-ridge-37495.herokuapp.com/fringe">
+  <button type="submit">Click me</button>
+</form>
 
 
-</head>
-<body>
-
-<script>
-
-//window.location.replace("https://radiant-ridge-37495.herokuapp.com/fringe");
-window.location.href = "https://radiant-ridge-37495.herokuapp.com/fringe";
-
-
-</script>
-
-</body>
-</html>
+</body> 
+  
+</html> 

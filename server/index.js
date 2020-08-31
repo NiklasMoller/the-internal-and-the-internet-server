@@ -7,8 +7,6 @@ var bodyParser = require('body-parser');
 var io = require('socket.io')(http);
 const axios = require('axios')
 
-//import sslRedirect from 'heroku-ssl-redirect';
-
 var Schema = mongoose.Schema;
 var emailsController = require('./emailsController.js');
 var outsiderAssociationsController = require('./outsiderController.js');
@@ -44,18 +42,9 @@ app.get('/fringe', function(req, res){
     res.sendFile(path.resolve(__dirname + '/../src/client/gallery.html'));
 });
 
-//Using path.resolve
-/*
+
 app.get('/gallery', function(req, res){
   res.sendFile(path.resolve(__dirname + '/../src/client/redirect.html'));
-});
-*/
-
-
-
-
-app.get('/gallery', function(req, res){
-res.redirect('https://radiant-ridge-37495.herokuapp.com/fringe')
 });
 
 //Using path.resolve
