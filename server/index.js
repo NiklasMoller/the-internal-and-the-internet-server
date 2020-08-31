@@ -32,13 +32,19 @@ app.use(express.static(path.join(__dirname, '/../src/client')));
 app.use(express.static(path.join(__dirname, '/../dist')));
 
 
+
 app.get('/', function(req, res){
     res.sendFile(path.resolve(__dirname + '/../src/client/index.html'));
 });
 
 //Using path.resolve
-app.get('/gallery', function(req, res){
+app.get('/fringe', function(req, res){
     res.sendFile(path.resolve(__dirname + '/../src/client/gallery.html'));
+});
+
+
+app.get('/gallery', function(req, res){
+  res.sendFile(path.resolve(__dirname + '/../src/client/redirect.html'));
 });
 
 //Using path.resolve
