@@ -371,7 +371,7 @@ function animate() {
 						outsiderCounter = 0;
 					}
 
-					if(outsiderCounter < outsiderRoot.children.length){
+					if(outsiderCounter + 1 < outsiderRoot.children.length){
 						outsiderRoot.children[outsiderCounter].visible = false;
 						outsiderCounter++;
 						outsiderRoot.children[outsiderCounter].visible = true;
@@ -385,7 +385,7 @@ function animate() {
 						peripheryCounter = 0;
 					}
 
-					if(peripheryCounter < peripheryRoot.children.length){
+					if(peripheryCounter +1 < peripheryRoot.children.length){
 						peripheryRoot.children[peripheryCounter].visible = false;
 						peripheryCounter++;
 						peripheryRoot.children[peripheryCounter].visible = true;
