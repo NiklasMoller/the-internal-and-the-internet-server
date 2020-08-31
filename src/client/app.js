@@ -368,7 +368,7 @@ function animate() {
 				if(numberOfIterations % 400 === 2){
 
 
-					//If  the counter 
+					//If  the counter + 1 (the amount after ++) would be smaller or the same as the items in array (and not cause index out of bounds)
 					if(outsiderCounter  + 1 < outsiderRoot.children.length){
 						outsiderRoot.children[outsiderCounter].visible = false;
 						outsiderCounter++;
