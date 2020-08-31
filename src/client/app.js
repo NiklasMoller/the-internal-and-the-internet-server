@@ -286,7 +286,7 @@ function loadAssociationsToJSON() {
 
 			outsiderObj = JSON.parse(data);
 
-			amountOfOutsiderAssociations = length(outsiderObj.association);
+			amountOfOutsiderAssociations = length(outsiderObj.association) - 1;
 
 			var innerHTML1 = amountOfOutsiderAssociations + ' associations to the word OUTSIDER'
 
@@ -319,7 +319,7 @@ function loadAssociationsToJSON() {
 
 			peripheryObj = JSON.parse(data);
 
-			amountOfPeripheryAssociations = length(peripheryObj.association);
+			amountOfPeripheryAssociations = length(peripheryObj.association) - 1;
 
 			var innerHTML2 = amountOfPeripheryAssociations + ' associations to the word INSIDER'
 
