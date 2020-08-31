@@ -42,10 +42,15 @@ app.get('/fringe', function(req, res){
 });
 
 //Using path.resolve
+/*
 app.get('/gallery', function(req, res){
   res.sendFile(path.resolve(__dirname + '/../src/client/redirect.html'));
 });
+*/
 
+app.get('/gallery', function(req, res){
+res.redirect('https://radiant-ridge-37495.herokuapp.com/fringe')
+});
 
 //Using path.resolve
 app.get('/question1', function(req, res){
