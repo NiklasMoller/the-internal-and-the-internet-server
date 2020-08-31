@@ -132,7 +132,7 @@ function setupTHREEStartComponents() {
 
 		var outsiderTextString = JSON.stringify(outsiderObj.association[outsiderIndex - 1].association);
 		outsiderTextString = outsiderTextString.slice(1, -1);
-		outsiderTextString = 'Association: ' + outsiderIndex + '\n' + outsiderTextString;
+		//outsiderTextString = 'Association: ' + outsiderIndex + '\n' + outsiderTextString;
 		console.log('in loadNextOutsiderWord' + outsiderTextString);
 
 		var geometry = new THREE.TextGeometry( outsiderTextString, {
@@ -149,19 +149,23 @@ function setupTHREEStartComponents() {
 		geometry.center();
 
 
+/*
 		var myColor = new THREE.Color("hsl(13, 79%, 52%)");
 		var lerpColor = new THREE.Color("hsl(8, 89%, 40%)");
 		var lerbBy = 1 / amountOfOutsiderAssociations;
 		var lerpValue = outsiderIndex * lerbBy;
 		myColor.lerpHSL(lerpColor, lerpValue);
+*/
 
-		console.log('HSL:' + myColor.getHSL().h + ' ' + myColor.getHSL().s + ' ' + myColor.getHSL().l)
+		//console.log('HSL:' + myColor.getHSL().h + ' ' + myColor.getHSL().s + ' ' + myColor.getHSL().l)
 
 		//var material = 	new THREE.MeshLambertMaterial();
-		var material = new THREE.MeshBasicMaterial();
-		material.color.setHSL(myColor.getHSL().h, myColor.getHSL().s, myColor.getHSL().l)		
+		var material = new THREE.MeshBasicMaterial({color: 0x31412f});
+		//material.color.setHSL(myColor.getHSL().h, myColor.getHSL().s, myColor.getHSL().l)
+		
+		
 		var outsiderWordMesh = new THREE.Mesh( geometry, material );
-		outsiderWordMesh.position.y = 5;
+		outsiderWordMesh.position.y = 3;
 		outsiderWordMesh.position.x = 25;
 		outsiderWordMesh.rotation.y = (TWO_PI * 0.75);
 		outsiderWordMesh.visible = false;
