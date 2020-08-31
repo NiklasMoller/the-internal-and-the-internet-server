@@ -286,7 +286,8 @@ function loadAssociationsToJSON() {
 
 			outsiderObj = JSON.parse(data);
 
-			amountOfOutsiderAssociations = length(outsiderObj.association) - 1;
+			//Starts counting from 1
+			amountOfOutsiderAssociations = length(outsiderObj.association);
 
 			var innerHTML1 = amountOfOutsiderAssociations + ' associations to the word OUTSIDER'
 
@@ -319,7 +320,8 @@ function loadAssociationsToJSON() {
 
 			peripheryObj = JSON.parse(data);
 
-			amountOfPeripheryAssociations = length(peripheryObj.association) - 1;
+			//Starts counting from 1
+			amountOfPeripheryAssociations = length(peripheryObj.association);
 
 			var innerHTML2 = amountOfPeripheryAssociations + ' associations to the word INSIDER'
 
@@ -366,7 +368,7 @@ function animate() {
 
 
 					//RESETS THE COUNTER AT 0
-					if(outsiderCounter + 2 > amountOfOutsiderAssociations){
+					if(outsiderCounter + 1 > outsiderRoot.children.length){
 						outsiderRoot.children[outsiderCounter].visible = false;
 						outsiderCounter = 0;
 					}
@@ -380,7 +382,7 @@ function animate() {
 
 
 					//RESETS THE COUNTER AT 0
-					if(peripheryCounter + 2 > amountOfPeripheryAssociations){
+					if(peripheryCounter + 1 > peripheryRoot.children.length){
 						peripheryRoot.children[peripheryCounter].visible = false;
 						peripheryCounter = 0;
 					}
