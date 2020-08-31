@@ -385,12 +385,12 @@ function animate() {
 										if(peripheryCounter + 1 < peripheryObjects.children.length){
 											peripheryRoot.children[peripheryCounter].visible = false;
 											peripheryCounter++;
-											peripheryRoot.children[outsiderCounter].visible = true;
+											peripheryRoot.children[peripheryCounter].visible = true;
 										}
 										else{
-											peripheryRoot.children[outsiderCounter].visible = false;
+											peripheryRoot.children[peripheryCounter].visible = false;
 											peripheryCounter = 0;
-											peripheryRoot.children[outsiderCounter].visible = true;
+											peripheryRoot.children[peripheryCounter].visible = true;
 										}
 
 
