@@ -356,7 +356,9 @@ function length(obj) {
 //---------------------------------------------------------------------------
 
 
-
+//outsiderCounter begins at 0;
+//children.length = amount of items
+//We have set the first child to visible always
 function animate() {
 
 
@@ -366,32 +368,32 @@ function animate() {
 				if(numberOfIterations % 400 === 2){
 
 
-
-					//RESETS THE COUNTER AT 0
-					if(outsiderCounter + 1 > outsiderRoot.children.length){
-						outsiderRoot.children[outsiderCounter].visible = false;
-						outsiderCounter = 0;
-					}
-
-					if(outsiderCounter < outsiderRoot.children.length){
+					//If  the counter 
+					if(outsiderCounter  + 1 < outsiderRoot.children.length){
 						outsiderRoot.children[outsiderCounter].visible = false;
 						outsiderCounter++;
 						outsiderRoot.children[outsiderCounter].visible = true;
 					}
-
-
-
-					//RESETS THE COUNTER AT 0
-					if(peripheryCounter + 1 > peripheryRoot.children.length){
-						peripheryRoot.children[peripheryCounter].visible = false;
-						peripheryCounter = 0;
+					else{
+						outsiderRoot.children[outsiderCounter].visible = false;
+						outsiderCounter = 0;
+						outsiderRoot.children[outsiderCounter].visible = true;
 					}
 
-					if(peripheryCounter < peripheryRoot.children.length){
-						peripheryRoot.children[peripheryCounter].visible = false;
-						peripheryCounter++;
-						peripheryRoot.children[peripheryCounter].visible = true;
-					}
+
+										//If  the counter 
+										if(peripheryCounter + 1 < peripheryObjects.children.length){
+											peripheryRoot.children[peripheryCounter].visible = false;
+											peripheryCounter++;
+											peripheryRoot.children[outsiderCounter].visible = true;
+										}
+										else{
+											peripheryRoot.children[outsiderCounter].visible = false;
+											peripheryCounter = 0;
+											peripheryRoot.children[outsiderCounter].visible = true;
+										}
+
+
 
 
 				}
