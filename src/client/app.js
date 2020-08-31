@@ -28,6 +28,7 @@ var wordMesh, wordMesh2;
 var wordRoot = new THREE.Object3D();
 
 var outsiderRoot = new THREE.Object3D();
+var peripheryRoot = new THREE.Object3D();
 
 var camera, renderer, controls;
 
@@ -73,8 +74,6 @@ function init() {
 
 	removeOverlay();
 	setupTHREEStartComponents();
-
-	createWordGeometries();
 	
 	animate();
 
@@ -117,6 +116,7 @@ function setupTHREEStartComponents() {
 	window.addEventListener('resize', onWindowResize, false);
 
 	scene.add(outsiderRoot);
+	scene.add(peripheryRoot);
 
 }
 
@@ -137,7 +137,7 @@ function setupTHREEStartComponents() {
 
 		var geometry = new THREE.TextGeometry( outsiderTextString, {
 		  font: font,
-		  size: 2,
+		  size: 1.8,
 		  height: 0.02,
 		  curveSegments: 4,
 		  bevelEnabled: true,
@@ -170,6 +170,9 @@ function setupTHREEStartComponents() {
 		outsiderWordMesh.rotation.y = (TWO_PI * 0.75);
 		outsiderWordMesh.visible = false;
 		outsiderRoot.add(outsiderWordMesh);
+
+		console.log('Lenght of outsider root children is ' + outsiderRoot.children.length);
+
   
 		outsiderIndex++;
 		  loadNextOutsiderWord();
@@ -182,14 +185,73 @@ function setupTHREEStartComponents() {
   
 	}
 
+	function loadNextPeripheryWord() {
+
+		//console.log('In loadNextOutsiderWord');
+	
+		if (peripheryIndex > amountOfPeripheryAssociations) return;
+	  
+		peripheryLoader.load( './Roboto_Regular.json', function ( font ) {
+	
+			var peripheryTextString = JSON.stringify(peripheryObj.association[peripheryIndex - 1].association);
+			peripheryTextString = outsiderTextString.slice(1, -1);
+			//outsiderTextString = 'Association: ' + outsiderIndex + '\n' + outsiderTextString;
+			console.log('in loadNextPeripheryWord' + peripheryTextString);
+	
+			var geometry = new THREE.TextGeometry( peripheryTextString, {
+			  font: font,
+			  size: 1.8,
+			  height: 0.02,
+			  curveSegments: 4,
+			  bevelEnabled: true,
+			  bevelThickness: 0.02,
+			  bevelSize: 0.05,
+			  bevelSegments: 3
+			} );
+	
+			geometry.center();
+	
+	
+	/*
+			var myColor = new THREE.Color("hsl(13, 79%, 52%)");
+			var lerpColor = new THREE.Color("hsl(8, 89%, 40%)");
+			var lerbBy = 1 / amountOfOutsiderAssociations;
+			var lerpValue = outsiderIndex * lerbBy;
+			myColor.lerpHSL(lerpColor, lerpValue);
+	*/
+	
+			//console.log('HSL:' + myColor.getHSL().h + ' ' + myColor.getHSL().s + ' ' + myColor.getHSL().l)
+	
+			//var material = 	new THREE.MeshLambertMaterial();
+			var material = new THREE.MeshBasicMaterial({color: 0x31412f});
+			//material.color.setHSL(myColor.getHSL().h, myColor.getHSL().s, myColor.getHSL().l)
+			
+			
+			var peripheryWordMesh = new THREE.Mesh( geometry, material );
+			peripheryWordMesh.position.y = 3;
+			peripheryWordMesh.position.x = -25;
+			peripheryWordMesh.rotation.y = (TWO_PI * 0.25);
+			peripheryWordMesh.visible = false;
+			peripheryRoot.add(peripheryWordMesh);
+
+			console.log('Lenght of periphery root children is ' + peripheryRoot.children.length);
+	  
+			peripheryIndex++;
+			  loadNextPeripheryWord();
+			  if(outsiderIndex === 3){
+				hasLoded = true;
+			  }
+	
+	
+		  }	);
+	  
+		}
 
 
 
-function createWordGeometries(){
 
-	loadNextOutsiderWord();
 
-}
+
 
 
 
@@ -216,6 +278,8 @@ function loadAssociationsToJSON() {
 			var innerHTML1 = amountOfOutsiderAssociations + ' associations to the word OUTSIDER'
 
 			document.getElementById("numberOfOutsiderAssociations").innerHTML = innerHTML1;
+
+			loadNextOutsiderWord();
 
 		},
 
@@ -244,10 +308,12 @@ function loadAssociationsToJSON() {
 
 			amountOfPeripheryAssociations = length(peripheryObj.association);
 
-			var innerHTML2 = amountOfPeripheryAssociations + ' associations to the word PERIPHERY'
+			var innerHTML2 = amountOfPeripheryAssociations + ' associations to the word INSIDER'
 
 			document.getElementById("numberOfPeripheryAssociations").innerHTML = innerHTML2;
 			document.getElementById("startButton").disabled = false;
+
+			loadNextPeripheryWord();
 
 
 
