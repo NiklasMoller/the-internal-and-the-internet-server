@@ -30,6 +30,10 @@ var wordRoot = new THREE.Object3D();
 var outsiderRoot = new THREE.Object3D();
 var peripheryRoot = new THREE.Object3D();
 
+//Used in animate function as a counter
+var outsiderCounter = 0;
+var peripheryCounter = 0;
+
 var camera, renderer, controls;
 
 var scene = new THREE.Scene();
@@ -168,7 +172,13 @@ function setupTHREEStartComponents() {
 		outsiderWordMesh.position.y = 3;
 		outsiderWordMesh.position.x = 25;
 		outsiderWordMesh.rotation.y = (TWO_PI * 0.75);
-		outsiderWordMesh.visible = false;
+
+			//To prevent the first one from being set invisible
+			if(outsiderIndex !== 0){
+				outsiderWordMesh.visible = false;
+			}
+
+
 		outsiderRoot.add(outsiderWordMesh);
 
 		console.log('Lenght of outsider root children is ' + outsiderRoot.children.length);
@@ -194,7 +204,7 @@ function setupTHREEStartComponents() {
 		peripheryLoader.load( './Roboto_Regular.json', function ( font ) {
 	
 			var peripheryTextString = JSON.stringify(peripheryObj.association[peripheryIndex - 1].association);
-			peripheryTextString = outsiderTextString.slice(1, -1);
+			peripheryTextString = peripheryTextString.slice(1, -1);
 			//outsiderTextString = 'Association: ' + outsiderIndex + '\n' + outsiderTextString;
 			console.log('in loadNextPeripheryWord' + peripheryTextString);
 	
@@ -231,16 +241,19 @@ function setupTHREEStartComponents() {
 			peripheryWordMesh.position.y = 3;
 			peripheryWordMesh.position.x = -25;
 			peripheryWordMesh.rotation.y = (TWO_PI * 0.25);
-			peripheryWordMesh.visible = false;
+
+			//To prevent the first one from being set invisible
+			if(peripheryIndex !== 0){
+				peripheryWordMesh.visible = false;
+			}
+
 			peripheryRoot.add(peripheryWordMesh);
 
 			console.log('Lenght of periphery root children is ' + peripheryRoot.children.length);
 	  
 			peripheryIndex++;
 			  loadNextPeripheryWord();
-			  if(outsiderIndex === 3){
-				hasLoded = true;
-			  }
+
 	
 	
 		  }	);
@@ -340,33 +353,48 @@ function length(obj) {
 
 //---------------------------------------------------------------------------
 
-var tempIndex = 0;
+
 
 function animate() {
 
 
 	numberOfIterations++;
 
-			if(hasLoded){
-
 			
 				if(numberOfIterations % 400 === 2){
 
-					if(tempIndex + 2 > amountOfOutsiderAssociations){
-						outsiderRoot.children[tempIndex].visible = false;
-						tempIndex = 0;
+
+
+					//RESETS THE COUNTER AT 0
+					if(outsiderCounter + 2 > amountOfOutsiderAssociations){
+						outsiderRoot.children[outsiderCounter].visible = false;
+						outsiderCounter = 0;
 					}
 
-					outsiderRoot.children[tempIndex].visible = false;
+					if(outsiderCounter < outsiderRoot.children.length){
+						outsiderRoot.children[outsiderCounter].visible = false;
+						outsiderCounter++;
+						outsiderRoot.children[outsiderCounter].visible = true;
+					}
 
-					tempIndex++;
 
-					outsiderRoot.children[tempIndex].visible = true;
+
+					//RESETS THE COUNTER AT 0
+					if(peripheryCounter + 2 > amountOfPeripheryAssociations){
+						peripheryRoot.children[peripheryCounter].visible = false;
+						peripheryCounter = 0;
+					}
+
+					if(peripheryCounter < peripheryRoot.children.length){
+						peripheryRoot.children[peripheryCounter].visible = false;
+						peripheryCounter++;
+						peripheryRoot.children[peripheryCounter].visible = true;
+					}
+
 
 				}
 
-			
-			} 
+
 		
 
 
