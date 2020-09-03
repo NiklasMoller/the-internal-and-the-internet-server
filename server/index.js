@@ -6,6 +6,10 @@ const mongoose = require('mongoose')
 var bodyParser = require('body-parser');
 var io = require('socket.io')(http);
 const axios = require('axios')
+var Filter = require('bad-words'),
+filter = new Filter();
+
+var words = require("naughty-words");
 
 var Schema = mongoose.Schema;
 var emailsController = require('./emailsController.js');
@@ -22,6 +26,23 @@ if (port == null || port == "") { //To run on local host
 http.listen(port, function(){
     console.log('listening on *:3000');
 });
+
+
+
+
+//To filter away bad words
+words.sv.forEach(function(element) { 
+  filter.addWords(element);
+  });
+
+words.en.forEach(function(element) { 
+  filter.addWords(element);
+});
+
+filter.addWords('hora', 'jävla', 'snopp', 'penis');
+
+
+
 
 
 
@@ -103,22 +124,36 @@ io.on('connection', function(socket){
     socket.on('outsiderAssociation', function(msg){
       //console.log('Association from client is ' + msg);
 
-      axios.post('https://radiant-ridge-37495.herokuapp.com/api/outsiderAssociations', {
-        association: msg
-      })
-      .then((res) => {
-        console.log(`statusCode: ${res.statusCode}`)
-        //console.log(res)
-      })
-      .catch((error) => {
-        console.error(error)
-      })
+
+      if(filter.isProfane(msg)){
+        console.log('Elininating bad word');
+      }
+      else{
+
+        axios.post('https://radiant-ridge-37495.herokuapp.com/api/outsiderAssociations', {
+          association: msg
+        })
+        .then((res) => {
+          console.log(`statusCode: ${res.statusCode}`)
+          //console.log(res)
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+
+      }
 
 
     });
 
     socket.on('peripheryAssociation', function(msg){
       //console.log('Association from client is ' + msg);
+
+      if(filter.isProfane(msg)){
+        console.log('Elininating bad word');
+      }
+      else{
+
 
       axios.post('https://radiant-ridge-37495.herokuapp.com/api/peripheryAssociations', {
         association: msg
@@ -130,6 +165,8 @@ io.on('connection', function(socket){
       .catch((error) => {
         console.error(error)
       })
+
+    }
 
     });
 
