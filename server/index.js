@@ -98,6 +98,7 @@ io.on('connection', function(socket){
         console.error(error)
       })
 
+      
     });
 
     socket.on('outsiderAssociation', function(msg){
