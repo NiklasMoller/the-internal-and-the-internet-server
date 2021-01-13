@@ -78,7 +78,7 @@ function init() {
 
 	removeOverlay();
 	setupTHREEStartComponents();
-	
+
 	animate();
 
 }
@@ -131,7 +131,7 @@ function setupTHREEStartComponents() {
 	//console.log('In loadNextOutsiderWord');
 
 	if (outsiderIndex > amountOfOutsiderAssociations) return;
-  
+
 	outsiderLoader.load( './Roboto_Regular.json', function ( font ) {
 
 		var outsiderTextString = JSON.stringify(outsiderObj.association[outsiderIndex - 1].association);
@@ -166,10 +166,10 @@ function setupTHREEStartComponents() {
 		//var material = 	new THREE.MeshLambertMaterial();
 		var material = new THREE.MeshBasicMaterial({color: 0x31412f});
 		//material.color.setHSL(myColor.getHSL().h, myColor.getHSL().s, myColor.getHSL().l)
-		
-		
+
+
 		var outsiderWordMesh = new THREE.Mesh( geometry, material );
-		outsiderWordMesh.position.y = 3;
+		outsiderWordMesh.position.y = 4;
 		outsiderWordMesh.position.x = 25;
 		outsiderWordMesh.rotation.y = (TWO_PI * 0.75);
 
@@ -183,7 +183,7 @@ function setupTHREEStartComponents() {
 
 		console.log('Lenght of outsider root children is ' + outsiderRoot.children.length);
 
-  
+
 		outsiderIndex++;
 		  loadNextOutsiderWord();
 		  if(outsiderIndex === 3){
@@ -192,22 +192,22 @@ function setupTHREEStartComponents() {
 
 
 	  }	);
-  
+
 	}
 
 	function loadNextPeripheryWord() {
 
 		//console.log('In loadNextOutsiderWord');
-	
+
 		if (peripheryIndex > amountOfPeripheryAssociations) return;
-	  
+
 		peripheryLoader.load( './Roboto_Regular.json', function ( font ) {
-	
+
 			var peripheryTextString = JSON.stringify(peripheryObj.association[peripheryIndex - 1].association);
 			peripheryTextString = peripheryTextString.slice(1, -1);
 			//outsiderTextString = 'Association: ' + outsiderIndex + '\n' + outsiderTextString;
 			console.log('in loadNextPeripheryWord' + peripheryTextString);
-	
+
 			var geometry = new THREE.TextGeometry( peripheryTextString, {
 			  font: font,
 			  size: 1.8,
@@ -218,10 +218,10 @@ function setupTHREEStartComponents() {
 			  bevelSize: 0.05,
 			  bevelSegments: 3
 			} );
-	
+
 			geometry.center();
-	
-	
+
+
 	/*
 			var myColor = new THREE.Color("hsl(13, 79%, 52%)");
 			var lerpColor = new THREE.Color("hsl(8, 89%, 40%)");
@@ -229,16 +229,16 @@ function setupTHREEStartComponents() {
 			var lerpValue = outsiderIndex * lerbBy;
 			myColor.lerpHSL(lerpColor, lerpValue);
 	*/
-	
+
 			//console.log('HSL:' + myColor.getHSL().h + ' ' + myColor.getHSL().s + ' ' + myColor.getHSL().l)
-	
+
 			//var material = 	new THREE.MeshLambertMaterial();
 			var material = new THREE.MeshBasicMaterial({color: 0x31412f});
 			//material.color.setHSL(myColor.getHSL().h, myColor.getHSL().s, myColor.getHSL().l)
-			
-			
+
+
 			var peripheryWordMesh = new THREE.Mesh( geometry, material );
-			peripheryWordMesh.position.y = 3;
+			peripheryWordMesh.position.y = 4;
 			peripheryWordMesh.position.x = -25;
 			peripheryWordMesh.rotation.y = (TWO_PI * 0.25);
 
@@ -250,14 +250,14 @@ function setupTHREEStartComponents() {
 			peripheryRoot.add(peripheryWordMesh);
 
 			console.log('Lenght of periphery root children is ' + peripheryRoot.children.length);
-	  
+
 			peripheryIndex++;
 			  loadNextPeripheryWord();
 
-	
-	
+
+
 		  }	);
-	  
+
 		}
 
 
@@ -364,7 +364,7 @@ function animate() {
 
 	numberOfIterations++;
 
-			
+
 				if(numberOfIterations % 400 === 2){
 
 
@@ -381,7 +381,7 @@ function animate() {
 					}
 
 
-										//If  the counter 
+										//If  the counter
 										if(peripheryCounter + 1 < peripheryRoot.children.length){
 											peripheryRoot.children[peripheryCounter].visible = false;
 											peripheryCounter++;
@@ -399,7 +399,7 @@ function animate() {
 				}
 
 
-		
+
 
 
 	window.requestAnimationFrame(animate);
