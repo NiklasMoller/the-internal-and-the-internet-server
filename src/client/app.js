@@ -169,7 +169,7 @@ function setupTHREEStartComponents() {
 
 
 		var outsiderWordMesh = new THREE.Mesh( geometry, material );
-		outsiderWordMesh.position.y = 7;
+		outsiderWordMesh.position.y = 5;
 		outsiderWordMesh.position.x = 25;
 		outsiderWordMesh.rotation.y = (TWO_PI * 0.75);
 
@@ -238,7 +238,7 @@ function setupTHREEStartComponents() {
 
 
 			var peripheryWordMesh = new THREE.Mesh( geometry, material );
-			peripheryWordMesh.position.y = 7;
+			peripheryWordMesh.position.y = 6;
 			peripheryWordMesh.position.x = -25;
 			peripheryWordMesh.rotation.y = (TWO_PI * 0.25);
 
