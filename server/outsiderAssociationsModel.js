@@ -10,4 +10,4 @@ var associationSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('outsider-association', associationSchema);
+module.exports = mongoose.model('outsider-association-lint', associationSchema);

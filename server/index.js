@@ -31,11 +31,11 @@ http.listen(port, function(){
 
 
 //To filter away bad words
-words.sv.forEach(function(element) { 
+words.sv.forEach(function(element) {
   filter.addWords(element);
   });
 
-words.en.forEach(function(element) { 
+words.en.forEach(function(element) {
   filter.addWords(element);
 });
 

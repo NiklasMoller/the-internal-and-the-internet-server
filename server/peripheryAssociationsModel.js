@@ -10,4 +10,4 @@ var associationSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('periphery-association', associationSchema);
+module.exports = mongoose.model('periphery-association-lint', associationSchema);
